@@ -6,16 +6,16 @@ const websites: WebsitesData = {
     sites: [
       {
         id: "my-blog",
-        title: "Website",
-        img: "https://dadianas.com/img/avatar.jpg",
-        link: "https://dadianas.com/",
+        title: "CV",
+        img: "https://dadianas.com/ui/avatar.jpg",
+        link: "https://anas.dadispace.com/",
         inner: true
       },
       {
         id: "my-github",
         title: "Github",
         img: "img/sites/github.svg",
-        link: "https://github.com/Renovamen"
+        link: "https://github.com/dadianas"
       },
       {
         id: "my-linkedin",
@@ -23,29 +23,29 @@ const websites: WebsitesData = {
         img: "img/sites/linkedin.svg",
         link: "https://www.linkedin.com/in/dadianas"
       },
-      {
-        id: "my-google-scholar",
-        title: "Scholar",
-        img: "img/sites/google-scholar.svg",
-        link: "https://scholar.google.com/citations?user=RuW6xgMAAAAJ"
-      },
-      {
-        id: "my-zhihu",
-        title: "知乎",
-        img: "img/sites/zhihu.jpeg",
-        link: "https://www.zhihu.com/people/chao-neng-gui-su"
-      },
-      {
-        id: "my-twitter",
-        title: "Twitter",
-        img: "img/sites/twitter.svg",
-        link: "https://www.twitter.com/renovamen_zxh"
-      },
+      // {
+      //   id: "my-google-scholar",
+      //   title: "Scholar",
+      //   img: "img/sites/google-scholar.svg",
+      //   link: "https://scholar.google.com/citations?user=RuW6xgMAAAAJ"
+      // },
+      // {
+      //   id: "my-zhihu",
+      //   title: "知乎",
+      //   img: "img/sites/zhihu.jpeg",
+      //   link: "https://www.zhihu.com/people/chao-neng-gui-su"
+      // },
+      // {
+      //   id: "my-twitter",
+      //   title: "Twitter",
+      //   img: "img/sites/twitter.svg",
+      //   link: "https://www.twitter.com/renovamen_zxh"
+      // },
       {
         id: "my-email",
         title: "Email",
         img: "img/sites/gmail.svg",
-        link: "mailto:renovamenzxh@gmail.com"
+        link: "mailto:dadi.anas@hotmail.fr"
       }
     ]
   },
@@ -56,7 +56,7 @@ const websites: WebsitesData = {
         id: "github",
         title: "Github",
         img: "img/sites/github.svg",
-        link: "https://github.com/"
+        link: "https://github.com/dadianas"
       },
       {
         id: "arxiv",
