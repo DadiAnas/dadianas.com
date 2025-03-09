@@ -19,9 +19,34 @@ J'ai acquis une expérience précieuse dans différents rôles, ce qui m'a permi
 
 ### **Rôle Actuel:**
 
+#### Coral-io / BNP Paribas (Devops/SRE - Expert infrastructure et orchestration)
+
+• Gérer des orchestrateurs multi-cloud sur les plateformes IBM Cloud, AWS, Azure
+• Concevoir et mettre en œuvre des clusters Kubernetes évolutifs et haute disponibilité
+• Développer et maintenir des pipelines CI/CD pour une architecture de microservices
+• Mettre en œuvre l'Infrastructure as Code (IaC) en utilisant Terraform et Ansible
+• Optimiser l'allocation des ressources des containers et leurs performances
+• Établir et appliquer les meilleures pratiques de sécurité dans les environnements cloud
+• Concevoir et mettre en œuvre des systèmes de surveillance et d'alerte robustes en utilisant Dynatrace, Prometheus, Grafana et la stack ELK
+• Automatiser les opérations de routine et les procédures de réponse aux incidents
+• Réaliser la planification de la capacité et l'optimisation des coûts pour les ressources cloud
+• Mettre en œuvre et gérer des solutions de maillage de services (Service Mesh)
+• Développer des opérateurs Kubernetes personnalisés pour des besoins métiers spécifiques
+• Diriger l'adoption des pratiques GitOps pour la gestion de l'infrastructure
+• Mettre en œuvre et gérer la gestion des secrets avec HashiCorp Vault
+• Optimiser les performances des bases de données et mettre en œuvre des stratégies de réplication des données
+• Réaliser des audits de sécurité réguliers et des évaluations de vulnérabilités
+• Encadrer les membres juniors de l'équipe sur les meilleures pratiques DevOps et SRE
+• Collaborer avec les équipes de développement pour améliorer la performance et la fiabilité des applications
+• Mettre en œuvre des pratiques de chaos engineering pour améliorer la résilience des systèmes
+• Gérer et optimiser les dépôts d'artefacts CI/CD
+• Développer et maintenir une documentation complète pour tous les systèmes et processus
+
+### **Rôles Précédents:**
+
 #### Coral-io / Stellantis (Architecte Cloud/DevSecOps)
 
-_**Durée:**_ 01 septembre 2023 - Présent
+_**Durée:**_  septembre 2023 -  August 2024
 
 _Projet:_ Migration vers le Cloud
 
@@ -45,11 +70,11 @@ _Technologies et Compétences:_
 _Environnement Technique:_  Terraform, AWS (EC2, ELB, RDS, ECS, ECR, Lambda, Route53, S3, CloudWatch, CloudTrail, Application Migration Service, Data Migration Service, CloudFormation), Azure (Resource Groups, Azure Vault, Disk Encryption Sets, Network Security Groups, Subnets, Vnets), Docker, Kubernetes, TeamCity (Kotlin-based
 pipelines), GitHub Actions, Looker Studio, AWS QuickSight, Azure Power BI, Git, Tfsec, terraform-docs, Pre-commit, TFLint.
 
-### **Rôles Précédents:**
+
 
 #### Coral-io/icade.fr (Consultant DevOps/SRE)
 
-_**Durée:**_ 17 août 2022 - 31 août 2023
+_**Durée:**_  août 2022 -  août 2023
 
 _Rôles et Responsabilités:_
 - J'ai conçu et géré des systèmes CI/CD utilisant GitLab CI et Jenkins pour des déploiements réguliers.
@@ -81,7 +106,7 @@ _Environnement Technique:_ Python, Bash, Golang, administration Kubernetes, Vaul
 
 #### Avito.ma / Frontier Digital Ventures (Ingénieur DevOps/Cloud)
 
-_**Durée:**_ 01 septembre 2021 - 01 août 2022
+_**Durée:**_  septembre 2021 - août 2022
 
 _Rôles et Responsabilités:_
 - J'ai géré les infrastructures AWS en utilisant les outils Infrastructure as Code tels que Terraform et CloudFormation.
@@ -107,7 +132,7 @@ _Environnement Technique:_ AWS, Python, Bash, AWS (Production administration; EK
 
 #### DXC Technology
 
-_**Durée:**_ 15 février 2021 - 15 juin 2021
+_**Durée:**_ février 2021 - juin 2021
 
 _Projet:_ Mise en œuvre d
 
@@ -117,7 +142,7 @@ _Environnement Technique:_ Zabbix, VMware ESXI, Kubernetes, Helm, Docker, Grafan
 
 #### Barid-Al-Maghrib
 
-_**Durée:**_ 1 juillet 2019 - 1 août 2019
+_**Durée:**_ juillet 2019 - août 2019
 
 _Projets:_
 - Développement d'une application web de gestion de mobilier en utilisant Flask-Python.
@@ -125,7 +150,7 @@ _Projets:_
 
 #### ENSET Mohammedia
 
-_**Durée:**_ 1 octobre 2020 - 1 décembre 2020
+_**Durée:**_ octobre 2020 - décembre 2020
 
 _Projets:_
 - Développé un Chatbot IA utilisant Python (Flask, TensorFlow) en backend, Heroku pour le déploiement, et React-Native pour le développement mobile.
@@ -133,7 +158,7 @@ _Projets:_
 
 #### Abboud Foodstuff Trading
 
-_**Durée:**_ 01 juillet 2020 - 31 août 2020
+_**Durée:**_ juillet 2020 - août 2020
 
 _Projets:_ Développement d'une application web de gestion de stock en utilisant NestJS, ReactJS, et Figma.
 

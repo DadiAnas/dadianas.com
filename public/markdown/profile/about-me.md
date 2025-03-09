@@ -19,6 +19,33 @@ I have gained valuable experience in different roles that have allowed me to bec
 
 ### **Current Role:**
 
+#### Coral-io / BNP Paribas (Devops/SRE - Expert infrastructure et orchestration)
+
+• Devops/SRE - Expert infrastructure et orchestration
+• Manage multi-cloud orchestrators across IBM Cloud, AWS, Azure platforms
+• Design and implement scalable, high-availability Kubernetes clusters
+• Develop and maintain CI/CD pipelines for microservices architecture
+• Implement Infrastructure as Code (IaC) using Terraform and Ansible
+• Optimize container resource allocation and performance
+• Establish and enforce security best practices in cloud environments
+• Design and implement robust monitoring and alerting systems using Dynatrace, Prometheus, Grafana, and
+ELK stack
+• Automate routine operations and incident response procedures
+• Conduct capacity planning and cost optimization for cloud resources
+• Implement and manage service mesh solutions
+• Develop custom Kubernetes operators for specific business needs
+• Lead the adoption of GitOps practices for infrastructure management
+• Implement and manage secrets management using HashiCorp Vault
+• Optimize database performance and implement data replication strategies
+• Conduct regular security audits and vulnerability assessments
+• Mentor junior team members on DevOps and SRE best practices
+• Collaborate with development teams to improve application performance and reliability
+• Implement chaos engineering practices to improve system resilience
+• Manage and optimize CI/CD artifact repositories
+• Develop and maintain comprehensive documentation for all systems and processes
+
+### **Previous Roles:**
+
 #### Coral-io / Stellantis (Cloud/DevSecOps Architect)
 
 _**Duration:**_ 01 September 2023 - Present
@@ -45,11 +72,9 @@ _Technologies and Skills:_
 _Technical Environment:_  Terraform, AWS (EC2, ELB, RDS, ECS, ECR, Lambda, Route53, S3, CloudWatch, CloudTrail, Application Migration Service, Data Migration Service, CloudFormation), Azure (Resource Groups, Azure Vault, Disk Encryption Sets, Network Security Groups, Subnets, Vnets), Docker, Kubernetes, TeamCity (Kotlin-based
 pipelines), GitHub Actions, Looker Studio, AWS QuickSight, Azure Power BI, Git, Tfsec, terraform-docs, Pre-commit, TFLint.
 
-### **Previous Roles:**
-
 #### Coral-io/icade.fr (DevOps/SRE Consultant)
 
-_**Duration:**_ 17 August 2022 - 31 August 2023
+_**Duration:**_ August 2022 - August 2023
 
 _Roles and Responsibilities:_
 - Designed and managed CI/CD systems using GitLab CI and Jenkins for regular deployments.
@@ -81,7 +106,7 @@ _Technical Environment:_ Python, Bash, Golang, Kubernetes administration, Vault,
 
 #### Avito.ma / Frontier Digital Ventures (DevOps/Cloud Engineer)
 
-_**Duration:**_ 01 September 2021 - 01 August 2022
+_**Duration:**_ September 2021 - August 2022
 
 _Roles and Responsibilities:_
 - Managed AWS infrastructures using Infrastructure as Code tools such as Terraform and CloudFormation.
@@ -107,7 +132,7 @@ _Technical Environment:_ AWS, Python, Bash, AWS (Production administration; EKS,
 
 #### DXC Technology
 
-_**Duration:**_ 15 February 2021 - 15 June 2021
+_**Duration:**_ February 2021 - June 2021
 
 _Project:_ Implementation of IT Monitoring and Reporting BI Solution
 
@@ -115,7 +140,7 @@ _Technical Environment:_ Zabbix, VMware ESXI, Kubernetes, Helm, Docker, Grafana,
 
 #### Barid-Al-Maghrib
 
-_**Duration:**_ 1 July 2019 - 1 August 2019
+_**Duration:**_ July 2019 - August 2019
 
 _Projects:_
 - Developed a furniture management web application using Flask-Python.
@@ -123,7 +148,7 @@ _Projects:_
 
 #### ENSET Mohammedia
 
-_**Duration:**_ 1 October 2020 - 1 December 2020
+_**Duration:**_  October 2020 - December 2020
 
 _Projects:_
 - Developed an AI Chatbot using Python (Flask, TensorFlow) on Backend, Heroku for deployment, and React-Native for mobile development.
@@ -131,7 +156,7 @@ _Projects:_
 
 #### Abboud Foodstuff Trading
 
-_**Duration:**_ 01 July 2020 - 31 August 2020
+_**Duration:**_  July 2020 - August 2020
 
 _Projects:_ Developed a web stock management application using NestJS, ReactJS, and Figma.
 
