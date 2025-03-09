@@ -21,26 +21,26 @@ J'ai acquis une expérience précieuse dans différents rôles, ce qui m'a permi
 
 #### Coral-io / BNP Paribas (Devops/SRE - Expert infrastructure et orchestration)
 
-• Gérer des orchestrateurs multi-cloud sur les plateformes IBM Cloud, AWS, Azure
-• Concevoir et mettre en œuvre des clusters Kubernetes évolutifs et haute disponibilité
-• Développer et maintenir des pipelines CI/CD pour une architecture de microservices
-• Mettre en œuvre l'Infrastructure as Code (IaC) en utilisant Terraform et Ansible
-• Optimiser l'allocation des ressources des containers et leurs performances
-• Établir et appliquer les meilleures pratiques de sécurité dans les environnements cloud
-• Concevoir et mettre en œuvre des systèmes de surveillance et d'alerte robustes en utilisant Dynatrace, Prometheus, Grafana et la stack ELK
-• Automatiser les opérations de routine et les procédures de réponse aux incidents
-• Réaliser la planification de la capacité et l'optimisation des coûts pour les ressources cloud
-• Mettre en œuvre et gérer des solutions de maillage de services (Service Mesh)
-• Développer des opérateurs Kubernetes personnalisés pour des besoins métiers spécifiques
-• Diriger l'adoption des pratiques GitOps pour la gestion de l'infrastructure
-• Mettre en œuvre et gérer la gestion des secrets avec HashiCorp Vault
-• Optimiser les performances des bases de données et mettre en œuvre des stratégies de réplication des données
-• Réaliser des audits de sécurité réguliers et des évaluations de vulnérabilités
-• Encadrer les membres juniors de l'équipe sur les meilleures pratiques DevOps et SRE
-• Collaborer avec les équipes de développement pour améliorer la performance et la fiabilité des applications
-• Mettre en œuvre des pratiques de chaos engineering pour améliorer la résilience des systèmes
-• Gérer et optimiser les dépôts d'artefacts CI/CD
-• Développer et maintenir une documentation complète pour tous les systèmes et processus
+- Gérer des orchestrateurs multi-cloud sur les plateformes IBM Cloud, AWS, Azure
+- Concevoir et mettre en œuvre des clusters Kubernetes évolutifs et haute disponibilité
+- Développer et maintenir des pipelines CI/CD pour une architecture de microservices
+- Mettre en œuvre l'Infrastructure as Code (IaC) en utilisant Terraform et Ansible
+- Optimiser l'allocation des ressources des containers et leurs performances
+- Établir et appliquer les meilleures pratiques de sécurité dans les environnements cloud
+- Concevoir et mettre en œuvre des systèmes de surveillance et d'alerte robustes en utilisant Dynatrace, Prometheus, Grafana et la stack ELK
+- Automatiser les opérations de routine et les procédures de réponse aux incidents
+- Réaliser la planification de la capacité et l'optimisation des coûts pour les ressources cloud
+- Mettre en œuvre et gérer des solutions de maillage de services (Service Mesh)
+- Développer des opérateurs Kubernetes personnalisés pour des besoins métiers spécifiques
+- Diriger l'adoption des pratiques GitOps pour la gestion de l'infrastructure
+- Mettre en œuvre et gérer la gestion des secrets avec HashiCorp Vault
+- Optimiser les performances des bases de données et mettre en œuvre des stratégies de réplication des données
+- Réaliser des audits de sécurité réguliers et des évaluations de vulnérabilités
+- Encadrer les membres juniors de l'équipe sur les meilleures pratiques DevOps et SRE
+- Collaborer avec les équipes de développement pour améliorer la performance et la fiabilité des applications
+- Mettre en œuvre des pratiques de chaos engineering pour améliorer la résilience des systèmes
+- Gérer et optimiser les dépôts d'artefacts CI/CD
+- Développer et maintenir une documentation complète pour tous les systèmes et processus
 
 ### **Rôles Précédents:**
 

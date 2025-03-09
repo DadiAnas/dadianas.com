@@ -21,28 +21,28 @@ I have gained valuable experience in different roles that have allowed me to bec
 
 #### Coral-io / BNP Paribas (Devops/SRE - Expert infrastructure et orchestration)
 
-• Devops/SRE - Expert infrastructure et orchestration
-• Manage multi-cloud orchestrators across IBM Cloud, AWS, Azure platforms
-• Design and implement scalable, high-availability Kubernetes clusters
-• Develop and maintain CI/CD pipelines for microservices architecture
-• Implement Infrastructure as Code (IaC) using Terraform and Ansible
-• Optimize container resource allocation and performance
-• Establish and enforce security best practices in cloud environments
-• Design and implement robust monitoring and alerting systems using Dynatrace, Prometheus, Grafana, and
+- Devops/SRE - Expert infrastructure et orchestration
+- Manage multi-cloud orchestrators across IBM Cloud, AWS, Azure platforms
+- Design and implement scalable, high-availability Kubernetes clusters
+- Develop and maintain CI/CD pipelines for microservices architecture
+- Implement Infrastructure as Code (IaC) using Terraform and Ansible
+- Optimize container resource allocation and performance
+- Establish and enforce security best practices in cloud environments
+- Design and implement robust monitoring and alerting systems using Dynatrace, Prometheus, Grafana, and
 ELK stack
-• Automate routine operations and incident response procedures
-• Conduct capacity planning and cost optimization for cloud resources
-• Implement and manage service mesh solutions
-• Develop custom Kubernetes operators for specific business needs
-• Lead the adoption of GitOps practices for infrastructure management
-• Implement and manage secrets management using HashiCorp Vault
-• Optimize database performance and implement data replication strategies
-• Conduct regular security audits and vulnerability assessments
-• Mentor junior team members on DevOps and SRE best practices
-• Collaborate with development teams to improve application performance and reliability
-• Implement chaos engineering practices to improve system resilience
-• Manage and optimize CI/CD artifact repositories
-• Develop and maintain comprehensive documentation for all systems and processes
+- Automate routine operations and incident response procedures
+- Conduct capacity planning and cost optimization for cloud resources
+- Implement and manage service mesh solutions
+- Develop custom Kubernetes operators for specific business needs
+- Lead the adoption of GitOps practices for infrastructure management
+- Implement and manage secrets management using HashiCorp Vault
+- Optimize database performance and implement data replication strategies
+- Conduct regular security audits and vulnerability assessments
+- Mentor junior team members on DevOps and SRE best practices
+- Collaborate with development teams to improve application performance and reliability
+- Implement chaos engineering practices to improve system resilience
+- Manage and optimize CI/CD artifact repositories
+- Develop and maintain comprehensive documentation for all systems and processes
 
 ### **Previous Roles:**
 
