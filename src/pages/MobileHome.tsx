@@ -246,9 +246,7 @@ export default function MobileHome() {
                 onChange={(event) => setSkillsSearch(event.target.value)}
                 aria-label={french ? "Rechercher une technologie" : "Search technologies"}
                 placeholder={
-                  french
-                    ? "Kubernetes, Kafka, Terraform…"
-                    : "Kubernetes, Kafka, Terraform…"
+                  french ? "AWS, GCP, Azure, VMware…" : "AWS, GCP, Azure, on-premises…"
                 }
               />
               <button

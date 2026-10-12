@@ -137,7 +137,8 @@ const TopBar = (props: TopBarProps) => {
     setState((current) => ({
       ...current,
       showControlCenter: !current.showControlCenter,
-      showAppleMenu: false
+      showAppleMenu: false,
+      showWifiMenu: false
     }));
   };
 
@@ -145,12 +146,18 @@ const TopBar = (props: TopBarProps) => {
     setState((current) => ({
       ...current,
       showAppleMenu: !current.showAppleMenu,
-      showControlCenter: false
+      showControlCenter: false,
+      showWifiMenu: false
     }));
   };
 
   const toggleWifiMenu = (): void => {
-    setState((current) => ({ ...current, showWifiMenu: !current.showWifiMenu }));
+    setState((current) => ({
+      ...current,
+      showWifiMenu: !current.showWifiMenu,
+      showControlCenter: false,
+      showAppleMenu: false
+    }));
   };
 
   const logout = (): void => {
@@ -269,7 +276,15 @@ const TopBar = (props: TopBarProps) => {
 
         {/* Open this when clicking on Wifi button */}
         {state.showWifiMenu && (
-          <WifiMenu toggleWifiMenu={toggleWifiMenu} btnRef={wifiBtnRef} />
+          <WifiMenu
+            toggleWifiMenu={toggleWifiMenu}
+            btnRef={wifiBtnRef}
+            french={french}
+            openControlCenter={() => {
+              toggleWifiMenu();
+              toggleControlCenter();
+            }}
+          />
         )}
 
         {/* Open this when clicking on Control Center button */}

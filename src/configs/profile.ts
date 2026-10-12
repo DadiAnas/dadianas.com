@@ -248,6 +248,7 @@ export const expertise = [
       "Azure",
       "IBM Cloud",
       "GCP",
+      "On-premises",
       "DigitalOcean",
       "EC2",
       "ELB",

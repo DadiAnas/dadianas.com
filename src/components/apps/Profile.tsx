@@ -223,12 +223,12 @@ export default function Profile({
   }, [skillQuery]);
 
   const featuredSkills = [
+    "AWS",
+    "GCP",
+    "Azure",
+    "On-premises",
     "Kubernetes",
-    "Terraform",
-    "Prometheus",
-    "Apache Airflow",
-    "Apache Kafka",
-    "HashiCorp Vault"
+    "Terraform"
   ];
   const quickSkills = expertise
     .flatMap((group) => {
@@ -413,8 +413,8 @@ export default function Profile({
                         onChange={(event) => setSkillQuery(event.target.value)}
                         placeholder={
                           french
-                            ? "Kubernetes, Kafka, Terraform…"
-                            : "Kubernetes, Kafka, Terraform…"
+                            ? "AWS, GCP, Azure, VMware…"
+                            : "AWS, GCP, Azure, on-premises…"
                         }
                       />
                       <button type="submit">

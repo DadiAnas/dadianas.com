@@ -154,7 +154,7 @@
 .mac-menu-link { padding: 3px 9px; border-radius: 5px; font-size: 12px; color: white; }
 .mac-menu-link:hover, .mac-menu-link:focus-visible { background: rgba(255,255,255,.24); }
 
-.mac-apple-menu, .mac-control-center {
+.mac-apple-menu, .mac-control-center, .mac-wifi-menu {
   position: fixed;
   top: 37px;
   z-index: 30;
@@ -173,6 +173,35 @@
 .mac-apple-menu button:hover, .mac-apple-menu a:hover, .mac-apple-menu :focus-visible { background: #5076ca; outline: 0; }
 .mac-apple-menu button > span:first-child, .mac-apple-menu a > span:first-child { flex: none; width: 16px; font-size: 16px; }
 .mac-apple-chevron { margin-left: auto; font-size: 22px; line-height: 10px; }
+
+.mac-wifi-menu { right: 8px; width: min(340px, calc(100vw - 16px)); padding: 15px 15px 8px; border-radius: 23px; }
+.mac-wifi-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 1px 2px 12px; }
+.mac-wifi-header strong { font-size: 17px; }
+.mac-wifi-switch { position: relative; display: block; flex: none; width: 53px; height: 28px; }
+.mac-wifi-switch input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.mac-wifi-switch > span { display: block; width: 100%; height: 100%; border-radius: 99px; background: #717583; transition: background .2s; pointer-events: none; }
+.mac-wifi-switch > span::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #f3f5fb; box-shadow: 0 1px 3px rgba(0,0,0,.3); transition: transform .2s; }
+.mac-wifi-switch input:checked + span { background: #1384fa; }
+.mac-wifi-switch input:checked + span::after { transform: translateX(25px); }
+.mac-wifi-switch input:focus-visible + span { outline: 2px solid #dce9ff; outline-offset: 2px; }
+.mac-wifi-current { padding: 2px 2px 13px; border-bottom: 1px solid rgba(255,255,255,.17); font-size: 13px; }
+.mac-wifi-group { padding: 13px 0 11px; border-bottom: 1px solid rgba(255,255,255,.17); }
+.mac-wifi-group h3 { margin: 0 0 7px 2px; color: #aeb4c4; font-size: 12px; font-weight: 700; }
+.mac-wifi-row { display: flex; align-items: center; gap: 10px; min-height: 36px; padding: 2px; font-size: 14px; }
+.mac-wifi-muted { color: #b4bac8; }
+.mac-wifi-icon { display: grid; place-items: center; flex: none; width: 29px; height: 29px; border-radius: 50%; background: rgba(255,255,255,.17); font-size: 17px; }
+.mac-wifi-icon > span { font-size: 17px; }
+.mac-wifi-icon-active { background: #168cfa; color: #fff; }
+.mac-wifi-lock { margin-left: auto; color: #c6cad5; font-size: 16px; }
+.mac-wifi-other { border-bottom: 1px solid rgba(255,255,255,.17); }
+.mac-wifi-other summary { display: flex; align-items: center; justify-content: space-between; min-height: 45px; padding: 0 2px; color: #d7d9e1; cursor: pointer; font-size: 13px; font-weight: 700; list-style: none; }
+.mac-wifi-other summary::-webkit-details-marker { display: none; }
+.mac-wifi-other summary span { font-size: 17px; transition: transform .2s; }
+.mac-wifi-other[open] summary span { transform: rotate(90deg); }
+.mac-wifi-other p { margin: -2px 3px 12px; color: #b5bbca; font-size: 11px; line-height: 1.4; }
+.mac-wifi-off { padding: 13px 2px 20px; border-top: 1px solid rgba(255,255,255,.17); color: #b5bbca; font-size: 13px; }
+.mac-wifi-settings { display: block; width: 100%; min-height: 39px; padding: 4px 2px; border-radius: 7px; color: #f6f6fa; text-align: left; font-size: 13px; }
+.mac-wifi-settings:hover, .mac-wifi-settings:focus-visible { background: #5076ca; outline: 0; }
 
 .mac-control-center { right: 8px; width: min(370px, calc(100vw - 16px)); padding: 12px; border-radius: 23px; }
 .mac-control-top { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
