@@ -67,6 +67,7 @@ const useDockHoverAnimation = (
 interface DockItemProps {
   id: string;
   title: string;
+  french: boolean;
   img: string;
   mouseX: MotionValue;
   openApp: (id: string) => void;
@@ -79,6 +80,7 @@ interface DockItemProps {
 export default function DockItem({
   id,
   title,
+  french,
   img,
   mouseX,
   openApp,
@@ -117,7 +119,7 @@ export default function DockItem({
         <button
           type="button"
           onClick={() => openApp(id)}
-          aria-label={`Open ${title}`}
+          aria-label={french ? `Ouvrir ${title}` : `Open ${title}`}
           title={title}
         >
           {icon}

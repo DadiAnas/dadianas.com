@@ -1,34 +1,7 @@
-import React from "react";
-import Slider from "react-rangeslider";
-import "react-rangeslider/lib/index.css";
 import { music } from "~/configs";
 
-interface SliderProps {
-  icon: "brightness" | "volume";
-  value: number;
-  setValue: (value: number) => void;
-}
-
-const SliderComponent = ({ icon, value, setValue }: SliderProps) => (
-  <div className="slider flex">
-    <div className="size-7 flex-center bg-c-100" border="t l b c-300 rounded-l-full">
-      <span
-        className={icon === "brightness" ? "i-lucide:sun" : "i-lucide:volume-2"}
-        text="xs c-500"
-      />
-    </div>
-    <Slider
-      min={1}
-      max={100}
-      value={value}
-      tooltip={false}
-      orientation="horizontal"
-      onChange={(v: number) => setValue(v)}
-    />
-  </div>
-);
-
 interface CCMProps {
+  french: boolean;
   toggleControlCenter: () => void;
   toggleAudio: (target: boolean) => void;
   setBrightness: (value: number) => void;
@@ -38,6 +11,7 @@ interface CCMProps {
 }
 
 export default function ControlCenterMenu({
+  french,
   toggleControlCenter,
   toggleAudio,
   setBrightness,
@@ -65,101 +39,153 @@ export default function ControlCenterMenu({
       toggleDark: state.toggleDark,
       toggleFullScreen: state.toggleFullScreen
     }));
-
   useClickOutside(controlCenterRef, toggleControlCenter, [btnRef]);
 
   return (
-    <div
-      className="w-80 h-96 max-w-full shadow-menu p-2.5 text-c-black bg-c-100/70"
-      pos="fixed top-9.5 right-0 sm:right-1.5"
-      border="~ menu rounded-2xl"
-      grid="~ cols-4 rows-5 gap-2"
+    <section
+      className="mac-control-center"
       ref={controlCenterRef}
+      aria-label={french ? "Centre de contrôle" : "Control Center"}
     >
-      <div className="cc-grid row-span-2 col-span-2 p-2 flex flex-col justify-around">
-        <div className="hstack space-x-2">
-          <div className={`${wifi ? "cc-btn" : "cc-btn-active"}`} onClick={toggleWIFI}>
-            <span className="i-material-symbols:wifi text-base" />
-          </div>
-          <div p="t-0.5">
-            <div className="font-medium leading-4">Wi-Fi</div>
-            <div className="cc-text">{wifi ? "Home" : "Off"}</div>
-          </div>
+      <div className="mac-control-top">
+        <div className="mac-control-connectivity">
+          <button type="button" aria-pressed={wifi} onClick={toggleWIFI}>
+            <span className="mac-control-icon" aria-hidden="true">
+              <span className="i-lucide:wifi" />
+            </span>
+            <span>
+              <strong>Wi-Fi</strong>
+              <small>
+                {wifi
+                  ? french
+                    ? "Connecté"
+                    : "Connected"
+                  : french
+                    ? "Désactivé"
+                    : "Off"}
+              </small>
+            </span>
+          </button>
+          <button type="button" aria-pressed={bluetooth} onClick={toggleBluetooth}>
+            <span className="mac-control-icon" aria-hidden="true">
+              <span className="i-lucide:bluetooth" />
+            </span>
+            <span>
+              <strong>Bluetooth</strong>
+              <small>
+                {bluetooth ? (french ? "Activé" : "On") : french ? "Désactivé" : "Off"}
+              </small>
+            </span>
+          </button>
+          <button type="button" aria-pressed={airdrop} onClick={toggleAirdrop}>
+            <span className="mac-control-icon" aria-hidden="true">
+              <span className="i-lucide:radio-tower" />
+            </span>
+            <span>
+              <strong>AirDrop</strong>
+              <small>
+                {airdrop
+                  ? french
+                    ? "Contacts uniquement"
+                    : "Contacts Only"
+                  : french
+                    ? "Désactivé"
+                    : "Off"}
+              </small>
+            </span>
+          </button>
         </div>
-        <div className="hstack space-x-2">
-          <div
-            className={`${bluetooth ? "cc-btn" : "cc-btn-active"}`}
-            onClick={toggleBluetooth}
+        <div className="mac-control-media">
+          <div className="mac-control-cover">
+            <span className="i-lucide:music-2" aria-hidden="true" />
+          </div>
+          <strong>{music.title}</strong>
+          <small>{music.artist}</small>
+          <button
+            type="button"
+            aria-label={
+              playing
+                ? french
+                  ? "Mettre la musique en pause"
+                  : "Pause music"
+                : french
+                  ? "Lancer la musique"
+                  : "Play music"
+            }
+            onClick={() => toggleAudio(!playing)}
           >
-            <span className="i-charm:bluetooth text-base" />
-          </div>
-          <div p="t-0.5">
-            <div className="font-medium leading-4">Bluetooth</div>
-            <div className="cc-text">{bluetooth ? "On" : "Off"}</div>
-          </div>
-        </div>
-        <div className="hstack space-x-2">
-          <div
-            className={`${airdrop ? "cc-btn" : "cc-btn-active"}`}
-            onClick={toggleAirdrop}
-          >
-            <span className="i-material-symbols:rss-feed-rounded text-base" />
-          </div>
-          <div p="t-0.5">
-            <div className="font-medium leading-4">AirDrop</div>
-            <div className="cc-text">{airdrop ? "Contacts Only" : "Off"}</div>
-          </div>
+            <span
+              className={playing ? "i-lucide:pause" : "i-lucide:play"}
+              aria-hidden="true"
+            />
+          </button>
         </div>
       </div>
-      <div className="cc-grid col-span-2 p-2 hstack space-x-3">
-        <div className={`${dark ? "cc-btn" : "cc-btn-active"}`} onClick={toggleDark}>
-          {dark ? (
-            <span className="i-ion:moon text-base" />
-          ) : (
-            <span className="i-ion:sunny text-base" />
-          )}
-        </div>
-        <div font-medium>{dark ? "Dark Mode" : "Light Mode"}</div>
+      <div className="mac-control-actions">
+        <button type="button" aria-pressed={dark} onClick={toggleDark}>
+          <span className={dark ? "i-lucide:moon" : "i-lucide:sun"} aria-hidden="true" />
+          {dark
+            ? french
+              ? "Mode sombre"
+              : "Dark Mode"
+            : french
+              ? "Mode clair"
+              : "Light Mode"}
+        </button>
+        <button
+          type="button"
+          aria-pressed={fullscreen}
+          onClick={() => toggleFullScreen(!fullscreen)}
+        >
+          <span
+            className={fullscreen ? "i-lucide:minimize" : "i-lucide:maximize"}
+            aria-hidden="true"
+          />
+          {fullscreen
+            ? french
+              ? "Quitter le plein écran"
+              : "Exit Fullscreen"
+            : french
+              ? "Plein écran"
+              : "Fullscreen"}
+        </button>
       </div>
-      <div className="cc-grid flex-center flex-col">
-        <span className="i-bi:brightness-alt-high text-xl" />
-        <span text="xs center" font="leading-3.5">
-          Keyboard Brightness
+      <label className="mac-control-slider">
+        <strong>{french ? "Écran" : "Display"}</strong>
+        <span>
+          <span className="i-lucide:sun" aria-hidden="true" />
+          <input
+            type="range"
+            min="1"
+            max="100"
+            value={brightness}
+            onChange={(event) => setBrightness(Number(event.target.value))}
+            aria-label={french ? "Luminosité de l’écran" : "Display brightness"}
+            style={{
+              background: `linear-gradient(to right, #f8faff ${brightness}%, #596073 ${brightness}%)`
+            }}
+          />
+          <span className="i-lucide:sun" aria-hidden="true" />
         </span>
-      </div>
-      <div
-        className="cc-grid flex-center flex-col cursor-default"
-        onClick={() => toggleFullScreen(!fullscreen)}
-      >
-        {fullscreen ? (
-          <span className="i-bi:fullscreen-exit text-base" />
-        ) : (
-          <span className="i-bi:fullscreen text-base" />
-        )}
-        <span text="xs center" font="leading-3.5" m="t-1.5">
-          {fullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+      </label>
+      <label className="mac-control-slider">
+        <strong>{french ? "Son" : "Sound"}</strong>
+        <span>
+          <span className="i-lucide:volume-1" aria-hidden="true" />
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={volume}
+            onChange={(event) => setVolume(Number(event.target.value))}
+            aria-label={french ? "Volume sonore" : "Sound volume"}
+            style={{
+              background: `linear-gradient(to right, #f8faff ${volume}%, #596073 ${volume}%)`
+            }}
+          />
+          <span className="i-lucide:volume-2" aria-hidden="true" />
         </span>
-      </div>
-      <div className="cc-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
-        <span className="font-medium ml-0.5">Display</span>
-        <SliderComponent icon="brightness" value={brightness} setValue={setBrightness} />
-      </div>
-      <div className="cc-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
-        <span className="font-medium ml-0.5">Sound</span>
-        <SliderComponent icon="volume" value={volume} setValue={setVolume} />
-      </div>
-      <div className="cc-grid col-span-4 hstack space-x-2.5" p="y-2 l-2 r-4">
-        <img className="w-12 rounded-lg" src={music.cover} alt="cover art" />
-        <div flex-1>
-          <div className="font-medium">{music.title}</div>
-          <div className="cc-text">{music.artist}</div>
-        </div>
-        {playing ? (
-          <span className="i-bi:pause-fill text-2xl" onClick={() => toggleAudio(false)} />
-        ) : (
-          <span className="i-bi:play-fill text-2xl" onClick={() => toggleAudio(true)} />
-        )}
-      </div>
-    </div>
+      </label>
+    </section>
   );
 }

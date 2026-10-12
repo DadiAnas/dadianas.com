@@ -36,6 +36,8 @@
 .profile-toolbar { display: flex; justify-content: space-between; align-items: center; flex: none; height: 43px; padding: 0 30px; border-bottom: 1px solid #e5ebf3; background: rgba(255, 255, 255, .72); color: #536a89; font: 700 10px/1 Menlo, Monaco, monospace; letter-spacing: .09em; }
 .profile-toolbar b { margin: 0 6px; color: #b4c1d3; }
 .profile-toolbar a { color: #315eb7; font: 700 12px/1 "Avenir Next LT Pro", sans-serif; letter-spacing: 0; }
+.profile-toolbar-actions { display: flex; align-items: center; gap: 16px; }
+.profile-toolbar-actions button { padding: 5px 7px; border: 1px solid #d9e3f1; border-radius: 7px; color: #315eb7; font: 700 11px/1 "Avenir Next LT Pro", sans-serif; letter-spacing: 0; }
 .profile-scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .profile-scroll a { color: #315eb7; }
 .profile-scroll button, .profile-scroll a, .profile-sidebar button, .profile-sidebar a { cursor: pointer; }
@@ -101,6 +103,7 @@
 .profile-footnote a { font-weight: 700; }
 
 .profile-expertise-grid, .profile-credential-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; margin-top: 22px; }
+.profile-skill-search { margin-top: 20px; }
 .profile-expertise-grid article, .profile-credential-grid > div { padding: 20px; border: 1px solid #e2e9f3; border-radius: 14px; background: white; }
 .profile-expertise-grid h2, .profile-credential-grid h2 { color: #253959; font-size: 17px; }
 .profile-expertise-grid p, .profile-credential-grid p { margin-top: 5px; color: #667994; font-size: 12px; line-height: 1.5; }

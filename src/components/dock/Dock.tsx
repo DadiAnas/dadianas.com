@@ -18,9 +18,10 @@ export default function Dock({
   toggleLaunchpad,
   hide
 }: DockProps) {
-  const { dockSize, dockMag } = useStore((state) => ({
+  const { dockSize, dockMag, french } = useStore((state) => ({
     dockSize: state.dockSize,
-    dockMag: state.dockMag
+    dockMag: state.dockMag,
+    french: state.french
   }));
 
   const openApp = (id: string) => {
@@ -40,19 +41,20 @@ export default function Dock({
       overflow="x-scroll sm:x-visible"
     >
       <ul
-        className="flex space-x-2 px-2 backdrop-blur-2xl bg-c-white/20 mac-dock"
+        className="flex space-x-1.5 px-2 backdrop-blur-2xl mac-dock"
         border="~ c-400/40 rounded-none sm:rounded-xl"
         onMouseMove={(e) => mouseX.set(e.nativeEvent.x)}
         onMouseLeave={() => mouseX.set(null)}
         style={{
-          height: `${(dockSize + 15) / 16}rem`
+          height: `${(dockSize + 12) / 16}rem`
         }}
       >
         {apps.map((app) => (
           <DockItem
             key={`dock-${app.id}`}
             id={app.id}
-            title={app.title}
+            title={french ? app.titleFr ?? app.title : app.title}
+            french={french}
             img={app.img}
             mouseX={mouseX}
             openApp={openApp}

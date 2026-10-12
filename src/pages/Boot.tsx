@@ -8,6 +8,7 @@ const loadingInterval = 1;
 const bootingInterval = 500;
 
 export default function Boot({ restart, sleep, setBooting }: BootProps) {
+  const french = useStore((state) => state.french);
   const [loading, setLoading] = useState<boolean>(false);
   const [percent, setPercent] = useState<number>(0);
 
@@ -56,7 +57,11 @@ export default function Boot({ restart, sleep, setBooting }: BootProps) {
           m="t-16 sm:t-20 x-auto"
           text="sm gray-200 center"
         >
-          Click to {sleep ? "wake up" : "boot"}
+          {french
+            ? sleep
+              ? "Cliquer pour sortir de veille"
+              : "Cliquer pour démarrer"
+            : `Click to ${sleep ? "wake up" : "boot"}`}
         </div>
       )}
     </div>

@@ -10,6 +10,7 @@ const apps: AppsData[] = [
   {
     id: "profile",
     title: "About Anas",
+    titleFr: "À propos d’Anas",
     desktop: true,
     width: 1120,
     height: 640,
@@ -19,8 +20,29 @@ const apps: AppsData[] = [
     content: <Profile />
   },
   {
+    id: "experience",
+    title: "Experience",
+    titleFr: "Parcours",
+    desktop: true,
+    width: 1120,
+    height: 640,
+    img: "img/icons/system/work.svg",
+    content: <Profile initialTab="experience" />
+  },
+  {
+    id: "expertise",
+    title: "Expertise",
+    titleFr: "Compétences",
+    desktop: true,
+    width: 1120,
+    height: 640,
+    img: "img/icons/system/skills.svg",
+    content: <Profile initialTab="expertise" />
+  },
+  {
     id: "resume",
     title: "Résumé",
+    titleFr: "CV",
     desktop: false,
     img: "img/icons/resume.svg",
     link: "/resume.pdf?v=2026-10-12"
@@ -42,6 +64,7 @@ const apps: AppsData[] = [
   {
     id: "email",
     title: "Email",
+    titleFr: "E-mail",
     desktop: false,
     img: "img/icons/contact-mail.svg",
     link: "mailto:dadi.anas@hotmail.fr"

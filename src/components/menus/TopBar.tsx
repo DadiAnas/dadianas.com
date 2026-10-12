@@ -1,5 +1,6 @@
 import React from "react";
 import { format } from "date-fns";
+import { enUS, fr } from "date-fns/locale";
 import { isFullScreen } from "~/utils";
 import { music } from "~/configs";
 import { resumeUrl } from "~/configs/profile";
@@ -10,6 +11,7 @@ interface TopBarItemProps {
   forceHover?: boolean;
   children: React.ReactNode;
   className?: string;
+  label?: string;
   onClick?: () => void;
   onMouseEnter?: () => void;
 }
@@ -29,6 +31,19 @@ const TopBarItem = forwardRef(
         }`}
         onClick={props.onClick}
         onMouseEnter={props.onMouseEnter}
+        aria-label={props.label}
+        role={props.onClick ? "button" : undefined}
+        tabIndex={props.onClick ? 0 : undefined}
+        onKeyDown={
+          props.onClick
+            ? (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  props.onClick?.();
+                }
+              }
+            : undefined
+        }
       >
         {props.children}
       </div>
@@ -52,6 +67,7 @@ const CCMIcon = ({ size }: { size: number }) => {
 
 interface TopBarProps extends MacActions {
   title: string;
+  openApp: (id: string) => void;
   setSpotlightBtnRef: (value: React.RefObject<HTMLDivElement>) => void;
   hide: boolean;
   toggleSpotlight: () => void;
@@ -83,9 +99,10 @@ const TopBar = (props: TopBarProps) => {
   });
   const { winWidth, winHeight } = useWindowSize();
 
-  const { volume, wifi } = useStore((state) => ({
+  const { volume, wifi, french } = useStore((state) => ({
     volume: state.volume,
-    wifi: state.wifi
+    wifi: state.wifi,
+    french: state.french
   }));
   const { toggleFullScreen, setVolume, setBrightness } = useStore((state) => ({
     toggleFullScreen: state.toggleFullScreen,
@@ -94,10 +111,7 @@ const TopBar = (props: TopBarProps) => {
   }));
 
   useInterval(() => {
-    setState({
-      ...state,
-      date: new Date()
-    });
+    setState((current) => ({ ...current, date: new Date() }));
   }, 60 * 1000);
 
   useEffect(() => {
@@ -120,24 +134,23 @@ const TopBar = (props: TopBarProps) => {
   };
 
   const toggleControlCenter = (): void => {
-    setState({
-      ...state,
-      showControlCenter: !state.showControlCenter
-    });
+    setState((current) => ({
+      ...current,
+      showControlCenter: !current.showControlCenter,
+      showAppleMenu: false
+    }));
   };
 
   const toggleAppleMenu = (): void => {
-    setState({
-      ...state,
-      showAppleMenu: !state.showAppleMenu
-    });
+    setState((current) => ({
+      ...current,
+      showAppleMenu: !current.showAppleMenu,
+      showControlCenter: false
+    }));
   };
 
   const toggleWifiMenu = (): void => {
-    setState({
-      ...state,
-      showWifiMenu: !state.showWifiMenu
-    });
+    setState((current) => ({ ...current, showWifiMenu: !current.showWifiMenu }));
   };
 
   const logout = (): void => {
@@ -145,17 +158,17 @@ const TopBar = (props: TopBarProps) => {
     props.setLogin(false);
   };
 
-  const shut = (e: React.MouseEvent<HTMLLIElement>): void => {
+  const shut = (e: React.MouseEvent): void => {
     controls.pause();
     props.shutMac(e);
   };
 
-  const restart = (e: React.MouseEvent<HTMLLIElement>): void => {
+  const restart = (e: React.MouseEvent): void => {
     controls.pause();
     props.restartMac(e);
   };
 
-  const sleep = (e: React.MouseEvent<HTMLLIElement>): void => {
+  const sleep = (e: React.MouseEvent): void => {
     controls.pause();
     props.sleepMac(e);
   };
@@ -169,6 +182,7 @@ const TopBar = (props: TopBarProps) => {
       <div className="hstack space-x-1">
         <TopBarItem
           className="px-2"
+          label={french ? "Menu Pomme" : "Apple menu"}
           forceHover={state.showAppleMenu}
           onClick={toggleAppleMenu}
           ref={appleBtnRef}
@@ -181,7 +195,15 @@ const TopBar = (props: TopBarProps) => {
             if (state.showAppleMenu) toggleAppleMenu();
           }}
         >
-          {props.title}
+          {french
+            ? (
+                {
+                  "About Anas": "À propos d’Anas",
+                  Experience: "Parcours",
+                  Expertise: "Compétences"
+                } as Record<string, string>
+              )[props.title] ?? props.title
+            : props.title}
         </TopBarItem>
         <a
           className="mac-menu-link"
@@ -189,7 +211,7 @@ const TopBar = (props: TopBarProps) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Résumé
+          {french ? "CV" : "Résumé"}
         </a>
         <a className="mac-menu-link" href="mailto:dadi.anas@hotmail.fr">
           Contact
@@ -203,6 +225,10 @@ const TopBar = (props: TopBarProps) => {
           shut={shut}
           restart={restart}
           sleep={sleep}
+          french={french}
+          openProfile={() => props.openApp("profile")}
+          openExperience={() => props.openApp("experience")}
+          openControlCenter={toggleControlCenter}
           toggleAppleMenu={toggleAppleMenu}
           btnRef={appleBtnRef}
         />
@@ -214,6 +240,7 @@ const TopBar = (props: TopBarProps) => {
         </TopBarItem>
         <TopBarItem
           hideOnMobile={true}
+          label="Wi-Fi"
           forceHover={state.showWifiMenu}
           onClick={toggleWifiMenu}
           ref={wifiBtnRef}
@@ -224,11 +251,16 @@ const TopBar = (props: TopBarProps) => {
             <span className="i-material-symbols:wifi-off text-lg" />
           )}
         </TopBarItem>
-        <TopBarItem ref={spotlightBtnRef} onClick={props.toggleSpotlight}>
+        <TopBarItem
+          ref={spotlightBtnRef}
+          onClick={props.toggleSpotlight}
+          label="Spotlight"
+        >
           <span className="i-bx:search text-[17px]" />
         </TopBarItem>
         <TopBarItem
           forceHover={state.showControlCenter}
+          label={french ? "Centre de contrôle" : "Control Center"}
           onClick={toggleControlCenter}
           ref={controlCenterBtnRef}
         >
@@ -244,6 +276,7 @@ const TopBar = (props: TopBarProps) => {
         {state.showControlCenter && (
           <ControlCenterMenu
             playing={audioState.playing}
+            french={french}
             toggleAudio={controls.toggle}
             setVolume={setAudioVolume}
             setBrightness={setSiteBrightness}
@@ -253,8 +286,16 @@ const TopBar = (props: TopBarProps) => {
         )}
 
         <TopBarItem>
-          <span>{format(state.date, "eee MMM d")}</span>
-          <span>{format(state.date, "h:mm aa")}</span>
+          <span>
+            {format(state.date, french ? "EEE d MMM" : "eee MMM d", {
+              locale: french ? fr : enUS
+            })}
+          </span>
+          <span>
+            {format(state.date, french ? "HH:mm" : "h:mm aa", {
+              locale: french ? fr : enUS
+            })}
+          </span>
         </TopBarItem>
       </div>
     </div>

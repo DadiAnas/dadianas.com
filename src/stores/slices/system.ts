@@ -2,6 +2,7 @@ import type { StateCreator } from "zustand";
 import { enterFullScreen, exitFullScreen } from "~/utils";
 
 export interface SystemSlice {
+  french: boolean;
   dark: boolean;
   volume: number;
   brightness: number;
@@ -10,6 +11,7 @@ export interface SystemSlice {
   airdrop: boolean;
   fullscreen: boolean;
   toggleDark: () => void;
+  toggleFrench: () => void;
   toggleWIFI: () => void;
   toggleBluetooth: () => void;
   toggleAirdrop: () => void;
@@ -18,7 +20,14 @@ export interface SystemSlice {
   setBrightness: (v: number) => void;
 }
 
+const savedLanguage = localStorage.getItem("portfolio-language");
+const initialFrench = savedLanguage
+  ? savedLanguage === "fr"
+  : navigator.language.startsWith("fr");
+document.documentElement.lang = initialFrench ? "fr" : "en";
+
 export const createSystemSlice: StateCreator<SystemSlice> = (set) => ({
+  french: initialFrench,
   dark: false,
   volume: 100,
   brightness: 80,
@@ -31,6 +40,13 @@ export const createSystemSlice: StateCreator<SystemSlice> = (set) => ({
       if (!state.dark) document.documentElement.classList.add("dark");
       else document.documentElement.classList.remove("dark");
       return { dark: !state.dark };
+    }),
+  toggleFrench: () =>
+    set((state) => {
+      const french = !state.french;
+      localStorage.setItem("portfolio-language", french ? "fr" : "en");
+      document.documentElement.lang = french ? "fr" : "en";
+      return { french };
     }),
   toggleWIFI: () => set((state) => ({ wifi: !state.wifi })),
   toggleBluetooth: () => set((state) => ({ bluetooth: !state.bluetooth })),

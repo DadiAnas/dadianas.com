@@ -145,14 +145,62 @@
 }
 
 .mac-menubar {
-  background: transparent;
+  background: rgba(18, 24, 45, .4);
   border-bottom: 0;
-  backdrop-filter: none;
+  backdrop-filter: blur(20px) saturate(1.4);
   text-shadow: 0 1px 4px rgba(12, 28, 62, .35);
 }
 
 .mac-menu-link { padding: 3px 9px; border-radius: 5px; font-size: 12px; color: white; }
 .mac-menu-link:hover, .mac-menu-link:focus-visible { background: rgba(255,255,255,.24); }
+
+.mac-apple-menu, .mac-control-center {
+  position: fixed;
+  top: 37px;
+  z-index: 30;
+  color: #f6f6fa;
+  text-shadow: none;
+  background: rgba(39, 43, 57, .94);
+  border: 1px solid rgba(230, 233, 245, .3);
+  box-shadow: 0 15px 40px rgba(6, 10, 23, .35), inset 0 1px rgba(255, 255, 255, .15);
+  backdrop-filter: blur(32px) saturate(1.35);
+  -webkit-backdrop-filter: blur(32px) saturate(1.35);
+}
+.mac-apple-menu { left: 8px; width: 278px; padding: 7px; border-radius: 17px; }
+.mac-apple-menu-group { padding: 4px 0; border-bottom: 1px solid rgba(255, 255, 255, .18); }
+.mac-apple-menu-group:last-child { border-bottom: 0; }
+.mac-apple-menu button, .mac-apple-menu a { display: flex; align-items: center; gap: 9px; width: 100%; min-height: 31px; padding: 4px 10px; border-radius: 7px; color: #f6f6fa; text-align: left; font-size: 13px; font-weight: 500; line-height: 1.2; }
+.mac-apple-menu button:hover, .mac-apple-menu a:hover, .mac-apple-menu :focus-visible { background: #5076ca; outline: 0; }
+.mac-apple-menu button > span:first-child, .mac-apple-menu a > span:first-child { flex: none; width: 16px; font-size: 16px; }
+.mac-apple-chevron { margin-left: auto; font-size: 22px; line-height: 10px; }
+
+.mac-control-center { right: 8px; width: min(370px, calc(100vw - 16px)); padding: 12px; border-radius: 23px; }
+.mac-control-top { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mac-control-connectivity, .mac-control-media, .mac-control-actions button, .mac-control-slider { background: rgba(88, 95, 112, .55); border: 1px solid rgba(255, 255, 255, .16); box-shadow: inset 0 1px rgba(255, 255, 255, .11); }
+.mac-control-connectivity { display: grid; gap: 2px; padding: 7px; border-radius: 29px; }
+.mac-control-connectivity button { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 4px 6px; border-radius: 23px; text-align: left; }
+.mac-control-connectivity button:hover, .mac-control-actions button:hover, .mac-control-media button:hover { background: rgba(255,255,255,.13); }
+.mac-control-icon { display: grid; place-items: center; flex: none; width: 37px; height: 37px; border-radius: 50%; background: #f7f8fa; color: #1475e9; font-size: 21px; }
+.mac-control-connectivity button[aria-pressed="false"] .mac-control-icon { color: #a9afbb; background: #575b69; }
+.mac-control-connectivity strong, .mac-control-connectivity small { display: block; }
+.mac-control-connectivity strong { font-size: 13px; line-height: 1.15; }
+.mac-control-connectivity small { margin-top: 3px; color: #b1b6c4; font-size: 11px; line-height: 1.15; }
+.mac-control-media { position: relative; display: flex; flex-direction: column; min-width: 0; padding: 14px; border-radius: 29px; }
+.mac-control-cover { display: grid; place-items: center; width: 56px; height: 56px; margin-bottom: auto; border-radius: 10px; background: linear-gradient(135deg, #20193e, #a52264 52%, #e66055); box-shadow: 0 3px 10px rgba(0,0,0,.2); font-size: 26px; }
+.mac-control-media strong { margin-top: 15px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 13px; }
+.mac-control-media small { margin-top: 2px; padding-right: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #b1b6c4; font-size: 11px; }
+.mac-control-media button { position: absolute; right: 8px; bottom: 11px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px; font-size: 19px; }
+.mac-control-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.mac-control-actions button { display: flex; align-items: center; gap: 9px; min-height: 57px; padding: 10px 13px; border-radius: 22px; text-align: left; font-size: 12px; font-weight: 700; }
+.mac-control-actions button > span { display: grid; place-items: center; flex: none; width: 31px; height: 31px; border-radius: 50%; background: rgba(255,255,255,.19); font-size: 17px; }
+.mac-control-slider { display: block; margin-top: 10px; padding: 12px 14px 13px; border-radius: 22px; }
+.mac-control-slider > strong { display: block; margin-bottom: 11px; font-size: 13px; }
+.mac-control-slider > span { display: flex; align-items: center; gap: 9px; }
+.mac-control-slider > span > span { flex: none; font-size: 16px; }
+.mac-control-slider input { flex: 1; width: 100%; height: 7px; border-radius: 20px; appearance: none; cursor: pointer; }
+.mac-control-slider input::-webkit-slider-thumb { width: 22px; height: 22px; border: 0; border-radius: 50%; appearance: none; background: #fff; box-shadow: 0 2px 7px rgba(0,0,0,.35); }
+.mac-control-slider input::-moz-range-thumb { width: 22px; height: 22px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 2px 7px rgba(0,0,0,.35); }
+.mac-control-center button:focus-visible, .mac-control-center input:focus-visible { outline: 2px solid #a8c7ff; outline-offset: 2px; }
 
 .mac-window {
   border-radius: 18px !important;
@@ -185,12 +233,14 @@
 }
 
 .mac-dock {
-  background: rgba(239, 244, 255, .35) !important;
-  border: 1px solid rgba(255, 255, 255, .58) !important;
-  border-radius: 21px !important;
-  box-shadow: 0 12px 38px rgba(26, 31, 72, .27), inset 0 1px rgba(255, 255, 255, .58) !important;
-  backdrop-filter: blur(36px) saturate(1.6);
+  background: rgba(103, 118, 158, .45) !important;
+  border: 1px solid rgba(255, 255, 255, .33) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 10px 30px rgba(13, 22, 54, .35), inset 0 1px rgba(255, 255, 255, .3) !important;
+  backdrop-filter: blur(38px) saturate(1.4);
 }
+.mac-dock #dock-linkedin { margin-left: 13px; }
+.mac-dock #dock-linkedin::before { content: ""; position: absolute; left: -10px; bottom: 7px; width: 1px; height: 32px; background: rgba(255, 255, 255, .4); }
 
 @media (max-width: 639px) {
   .mac-window { border-radius: 13px !important; }
@@ -209,7 +259,6 @@
 .mac-wallpaper-dark {
   background-image: linear-gradient(rgba(9, 17, 39, .3), rgba(10, 16, 33, .55)), url('/img/ui/aurora.svg');
 }
-.mac-dock { background: rgba(239, 246, 255, .4) !important; box-shadow: 0 8px 25px rgba(13, 35, 73, .2), inset 0 1px rgba(255,255,255,.6) !important; }
 
 .mac-lock, .ios-home, .ios-lock { position: relative; width: 100%; height: 100dvh; overflow: hidden; color: white; }
 .mac-lock::before, .ios-lock::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14, 29, 58, .12), transparent 40%, rgba(12, 25, 57, .26)); pointer-events: none; }
@@ -246,6 +295,21 @@
 .ios-lock-bottom button > span:first-child { font-size: 25px; }
 
 .ios-home-content { height: calc(100dvh - 160px); overflow-y: auto; padding: 34px 24px 24px; }
+.ios-page-dots { position: absolute; right: 0; bottom: max(112px, calc(env(safe-area-inset-bottom) + 105px)); left: 0; display: flex; justify-content: center; gap: 7px; }
+.ios-page-dots button { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.45); }
+.ios-page-dots button[aria-current="page"] { background: white; box-shadow: 0 0 0 2px rgba(255,255,255,.18); }
+.ios-work-intro { margin-top: 20px; padding: 20px; border: 1px solid rgba(255,255,255,.48); border-radius: 24px; background: rgba(29, 58, 108, .42); backdrop-filter: blur(24px); }
+.ios-work-intro > span { font: 700 10px Menlo, Monaco, monospace; letter-spacing: .13em; color: #d3e5ff; }
+.ios-work-intro h1 { margin-top: 9px; font-size: 25px; line-height: 1.12; letter-spacing: -.035em; }
+.ios-work-intro p { margin-top: 9px; font-size: 11px; line-height: 1.5; color: rgba(255,255,255,.86); }
+.ios-work-list { display: grid; gap: 8px; margin-top: 15px; }
+.ios-work-list button { position: relative; display: flex; flex-direction: column; min-height: 67px; padding: 9px 34px 9px 14px; border: 1px solid rgba(255,255,255,.4); border-radius: 16px; background: rgba(245,248,255,.78); color: #243c65; text-align: left; backdrop-filter: blur(20px); }
+.ios-work-list small { color: #5b74a0; font-size: 9px; }
+.ios-work-list strong { margin-top: 2px; font-size: 12px; }
+.ios-work-list button > span:not(:last-child) { margin-top: 1px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 10px; }
+.ios-work-list button > span:last-child { position: absolute; right: 12px; top: 27px; font-size: 15px; }
+.ios-work-actions { display: flex; gap: 9px; margin-top: 14px; }
+.ios-work-actions button { flex: 1; min-height: 37px; padding: 6px 9px; border: 1px solid rgba(255,255,255,.48); border-radius: 11px; background: rgba(28,65,124,.53); color: white; font-size: 10px; font-weight: 700; }
 .ios-home-heading { display: flex; align-items: baseline; justify-content: space-between; margin: 0 1px 12px; }
 .ios-home-heading span { color: rgba(255,255,255,.78); font: 700 9px Menlo, Monaco, monospace; letter-spacing: .09em; }
 .ios-home-heading strong { font-size: 15px; font-weight: 700; }
@@ -273,11 +337,18 @@
 .ios-dock a, .ios-dock button { display: block; width: 58px; height: 58px; overflow: hidden; border-radius: 16px; }
 .ios-dock img { width: 100%; height: 100%; object-fit: cover; }
 .ios-profile-app { position: fixed; z-index: 50; inset: 0; color: #243858; background: #f8fbff; }
+.ios-profile-status { height: 50px; background: #f8fbff; }
+.ios-profile-app .ios-battery { border-color: #243858; }
+.ios-profile-app .ios-battery::before, .ios-profile-app .ios-battery::after { background: #243858; }
 .ios-profile-app > header { display: flex; align-items: center; justify-content: space-between; height: 58px; padding: 12px 18px 8px; border-bottom: 1px solid #dce6f3; background: rgba(247,250,255,.9); backdrop-filter: blur(25px); }
 .ios-profile-app > header button, .ios-profile-app > header a { color: #2c65c2; font-size: 14px; font-weight: 700; }
+.ios-profile-header-actions { display: flex; align-items: center; gap: 13px; }
+.ios-profile-header-actions button { padding: 4px 5px; border: 1px solid #cbdcf2; border-radius: 6px; font-size: 11px !important; }
 .ios-profile-app > header button > span { font-size: 27px; line-height: 0; vertical-align: -2px; }
 .ios-profile-app > header strong { font-size: 15px; }
-.ios-profile-app .profile-app { height: calc(100dvh - 58px); }
+.ios-profile-app .profile-app { height: calc(100dvh - 108px); }
+.ios-profile-app .profile-toolbar { display: none; }
+.ios-profile-app .ios-home-indicator { background: #243858; z-index: 2; }
 
 @media (max-height: 720px) {
  .ios-home-content { padding-top: 20px; }

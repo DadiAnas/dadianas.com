@@ -40,9 +40,10 @@ export default function Desktop(props: MacActions) {
   const [spotlightBtnRef, setSpotlightBtnRef] =
     useState<React.RefObject<HTMLDivElement> | null>(null);
 
-  const { dark, brightness } = useStore((state) => ({
+  const { dark, brightness, french } = useStore((state) => ({
     dark: state.dark,
-    brightness: state.brightness
+    brightness: state.brightness,
+    french: state.french
   }));
   const { winWidth } = useWindowSize();
 
@@ -209,7 +210,7 @@ export default function Desktop(props: MacActions) {
       if (app.desktop && state.showApps[app.id]) {
         const props = {
           id: app.id,
-          title: app.title,
+          title: french ? app.titleFr ?? app.title : app.title,
           width: app.width,
           height: app.height,
           minWidth: app.minWidth,
@@ -249,6 +250,7 @@ export default function Desktop(props: MacActions) {
       {/* Top Menu Bar */}
       <TopBar
         title={state.currentTitle}
+        openApp={openApp}
         setLogin={props.setLogin}
         shutMac={props.shutMac}
         sleepMac={props.sleepMac}
