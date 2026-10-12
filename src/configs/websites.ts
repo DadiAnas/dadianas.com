@@ -13,13 +13,13 @@ const websites: WebsitesData = {
       {
         id: "github",
         title: "GitHub",
-        img: "img/sites/github.svg",
+        img: "img/icons/system/github.svg",
         link: "https://github.com/DadiAnas"
       },
       {
         id: "linkedin",
         title: "LinkedIn",
-        img: "img/sites/linkedin.svg",
+        img: "img/icons/system/linkedin.svg",
         link: "https://www.linkedin.com/in/dadianas"
       },
       {

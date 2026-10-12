@@ -2,6 +2,7 @@ import React from "react";
 import { format } from "date-fns";
 import { isFullScreen } from "~/utils";
 import { music } from "~/configs";
+import { resumeUrl } from "~/configs/profile";
 import type { MacActions } from "~/types";
 
 interface TopBarItemProps {
@@ -182,6 +183,17 @@ const TopBar = (props: TopBarProps) => {
         >
           {props.title}
         </TopBarItem>
+        <a
+          className="mac-menu-link"
+          href={resumeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Résumé
+        </a>
+        <a className="mac-menu-link" href="mailto:dadi.anas@hotmail.fr">
+          Contact
+        </a>
       </div>
 
       {/* Open this when clicking on Apple logo */}

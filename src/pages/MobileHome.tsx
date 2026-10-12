@@ -1,26 +1,37 @@
 import { format } from "date-fns";
-import Bear from "~/components/apps/Bear";
+import Profile from "~/components/apps/Profile";
+import {
+  experiences,
+  resumeUrl,
+  type ExperienceTopic,
+  type ProfileTab
+} from "~/configs/profile";
 import { user } from "~/configs";
 
 export default function MobileHome() {
-  const [profileOpen, setProfileOpen] = useState(false);
+  const [profileView, setProfileView] = useState<{
+    tab: ProfileTab;
+    topic?: ExperienceTopic;
+  } | null>(null);
   const [now, setNow] = useState(new Date());
   const dark = useStore((state) => state.dark);
+  const openProfile = (tab: ProfileTab, topic?: ExperienceTopic) =>
+    setProfileView({ tab, topic });
 
   useInterval(() => setNow(new Date()), 60_000);
-
   useEffect(() => {
-    if (!profileOpen) return;
+    if (!profileView) return;
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setProfileOpen(false);
+      if (event.key === "Escape") setProfileView(null);
     };
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [profileOpen]);
+  }, [profileView]);
 
   return (
     <div className={`ios-home mac-wallpaper ${dark ? "mac-wallpaper-dark" : ""}`}>
-      <div className="ios-status" aria-label={`Time ${format(now, "h:mm")}`}>
+      <div className="ios-dynamic-island" aria-hidden="true" />
+      <div className="ios-status">
         <strong>{format(now, "h:mm")}</strong>
         <div className="ios-status-signals" aria-hidden="true">
           <span className="i-material-symbols:signal-cellular-alt" />
@@ -29,50 +40,84 @@ export default function MobileHome() {
         </div>
       </div>
 
-      <main className="ios-home-content">
-        <p className="ios-home-label">ANAS DADI</p>
-        <h1>
-          Cloud platforms.
-          <br />
-          Built to last.
-        </h1>
-        <p className="ios-home-subtitle">DevSecOps · SRE · Cloud architecture</p>
-
-        <button
-          className="ios-profile-widget"
-          type="button"
-          onClick={() => setProfileOpen(true)}
-        >
-          <div className="ios-widget-top">
+      <main className="ios-home-content ios-home-v2">
+        <div className="ios-home-heading">
+          <span>PORTFOLIO · PARIS</span>
+          <strong>Anas Dadi</strong>
+        </div>
+        <div className="ios-widget-grid">
+          <button
+            className="ios-profile-widget"
+            type="button"
+            onClick={() => openProfile("overview")}
+          >
             <img src={user.avatar} alt="" />
-            <span>PROFILE</span>
-          </div>
-          <strong>Hi, I’m Anas.</strong>
-          <p>
-            I design and operate reliable cloud systems across Kubernetes, automation and
-            security.
-          </p>
-          <span className="ios-widget-action">
-            View experience <span aria-hidden="true">↗</span>
-          </span>
-        </button>
-
-        <div className="ios-app-grid" aria-label="Portfolio apps">
-          <button type="button" onClick={() => setProfileOpen(true)}>
-            <span className="ios-app-icon">
-              <img src={user.avatar} alt="" />
-            </span>
-            <span>Profile</span>
+            <span>ABOUT ANAS</span>
+            <strong>
+              Cloud architect
+              <br />& SRE
+            </strong>
+            <small>BNP Paribas · Paris</small>
+            <em>Open profile ↗</em>
           </button>
-          <a href="/resume.pdf?v=2026-10-12" target="_blank" rel="noopener noreferrer">
+          <button
+            className="ios-career-widget"
+            type="button"
+            onClick={() => openProfile("experience")}
+          >
+            <span>EXPERIENCE</span>
+            <strong>
+              {experiences.length} <small>roles</small>
+            </strong>
+            <p>
+              Since 2019
+              <br />
+              Cloud · SRE · Data
+            </p>
+            <em>Explore timeline ↗</em>
+          </button>
+        </div>
+
+        <div className="ios-app-grid" role="group" aria-label="Portfolio apps">
+          <button type="button" onClick={() => openProfile("overview")}>
+            <span className="ios-app-icon">
+              <img src="img/icons/system/finder.svg" alt="" />
+            </span>
+            <span>About</span>
+          </button>
+          <button type="button" onClick={() => openProfile("experience")}>
+            <span className="ios-app-icon">
+              <img src="img/icons/system/work.svg" alt="" />
+            </span>
+            <span>Experience</span>
+          </button>
+          <button type="button" onClick={() => openProfile("expertise")}>
+            <span className="ios-app-icon">
+              <img src="img/icons/system/skills.svg" alt="" />
+            </span>
+            <span>Expertise</span>
+          </button>
+          <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
             <span className="ios-app-icon">
               <img src="img/icons/resume.svg" alt="" />
             </span>
             <span>Résumé</span>
           </a>
+          <button type="button" onClick={() => openProfile("education")}>
+            <span className="ios-app-icon">
+              <img src="img/icons/system/education.svg" alt="" />
+            </span>
+            <span>Education</span>
+          </button>
+          <button type="button" onClick={() => openProfile("contact")}>
+            <span className="ios-app-icon">
+              <img src="img/icons/contact-mail.svg" alt="" />
+            </span>
+            <span>Contact</span>
+          </button>
           <a href="https://github.com/DadiAnas" target="_blank" rel="noopener noreferrer">
             <span className="ios-app-icon">
-              <img src="img/icons/github.png" alt="" />
+              <img src="img/icons/system/github.svg" alt="" />
             </span>
             <span>GitHub</span>
           </a>
@@ -82,22 +127,60 @@ export default function MobileHome() {
             rel="noopener noreferrer"
           >
             <span className="ios-app-icon">
-              <img src="img/icons/launchpad/linkedin.png" alt="" />
+              <img src="img/icons/system/linkedin.svg" alt="" />
             </span>
             <span>LinkedIn</span>
           </a>
+          <button type="button" onClick={() => openProfile("experience", "Cloud")}>
+            <span className="ios-app-icon">
+              <img src="img/icons/system/cloud.svg" alt="" />
+            </span>
+            <span>Cloud</span>
+          </button>
+          <button type="button" onClick={() => openProfile("experience", "Reliability")}>
+            <span className="ios-app-icon">
+              <img src="img/icons/system/reliability.svg" alt="" />
+            </span>
+            <span>SRE</span>
+          </button>
+          <button type="button" onClick={() => openProfile("experience", "Security")}>
+            <span className="ios-app-icon">
+              <img src="img/icons/system/security.svg" alt="" />
+            </span>
+            <span>Security</span>
+          </button>
+          <button type="button" onClick={() => openProfile("experience", "Data & AI")}>
+            <span className="ios-app-icon">
+              <img src="img/icons/system/data.svg" alt="" />
+            </span>
+            <span>Data & AI</span>
+          </button>
         </div>
+        <button
+          type="button"
+          className="ios-search-pill"
+          onClick={() => openProfile("experience")}
+        >
+          <span className="i-lucide:search" aria-hidden="true" /> Search experience
+        </button>
       </main>
 
       <nav className="ios-dock" aria-label="Quick contact">
+        <button
+          type="button"
+          onClick={() => openProfile("overview")}
+          aria-label="Open profile"
+        >
+          <img src="img/icons/system/finder.svg" alt="" />
+        </button>
+        <a href="tel:+33681421585" aria-label="Call Anas">
+          <img src="img/icons/system/phone.svg" alt="" />
+        </a>
         <a href="mailto:dadi.anas@hotmail.fr" aria-label="Email Anas">
           <img src="img/icons/contact-mail.svg" alt="" />
         </a>
-        <a href="tel:+33681421585" aria-label="Call Anas" className="ios-phone-icon">
-          <span aria-hidden="true">☎</span>
-        </a>
         <a
-          href="/resume.pdf?v=2026-10-12"
+          href={resumeUrl}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Open résumé"
@@ -107,7 +190,7 @@ export default function MobileHome() {
       </nav>
       <div className="ios-home-indicator" aria-hidden="true" />
 
-      {profileOpen && (
+      {profileView && (
         <section
           className="ios-profile-app"
           role="dialog"
@@ -117,15 +200,21 @@ export default function MobileHome() {
           <header>
             <button
               type="button"
-              onClick={() => setProfileOpen(false)}
-              aria-label="Close profile"
+              onClick={() => setProfileView(null)}
+              aria-label="Return to home"
             >
-              Done
+              <span aria-hidden="true">‹</span> Home
             </button>
-            <strong>Profile</strong>
-            <span />
+            <strong>About Anas</strong>
+            <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
+              CV ↗
+            </a>
           </header>
-          <Bear />
+          <Profile
+            key={`${profileView.tab}-${profileView.topic ?? "all"}`}
+            initialTab={profileView.tab}
+            initialTopic={profileView.topic}
+          />
         </section>
       )}
     </div>

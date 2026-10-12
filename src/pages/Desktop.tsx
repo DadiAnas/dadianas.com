@@ -32,7 +32,7 @@ export default function Desktop(props: MacActions) {
     minApps: {},
     maxZ: 2,
     showLaunchpad: false,
-    currentTitle: "Finder",
+    currentTitle: "About Anas",
     hideDockAndTopbar: false,
     spotlight: false
   } as DesktopState);

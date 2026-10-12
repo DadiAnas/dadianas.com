@@ -108,7 +108,10 @@ const Window = (props: WindowProps) => {
   const { winWidth, winHeight } = useWindowSize();
 
   const initWidth = Math.min(winWidth, props.width || 640);
-  const initHeight = Math.min(winHeight, props.height || 400);
+  const initHeight = Math.min(
+    Math.max(200, winHeight - dockSize - minMarginY - 24),
+    props.height || 400
+  );
 
   const [state, setState] = useState<WindowState>({
     width: initWidth,
@@ -122,7 +125,10 @@ const Window = (props: WindowProps) => {
   useEffect(() => {
     setState((current) => {
       const width = Math.min(winWidth, current.width);
-      const height = Math.min(winHeight, current.height);
+      const height = Math.min(
+        Math.max(200, winHeight - dockSize - minMarginY - 24),
+        current.height
+      );
       return {
         ...current,
         width,

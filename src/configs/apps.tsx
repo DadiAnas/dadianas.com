@@ -5,18 +5,18 @@ const apps: AppsData[] = [
     id: "launchpad",
     title: "Launchpad",
     desktop: false,
-    img: "img/icons/launchpad.png"
+    img: "img/icons/system/apps.svg"
   },
   {
-    id: "bear",
-    title: "Profile",
+    id: "profile",
+    title: "About Anas",
     desktop: true,
-    width: 1000,
-    height: 500,
+    width: 1120,
+    height: 640,
     show: true,
-    y: -40,
-    img: "img/icons/bear.png",
-    content: <Bear />
+    y: -15,
+    img: "img/icons/system/finder.svg",
+    content: <Profile />
   },
   {
     id: "resume",
@@ -26,35 +26,17 @@ const apps: AppsData[] = [
     link: "/resume.pdf?v=2026-10-12"
   },
   {
-    id: "safari",
-    title: "Safari",
-    desktop: true,
-    width: 1024,
-    minWidth: 375,
-    minHeight: 200,
-    x: -20,
-    img: "img/icons/safari.png",
-    content: <Safari />
-  },
-  {
-    id: "terminal",
-    title: "Terminal",
-    desktop: true,
-    img: "img/icons/terminal.png",
-    content: <Terminal />
-  },
-  {
     id: "linkedin",
-    title: "Linkedin",
+    title: "LinkedIn",
     desktop: false,
-    img: "img/icons/launchpad/linkedin.png",
+    img: "img/icons/system/linkedin.svg",
     link: "https://linkedin.com/in/dadianas"
   },
   {
     id: "github",
-    title: "Github",
+    title: "GitHub",
     desktop: false,
-    img: "img/icons/github.png",
+    img: "img/icons/system/github.svg",
     link: "https://github.com/dadianas"
   },
   {

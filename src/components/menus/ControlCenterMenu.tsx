@@ -4,7 +4,7 @@ import "react-rangeslider/lib/index.css";
 import { music } from "~/configs";
 
 interface SliderProps {
-  icon: string;
+  icon: "brightness" | "volume";
   value: number;
   setValue: (value: number) => void;
 }
@@ -12,7 +12,10 @@ interface SliderProps {
 const SliderComponent = ({ icon, value, setValue }: SliderProps) => (
   <div className="slider flex">
     <div className="size-7 flex-center bg-c-100" border="t l b c-300 rounded-l-full">
-      <span className={icon} text="xs c-500" />
+      <span
+        className={icon === "brightness" ? "i-lucide:sun" : "i-lucide:volume-2"}
+        text="xs c-500"
+      />
     </div>
     <Slider
       min={1}
@@ -139,11 +142,11 @@ export default function ControlCenterMenu({
       </div>
       <div className="cc-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
         <span className="font-medium ml-0.5">Display</span>
-        <SliderComponent icon="i-ion:sunny" value={brightness} setValue={setBrightness} />
+        <SliderComponent icon="brightness" value={brightness} setValue={setBrightness} />
       </div>
       <div className="cc-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
         <span className="font-medium ml-0.5">Sound</span>
-        <SliderComponent icon="i-ion:volume-high" value={volume} setValue={setVolume} />
+        <SliderComponent icon="volume" value={volume} setValue={setVolume} />
       </div>
       <div className="cc-grid col-span-4 hstack space-x-2.5" p="y-2 l-2 r-4">
         <img className="w-12 rounded-lg" src={music.cover} alt="cover art" />

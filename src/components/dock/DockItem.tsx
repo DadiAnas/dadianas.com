@@ -69,7 +69,6 @@ interface DockItemProps {
   title: string;
   img: string;
   mouseX: MotionValue;
-  desktop: boolean;
   openApp: (id: string) => void;
   isOpen: boolean;
   link?: string;
@@ -82,7 +81,6 @@ export default function DockItem({
   title,
   img,
   mouseX,
-  desktop,
   openApp,
   isOpen,
   link,
@@ -92,13 +90,18 @@ export default function DockItem({
   const imgRef = useRef<HTMLImageElement>(null);
   const { width } = useDockHoverAnimation(mouseX, imgRef, dockSize, dockMag);
   const { winWidth } = useWindowSize();
+  const icon = (
+    <motion.img
+      ref={imgRef}
+      src={img}
+      alt=""
+      draggable={false}
+      style={winWidth < 640 ? {} : { width, willChange: "width" }}
+    />
+  );
 
   return (
-    <li
-      id={`dock-${id}`}
-      onClick={desktop || id === "launchpad" ? () => openApp(id) : () => {}}
-      className="relative flex flex-col justify-end mb-1"
-    >
+    <li id={`dock-${id}`} className="relative flex flex-col justify-end mb-1">
       <p
         className="tooltip absolute inset-x-0 mx-auto w-max rounded-md bg-c-300/80"
         p="x-3 y-1"
@@ -107,25 +110,18 @@ export default function DockItem({
         {title}
       </p>
       {link ? (
-        <a href={link} target="_blank" rel="noreferrer">
-          <motion.img
-            ref={imgRef}
-            src={img}
-            alt={title}
-            title={title}
-            draggable={false}
-            style={winWidth < 640 ? {} : { width, willChange: "width" }}
-          />
+        <a href={link} target="_blank" rel="noreferrer" aria-label={title} title={title}>
+          {icon}
         </a>
       ) : (
-        <motion.img
-          ref={imgRef}
-          src={img}
-          alt={title}
+        <button
+          type="button"
+          onClick={() => openApp(id)}
+          aria-label={`Open ${title}`}
           title={title}
-          draggable={false}
-          style={winWidth < 640 ? {} : { width, willChange: "width" }}
-        />
+        >
+          {icon}
+        </button>
       )}
       <div
         className={`size-1 mx-auto rounded-full bg-c-800 ${isOpen ? "" : "invisible"}`}

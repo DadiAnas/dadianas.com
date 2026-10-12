@@ -10,13 +10,13 @@ const launchpadApps: LaunchpadData[] = [
   {
     id: "linkedin",
     title: "LinkedIn",
-    img: "img/icons/launchpad/linkedin.png",
+    img: "img/icons/system/linkedin.svg",
     link: "https://www.linkedin.com/in/dadianas"
   },
   {
     id: "github",
     title: "GitHub",
-    img: "img/icons/launchpad/github.png",
+    img: "img/icons/system/github.svg",
     link: "https://github.com/DadiAnas"
   }
 ];

@@ -35,7 +35,7 @@ export default function Dock({
 
   return (
     <div
-      className={`dock fixed inset-x-0 mx-auto bottom-1 ${hide ? "z-0" : "z-50"}`}
+      className={`dock fixed inset-x-0 mx-auto bottom-2 ${hide ? "z-0" : "z-50"}`}
       w="full sm:max"
       overflow="x-scroll sm:x-visible"
     >
@@ -55,7 +55,6 @@ export default function Dock({
             title={app.title}
             img={app.img}
             mouseX={mouseX}
-            desktop={app.desktop}
             openApp={openApp}
             isOpen={app.desktop && showApps[app.id]}
             link={app.link}
