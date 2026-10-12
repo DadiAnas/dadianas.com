@@ -1,5 +1,7 @@
 import { format } from "date-fns";
+import { AnimatePresence } from "framer-motion";
 import Profile from "~/components/apps/Profile";
+import { IOSControlCenter, IOSNotifications } from "~/components/menus/IOSPanels";
 import {
   experiences,
   expertise,
@@ -46,7 +48,7 @@ export default function MobileHome() {
   const [homePage, setHomePage] = useState(0);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
   const edgeTouchStart = useRef<{ x: number; y: number } | null>(null);
-  const [topPanel, setTopPanel] = useState(false);
+  const [topPanel, setTopPanel] = useState<"control" | "notifications" | null>(null);
   const [skillsSearch, setSkillsSearch] = useState("");
   const [profileView, setProfileView] = useState<{
     tab: ProfileTab;
@@ -55,6 +57,7 @@ export default function MobileHome() {
   } | null>(null);
   const [now, setNow] = useState(new Date());
   const dark = useStore((state) => state.dark);
+  const brightness = useStore((state) => state.brightness);
   const french = useStore((state) => state.french);
   const toggleFrench = useStore((state) => state.toggleFrench);
   const text = french ? homeCopy.fr : homeCopy.en;
@@ -75,8 +78,9 @@ export default function MobileHome() {
     const dy = event.changedTouches[0].clientY - y;
     edgeTouchStart.current = null;
     if (Math.abs(dy) < 65 || Math.abs(dy) < Math.abs(dx) * 1.4) return;
-    if (topPanel && dy < 0) setTopPanel(false);
-    else if (y < 70 && dy > 0) setTopPanel(true);
+    if (topPanel && dy < 0) setTopPanel(null);
+    else if (y < 70 && dy > 0)
+      setTopPanel(x > window.innerWidth * 0.58 ? "control" : "notifications");
     else if (profileView && y > window.innerHeight - 48 && dy < 0) setProfileView(null);
   };
   const search = skillsSearch.trim().toLocaleLowerCase();
@@ -152,7 +156,7 @@ export default function MobileHome() {
     if (!profileView && !topPanel) return;
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        if (topPanel) setTopPanel(false);
+        if (topPanel) setTopPanel(null);
         else setProfileView(null);
       }
     };
@@ -184,9 +188,15 @@ export default function MobileHome() {
         </div>
         <button
           type="button"
+          className="ios-status-trigger ios-status-trigger-left"
+          aria-label={french ? "Afficher les notifications" : "Open notifications"}
+          onClick={() => setTopPanel("notifications")}
+        />
+        <button
+          type="button"
           className="ios-status-trigger"
-          aria-label={french ? "Ouvrir la navigation" : "Open navigation"}
-          onClick={() => setTopPanel(true)}
+          aria-label={french ? "Ouvrir le centre de contrôle" : "Open Control Center"}
+          onClick={() => setTopPanel("control")}
         />
       </div>
 
@@ -538,11 +548,46 @@ export default function MobileHome() {
             </div>
             <button
               type="button"
+              className="ios-status-trigger ios-status-trigger-left"
+              aria-label={french ? "Afficher les notifications" : "Open notifications"}
+              onClick={() => setTopPanel("notifications")}
+            />
+            <button
+              type="button"
               className="ios-status-trigger"
-              aria-label={french ? "Ouvrir la navigation" : "Open navigation"}
-              onClick={() => setTopPanel(true)}
+              aria-label={french ? "Ouvrir le centre de contrôle" : "Open Control Center"}
+              onClick={() => setTopPanel("control")}
             />
           </div>
+          <nav
+            className="ios-profile-nav"
+            aria-label={french ? "Navigation du profil" : "Profile navigation"}
+          >
+            <button
+              type="button"
+              onClick={() => setProfileView(null)}
+              aria-label={text.returnHome}
+            >
+              <span className="i-lucide:chevron-left" aria-hidden="true" />{" "}
+              {french ? "Accueil" : "Home"}
+            </button>
+            <strong>
+              {
+                (
+                  {
+                    overview: french ? "À propos" : "About",
+                    experience: french ? "Parcours" : "Experience",
+                    expertise: french ? "Compétences" : "Expertise",
+                    education: french ? "Formation" : "Education",
+                    contact: "Contact"
+                  } as Record<ProfileTab, string>
+                )[profileView.tab]
+              }
+            </strong>
+            <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
+              CV
+            </a>
+          </nav>
           <Profile
             initialTab={profileView.tab}
             initialTopic={profileView.topic}
@@ -559,99 +604,52 @@ export default function MobileHome() {
           />
         </section>
       )}
-      {topPanel && (
-        <div className="ios-nav-backdrop" onClick={() => setTopPanel(false)}>
-          <section
-            className="ios-nav-sheet"
-            role="dialog"
-            aria-modal="true"
-            aria-label={french ? "Navigation" : "Navigation"}
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="ios-nav-handle" aria-hidden="true" />
-            <div className="ios-nav-title">
-              <div>
-                <small>{french ? "ANAS SPACE" : "ANAS SPACE"}</small>
-                <h2>{french ? "Navigation rapide" : "Quick navigation"}</h2>
-              </div>
-              <button
-                type="button"
-                onClick={() => setTopPanel(false)}
-                aria-label={french ? "Fermer" : "Close"}
-              >
-                <span className="i-lucide:x" aria-hidden="true" />
-              </button>
-            </div>
-            <div className="ios-nav-grid">
-              {[
-                {
-                  tab: "overview" as ProfileTab,
-                  label: french ? "Profil" : "Profile",
-                  icon: "i-lucide:user-round",
-                  color: "#3987da"
-                },
-                {
-                  tab: "experience" as ProfileTab,
-                  label: text.experience,
-                  icon: "i-lucide:briefcase-business",
-                  color: "#765dd2"
-                },
-                {
-                  tab: "expertise" as ProfileTab,
-                  label: french ? "Compétences" : "Skills",
-                  icon: "i-lucide:layers-3",
-                  color: "#4aa4bc"
-                },
-                {
-                  tab: "contact" as ProfileTab,
-                  label: "Contact",
-                  icon: "i-lucide:mail",
-                  color: "#e28a72"
-                }
-              ].map((item) => (
-                <button
-                  key={item.tab}
-                  type="button"
-                  onClick={() => {
-                    setTopPanel(false);
-                    openProfile(item.tab);
-                  }}
-                >
-                  <span style={{ background: item.color }}>
-                    <span className={item.icon} aria-hidden="true" />
-                  </span>
-                  {item.label}
-                </button>
-              ))}
-            </div>
-            <div className="ios-nav-links">
-              <button
-                type="button"
-                onClick={() => {
-                  setTopPanel(false);
-                  setProfileView(null);
-                  setHomePage(0);
-                }}
-              >
-                <span className="i-lucide:home" aria-hidden="true" />{" "}
-                {french ? "Accueil" : "Home"}
-                <span aria-hidden="true">›</span>
-              </button>
-              <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
-                <span className="i-lucide:file-text" aria-hidden="true" />{" "}
-                {french ? "Ouvrir le CV" : "Open résumé"}
-                <span aria-hidden="true">↗</span>
-              </a>
-              <button type="button" onClick={toggleFrench}>
-                <span className="i-lucide:languages" aria-hidden="true" />{" "}
-                {french ? "Read in English" : "Lire en français"}
-                <span aria-hidden="true">›</span>
-              </button>
-            </div>
-            <p>{french ? "Balayez vers le haut pour fermer." : "Swipe up to close."}</p>
-          </section>
-        </div>
-      )}
+      <div
+        className="ios-display-dim"
+        style={{ opacity: Math.max(0, (80 - brightness) / 120) }}
+        aria-hidden="true"
+      />
+      <AnimatePresence mode="wait">
+        {topPanel === "control" && (
+          <IOSControlCenter
+            key="control"
+            french={french}
+            now={now}
+            close={() => setTopPanel(null)}
+            openProfile={(tab) => {
+              setTopPanel(null);
+              openProfile(tab);
+            }}
+            openSkills={() => {
+              setTopPanel(null);
+              setProfileView(null);
+              setHomePage(-1);
+            }}
+            goHome={() => {
+              setTopPanel(null);
+              setProfileView(null);
+              setHomePage(0);
+            }}
+          />
+        )}
+        {topPanel === "notifications" && (
+          <IOSNotifications
+            key="notifications"
+            french={french}
+            now={now}
+            close={() => setTopPanel(null)}
+            openProfile={(tab) => {
+              setTopPanel(null);
+              openProfile(tab);
+            }}
+            openSkills={() => {
+              setTopPanel(null);
+              setProfileView(null);
+              setHomePage(-1);
+            }}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

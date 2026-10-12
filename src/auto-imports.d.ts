@@ -13,6 +13,8 @@ declare global {
   const Dock: typeof import('./components/dock/Dock')['default']
   const DockItem: typeof import('./components/dock/DockItem')['default']
   const FaceTime: typeof import('./components/apps/FaceTime')['default']
+  const IOSControlCenter: typeof import('./components/menus/IOSPanels')['IOSControlCenter']
+  const IOSNotifications: typeof import('./components/menus/IOSPanels')['IOSNotifications']
   const Launchpad: typeof import('./components/Launchpad')['default']
   const MenuItem: typeof import('./components/menus/base')['MenuItem']
   const MenuItemGroup: typeof import('./components/menus/base')['MenuItemGroup']

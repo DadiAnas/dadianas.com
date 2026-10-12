@@ -282,6 +282,7 @@
 .ios-dynamic-island { position: absolute; z-index: 10; top: max(8px, env(safe-area-inset-top)); left: 50%; width: 113px; height: 31px; transform: translateX(-50%); border-radius: 999px; background: #0b1020; box-shadow: 0 1px 2px rgba(255,255,255,.19), 0 1px 9px rgba(7,13,29,.32); }
 .ios-status { position: relative; z-index: 2; display: flex; align-items: flex-start; justify-content: space-between; height: 60px; padding: max(18px, env(safe-area-inset-top)) 29px 0; font-size: 15px; }
 .ios-status-trigger { position: absolute; top: 7px; right: 11px; width: 116px; height: 43px; border-radius: 16px; }
+.ios-status-trigger-left { right: auto; left: 11px; width: 105px; }
 .ios-status-signals { display: flex; align-items: center; gap: 5px; font-size: 17px; }
 .ios-battery { position: relative; width: 21px; height: 11px; border: 1.5px solid white; border-radius: 3px; }
 .ios-battery::before { content: ""; position: absolute; inset: 2px 4px 2px 2px; border-radius: 1px; background: white; }
@@ -347,26 +348,14 @@
 .ios-profile-status { height: 50px; background: #f8fbff; }
 .ios-profile-app .ios-battery { border-color: #243858; }
 .ios-profile-app .ios-battery::before, .ios-profile-app .ios-battery::after { background: #243858; }
-.ios-profile-app .profile-app { height: calc(100dvh - 50px); }
+.ios-profile-nav { display: flex; align-items: center; justify-content: space-between; height: 46px; padding: 0 17px; border-bottom: 1px solid #e3eaf4; background: rgba(248,251,255,.94); }
+.ios-profile-nav button { display: flex; align-items: center; gap: 2px; min-width: 78px; color: #2368c8; font-size: 14px; font-weight: 600; }
+.ios-profile-nav button > span { font-size: 22px; }
+.ios-profile-nav strong { font-size: 14px; }
+.ios-profile-nav a { min-width: 78px; color: #2368c8; text-align: right; font-size: 13px; font-weight: 700; }
+.ios-profile-app .profile-app { height: calc(100dvh - 96px); }
 .ios-profile-app .profile-toolbar { display: none; }
 .ios-profile-app .ios-home-indicator { z-index: 2; height: 8px; background: #243858; cursor: pointer; }
-.ios-nav-backdrop { position: fixed; z-index: 80; inset: 0; background: rgba(5,10,25,.42); backdrop-filter: blur(12px); }
-.ios-nav-sheet { position: absolute; top: 0; right: 0; left: 0; max-height: 88dvh; overflow-y: auto; padding: max(28px, env(safe-area-inset-top)) 20px 24px; border: 1px solid rgba(255,255,255,.25); border-radius: 0 0 28px 28px; background: linear-gradient(155deg, rgba(48,58,87,.97), rgba(24,33,55,.97)); color: white; box-shadow: 0 20px 45px rgba(2,8,22,.4); }
-.ios-nav-handle { width: 42px; height: 5px; margin: 0 auto 23px; border-radius: 6px; background: rgba(255,255,255,.5); }
-.ios-nav-title { display: flex; justify-content: space-between; align-items: center; }
-.ios-nav-title small { color: #c1cae1; font: 700 9px Menlo, Monaco, monospace; letter-spacing: .12em; }
-.ios-nav-title h2 { margin-top: 4px; font-size: 23px; }
-.ios-nav-title > button { display: grid; place-items: center; width: 31px; height: 31px; border-radius: 50%; background: rgba(255,255,255,.16); font-size: 17px; }
-.ios-nav-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 22px; }
-.ios-nav-grid button { display: flex; align-items: center; gap: 10px; min-height: 66px; padding: 10px; border: 1px solid rgba(255,255,255,.16); border-radius: 19px; background: rgba(255,255,255,.12); text-align: left; font-size: 12px; font-weight: 700; }
-.ios-nav-grid button > span { display: grid; place-items: center; flex: none; width: 43px; height: 43px; border-radius: 13px; font-size: 22px; }
-.ios-nav-links { display: grid; margin-top: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,.16); border-radius: 17px; background: rgba(255,255,255,.1); }
-.ios-nav-links button, .ios-nav-links a { display: flex; align-items: center; gap: 11px; min-height: 46px; padding: 0 14px; border-bottom: 1px solid rgba(255,255,255,.12); color: white; text-align: left; font-size: 12px; font-weight: 700; }
-.ios-nav-links > :last-child { border-bottom: 0; }
-.ios-nav-links button > span:first-child, .ios-nav-links a > span:first-child { font-size: 18px; }
-.ios-nav-links button > span:last-child, .ios-nav-links a > span:last-child { margin-left: auto; font-size: 17px; }
-.ios-nav-sheet > p { margin-top: 17px; color: #c1cae1; text-align: center; font-size: 10px; }
-.ios-nav-sheet button:focus-visible, .ios-nav-sheet a:focus-visible { outline: 2px solid white; outline-offset: 2px; }
 
 @media (max-height: 720px) {
  .ios-home-content { padding-top: 20px; }

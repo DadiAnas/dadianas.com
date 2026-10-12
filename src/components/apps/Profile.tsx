@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   experiences,
   expertise,
@@ -203,6 +203,8 @@ export default function Profile({
   const toggleFrench = useStore((state) => state.toggleFrench);
   const text = french ? copy.fr : copy.en;
   const tr = (en: string, fr: string) => (french ? fr : en);
+
+  useEffect(() => setTab(initialTab), [initialTab]);
 
   const visibleExpertise = useMemo(() => {
     const search = skillQuery.trim().toLocaleLowerCase();

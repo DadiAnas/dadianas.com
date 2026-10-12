@@ -1,0 +1,70 @@
+.ios-system-panel {
+  position: fixed;
+  z-index: 80;
+  inset: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: max(18px, env(safe-area-inset-top)) 19px max(24px, env(safe-area-inset-bottom));
+  color: #fff;
+  background: linear-gradient(165deg, rgba(25, 43, 82, .62), rgba(48, 54, 99, .78)), url('/img/ui/aurora.svg') center / cover;
+  backdrop-filter: blur(28px);
+}
+.ios-display-dim { position: fixed; z-index: 60; inset: 0; background: #030816; pointer-events: none; }
+.ios-system-topline { display: flex; align-items: center; justify-content: space-between; min-height: 29px; padding: 0 4px; font-size: 15px; font-weight: 700; }
+.ios-panel-top-actions { display: flex; align-items: center; gap: 5px; margin-left: auto; margin-right: 13px; font-size: 16px; }
+.ios-system-topline button { display: grid; place-items: center; width: 29px; height: 29px; border-radius: 50%; background: rgba(255,255,255,.2); font-size: 18px; }
+.ios-system-panel button:focus-visible, .ios-system-panel a:focus-visible, .ios-system-panel input:focus-visible { outline: 3px solid white; outline-offset: 2px; }
+.ios-cc-top-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 20px; }
+.ios-cc-connectivity, .ios-cc-media, .ios-cc-quick-row button, .ios-cc-sliders label, .ios-cc-shortcuts button, .ios-cc-shortcuts a {
+  border: 1px solid rgba(255,255,255,.32);
+  background: rgba(248,251,255,.22);
+  box-shadow: inset 0 1px rgba(255,255,255,.22), 0 9px 27px rgba(18,26,59,.16);
+  backdrop-filter: blur(32px) saturate(1.45);
+  -webkit-backdrop-filter: blur(32px) saturate(1.45);
+}
+.ios-cc-connectivity { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; min-height: 172px; padding: 9px; border-radius: 29px; }
+.ios-cc-connectivity button { display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 3px; min-width: 0; border-radius: 20px; background: rgba(255,255,255,.27); transition: transform .2s, background .2s; }
+.ios-cc-connectivity button[aria-pressed="true"] { background: rgba(255,255,255,.7); color: #1d6fe2; }
+.ios-cc-connectivity button > span { display: grid; place-items: center; width: 39px; height: 39px; border-radius: 50%; background: rgba(255,255,255,.75); font-size: 22px; }
+.ios-cc-connectivity button[aria-pressed="true"] > span { background: #2184f4; color: #fff; }
+.ios-cc-connectivity small { color: #1f355b; font-size: 9px; font-weight: 700; }
+.ios-cc-connectivity button:hover, .ios-cc-quick-row button:hover, .ios-cc-shortcuts button:hover, .ios-cc-shortcuts a:hover { transform: scale(1.03); }
+.ios-cc-connectivity button:active, .ios-cc-quick-row button:active, .ios-cc-shortcuts button:active, .ios-cc-shortcuts a:active { transform: scale(.96); }
+.ios-cc-media { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; min-height: 172px; padding: 15px; border-radius: 29px; }
+.ios-cc-album { display: grid; place-items: center; width: 51px; height: 51px; border-radius: 12px; background: linear-gradient(135deg, #974fae, #f4838e); font-size: 26px; }
+.ios-cc-media > div strong, .ios-cc-media > div small { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.ios-cc-media > div strong { font-size: 13px; }
+.ios-cc-media > div small { margin-top: 2px; color: rgba(255,255,255,.78); font-size: 11px; }
+.ios-cc-quick-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.ios-cc-quick-row button { display: flex; align-items: center; gap: 10px; min-height: 57px; padding: 10px 13px; border-radius: 23px; text-align: left; font-size: 13px; font-weight: 700; transition: transform .2s; }
+.ios-cc-quick-row button span { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.25); font-size: 19px; }
+.ios-cc-sliders { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.ios-cc-sliders label { position: relative; display: flex; align-items: center; flex-direction: column; height: 167px; border-radius: 30px; }
+.ios-cc-sliders label strong { margin-top: 12px; font-size: 11px; }
+.ios-cc-sliders input { width: 46px; height: 105px; margin-top: 7px; border-radius: 24px; appearance: none; writing-mode: vertical-lr; direction: rtl; cursor: pointer; }
+.ios-cc-sliders input::-webkit-slider-thumb { width: 44px; height: 11px; border: 0; border-radius: 11px; appearance: none; background: rgba(255,255,255,.01); }
+.ios-cc-sliders input::-moz-range-thumb { width: 44px; height: 11px; border: 0; border-radius: 11px; background: rgba(255,255,255,.01); }
+.ios-cc-sliders label > span { position: absolute; bottom: 15px; left: 19px; color: #203a68; font-size: 20px; pointer-events: none; }
+.ios-cc-shortcuts { display: flex; justify-content: space-between; gap: 10px; margin-top: 17px; }
+.ios-cc-shortcuts button, .ios-cc-shortcuts a { display: grid; place-items: center; flex: 1; min-width: 0; max-width: 57px; height: 57px; border-radius: 50%; font-size: 24px; transition: transform .2s; }
+.ios-panel-hint { margin-top: 21px; color: rgba(255,255,255,.8); text-align: center; font-size: 11px; }
+.ios-notifications-panel { background: linear-gradient(180deg, rgba(18,37,76,.23), rgba(30,40,77,.65)), url('/img/ui/aurora.svg') center / cover; }
+.ios-notifications-clock { display: flex; align-items: center; flex-direction: column; margin-top: 48px; text-shadow: 0 3px 16px rgba(12,25,53,.3); }
+.ios-notifications-clock span { font-size: 17px; font-weight: 600; }
+.ios-notifications-clock strong { font-size: clamp(75px, 23vw, 105px); font-weight: 300; line-height: 1; letter-spacing: -.07em; }
+.ios-notifications-stack { margin-top: 52px; }
+.ios-notifications-heading { display: flex; align-items: center; justify-content: space-between; padding: 0 5px 7px; text-shadow: 0 1px 5px rgba(0,0,0,.25); }
+.ios-notifications-heading strong { font-size: 12px; }
+.ios-notifications-heading small { font: 700 9px Menlo, Monaco, monospace; letter-spacing: .1em; }
+.ios-notification-card { display: flex; align-items: flex-start; gap: 11px; width: 100%; min-height: 80px; margin-top: 7px; padding: 11px; border: 1px solid rgba(255,255,255,.7); border-radius: 19px; background: rgba(248,251,255,.8); color: #243858; text-align: left; box-shadow: 0 8px 25px rgba(17,31,66,.17); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); animation: ios-notification-enter .38s both; }
+.ios-notification-card:nth-of-type(2) { animation-delay: .06s; }
+.ios-notification-card:nth-of-type(3) { animation-delay: .12s; }
+.ios-notification-card img { flex: none; width: 37px; height: 37px; border-radius: 10px; }
+.ios-notification-card span { min-width: 0; }
+.ios-notification-card small, .ios-notification-card strong, .ios-notification-card em { display: block; }
+.ios-notification-card small { color: #5b7295; font: 700 9px Menlo, Monaco, monospace; letter-spacing: .08em; }
+.ios-notification-card strong { margin-top: 3px; font-size: 12px; }
+.ios-notification-card em { margin-top: 3px; color: #64758d; font-size: 11px; font-style: normal; line-height: 1.35; }
+.ios-notification-card:active { transform: scale(.98); }
+@keyframes ios-notification-enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .ios-system-panel *, .ios-system-panel { animation: none !important; transition-duration: .01ms !important; } }
