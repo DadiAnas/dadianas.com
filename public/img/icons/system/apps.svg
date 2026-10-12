@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#d5e7fb"/><stop offset="1" stop-color="#8eafdf"/></linearGradient></defs><rect x="2" y="2" width="96" height="96" rx="23" fill="url(#g)"/><g fill="#fff"><rect x="22" y="22" width="22" height="22" rx="6"/><rect x="56" y="22" width="22" height="22" rx="6"/><rect x="22" y="56" width="22" height="22" rx="6"/><rect x="56" y="56" width="22" height="22" rx="6"/></g><circle cx="33" cy="33" r="5" fill="#6da6e6"/><circle cx="67" cy="33" r="5" fill="#ea92a5"/><circle cx="33" cy="67" r="5" fill="#70c4ae"/><circle cx="67" cy="67" r="5" fill="#a49be4"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Launchpad">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7faff"/><stop offset="1" stop-color="#d4e1f7"/></linearGradient></defs>
+  <rect x="2" y="2" width="96" height="96" rx="23" fill="url(#bg)"/>
+  <g stroke="#fff" stroke-width="1">
+    <rect x="16" y="16" width="19" height="19" rx="5" fill="#55aafa"/><rect x="40.5" y="16" width="19" height="19" rx="5" fill="#ff716e"/><rect x="65" y="16" width="19" height="19" rx="5" fill="#f7bd49"/>
+    <rect x="16" y="40.5" width="19" height="19" rx="5" fill="#6ed8bb"/><rect x="40.5" y="40.5" width="19" height="19" rx="5" fill="#8e85ee"/><rect x="65" y="40.5" width="19" height="19" rx="5" fill="#69b1f2"/>
+    <rect x="16" y="65" width="19" height="19" rx="5" fill="#f395bd"/><rect x="40.5" y="65" width="19" height="19" rx="5" fill="#92ca66"/><rect x="65" y="65" width="19" height="19" rx="5" fill="#ff9f63"/>
+  </g>
+  <g fill="#fff" opacity=".94"><circle cx="25.5" cy="25.5" r="4"/><circle cx="50" cy="25.5" r="4"/><circle cx="74.5" cy="25.5" r="4"/><circle cx="25.5" cy="50" r="4"/><circle cx="50" cy="50" r="4"/><circle cx="74.5" cy="50" r="4"/><circle cx="25.5" cy="74.5" r="4"/><circle cx="50" cy="74.5" r="4"/><circle cx="74.5" cy="74.5" r="4"/></g>
+</svg>

@@ -5,7 +5,7 @@ const apps: AppsData[] = [
     id: "launchpad",
     title: "Launchpad",
     desktop: false,
-    img: "img/icons/system/apps.svg"
+    img: "img/icons/system/apps.svg?v=2"
   },
   {
     id: "profile",
@@ -58,7 +58,7 @@ const apps: AppsData[] = [
     id: "github",
     title: "GitHub",
     desktop: false,
-    img: "img/icons/system/github.svg",
+    img: "img/icons/system/github.svg?v=2",
     link: "https://github.com/dadianas"
   },
   {

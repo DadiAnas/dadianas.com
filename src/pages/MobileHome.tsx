@@ -185,7 +185,7 @@ export default function MobileHome() {
                 rel="noopener noreferrer"
               >
                 <span className="ios-app-icon">
-                  <img src="img/icons/system/github.svg" alt="" />
+                  <img src="img/icons/system/github.svg?v=2" alt="" />
                 </span>
                 <span>GitHub</span>
               </a>
