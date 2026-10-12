@@ -4,7 +4,7 @@
 
 Paris, France
 
-[View or download my résumé](/resume.pdf) · [LinkedIn](https://www.linkedin.com/in/dadianas/) · [Email me](mailto:dadi.anas@hotmail.fr)
+[View or download my résumé](/resume.pdf?v=2026-10-12) · [LinkedIn](https://www.linkedin.com/in/dadianas/) · [Email me](mailto:dadi.anas@hotmail.fr)
 
 I build and operate reliable cloud platforms. My work spans Kubernetes, infrastructure as code, production incident response, security automation and observability across AWS, Azure, IBM Cloud and GCP.
 
