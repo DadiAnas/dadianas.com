@@ -13,5 +13,4 @@ export interface SiteSectionData {
 
 export interface WebsitesData {
   favorites: SiteSectionData;
-  freq: SiteSectionData;
 }

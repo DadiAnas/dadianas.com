@@ -12,9 +12,7 @@ const terminal: TerminalData[] = [
         type: "file",
         content: (
           <div className="py-1">
-            <div>
-              Hi, this is Anas DADI. I am Tech Enthusiast just like you!
-            </div>
+            <div>Anas Dadi · DevSecOps / SRE Engineer and Cloud Architect in Paris.</div>
           </div>
         )
       },
@@ -22,14 +20,14 @@ const terminal: TerminalData[] = [
         id: "about-interests",
         title: "interests.txt",
         type: "file",
-        content: "DevOps / Cloud Computing / Security / Big Data / Artificial Intelligence"
+        content:
+          "DevOps / Cloud Computing / Security / Big Data / Artificial Intelligence"
       },
       {
         id: "about-who-cares",
         title: "who-cares.txt",
         type: "file",
-        content:
-          "I'm looking for new oppurtunities as Cloud Architect or DevSecOps Lead/Engineer"
+        content: "Open to hybrid and fully remote roles and freelance engagements."
       },
       {
         id: "about-contact",
@@ -85,26 +83,6 @@ const terminal: TerminalData[] = [
         )
       }
     ]
-  },
-  {
-    id: "about-dream",
-    title: "my-dream.cpp",
-    type: "file",
-    content: (
-      <div className="py-1">
-        <div>
-          <span className="text-yellow-400">while</span>(
-          <span className="text-blue-400">sleeping</span>) <span>{"{"}</span>
-        </div>
-        <div>
-          <span className="text-blue-400 ml-9">money</span>
-          <span className="text-yellow-400">++</span>;
-        </div>
-        <div>
-          <span>{"}"}</span>
-        </div>
-      </div>
-    )
   }
 ];
 

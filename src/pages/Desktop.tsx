@@ -1,5 +1,6 @@
 import React from "react";
-import { apps, wallpapers } from "~/configs";
+import MobileHome from "~/pages/MobileHome";
+import { apps } from "~/configs";
 import { minMarginY } from "~/utils";
 import type { MacActions } from "~/types";
 
@@ -43,6 +44,7 @@ export default function Desktop(props: MacActions) {
     dark: state.dark,
     brightness: state.brightness
   }));
+  const { winWidth } = useWindowSize();
 
   const getAppsData = (): void => {
     let showApps = {},
@@ -235,11 +237,12 @@ export default function Desktop(props: MacActions) {
     });
   };
 
+  if (winWidth < 640) return <MobileHome />;
+
   return (
     <div
-      className="size-full overflow-hidden bg-center bg-cover"
+      className={`mac-wallpaper ${dark ? "mac-wallpaper-dark" : ""} size-full overflow-hidden`}
       style={{
-        backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`,
         filter: `brightness( ${(brightness as number) * 0.7 + 50}% )`
       }}
     >

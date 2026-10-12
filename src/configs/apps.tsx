@@ -1,4 +1,3 @@
-import { appBarHeight } from "~/utils";
 import type { AppsData } from "~/types";
 
 const apps: AppsData[] = [
@@ -10,7 +9,7 @@ const apps: AppsData[] = [
   },
   {
     id: "bear",
-    title: "Bear",
+    title: "Profile",
     desktop: true,
     width: 1000,
     height: 500,
@@ -20,14 +19,11 @@ const apps: AppsData[] = [
     content: <Bear />
   },
   {
-    id: "typora",
-    title: "Notes",
-    desktop: true,
-    width: 600,
-    height: 580,
-    y: -20,
-    img: "img/icons/typora.png",
-    content: <Typora />
+    id: "resume",
+    title: "Résumé",
+    desktop: false,
+    img: "img/icons/resume.svg",
+    link: "/resume.pdf"
   },
   {
     id: "safari",
@@ -39,31 +35,6 @@ const apps: AppsData[] = [
     x: -20,
     img: "img/icons/safari.png",
     content: <Safari />
-  },
-  {
-    id: "vscode",
-    title: "VSCode",
-    desktop: true,
-    width: 900,
-    height: 600,
-    x: 80,
-    y: -30,
-    img: "img/icons/vscode.png",
-    content: <VSCode />
-  },
-  {
-    id: "facetime",
-    title: "FaceTime",
-    desktop: true,
-    img: "img/icons/facetime.png",
-    width: 500 * 1.7,
-    height: 500 + appBarHeight,
-    minWidth: 350 * 1.7,
-    minHeight: 350 + appBarHeight,
-    aspectRatio: 1.7,
-    x: -80,
-    y: 20,
-    content: <FaceTime />
   },
   {
     id: "terminal",
@@ -85,6 +56,13 @@ const apps: AppsData[] = [
     desktop: false,
     img: "img/icons/github.png",
     link: "https://github.com/dadianas"
+  },
+  {
+    id: "email",
+    title: "Email",
+    desktop: false,
+    img: "img/icons/contact-mail.svg",
+    link: "mailto:dadi.anas@hotmail.fr"
   }
 ];
 

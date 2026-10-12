@@ -1,4 +1,4 @@
-import { wallpapers, launchpadApps } from "~/configs";
+import { launchpadApps } from "~/configs";
 
 interface LaunchpadProps {
   show: boolean;
@@ -28,11 +28,8 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
 
   return (
     <div
-      className={`${close} z-30 transform scale-110 size-full fixed overflow-hidden bg-center bg-cover`}
+      className={`${close} mac-wallpaper ${dark ? "mac-wallpaper-dark" : ""} z-30 transform scale-110 size-full fixed overflow-hidden`}
       id="launchpad"
-      style={{
-        backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`
-      }}
       onClick={() => toggleLaunchpad(false)}
     >
       <div className="size-full absolute bg-gray-900/20 backdrop-blur-2xl">

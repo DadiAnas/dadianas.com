@@ -1,5 +1,5 @@
 import React from "react";
-import { websites, wallpapers } from "~/configs";
+import { websites } from "~/configs";
 import { checkURL } from "~/utils";
 import type { SiteSectionData, SiteData } from "~/types";
 
@@ -14,14 +14,13 @@ interface SafariProps {
 
 interface NavProps {
   width: number;
-  setGoURL: (url: string) => void;
 }
 
 interface NavSectionProps extends NavProps {
   section: SiteSectionData;
 }
 
-const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
+const NavSection = ({ width, section }: NavSectionProps) => {
   const grid = width < 640 ? "grid-cols-4" : "grid-cols-9";
 
   return (
@@ -32,27 +31,20 @@ const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
       <div className={`mt-3 grid grid-flow-row ${grid}`}>
         {section.sites.map((site: SiteData) => (
           <div key={`safari-nav-${site.id}`} className="h-28 flex flex-col">
-            <div className="size-16 mx-auto rounded-md overflow-hidden bg-white">
+            <a
+              href={site.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="size-16 mx-auto rounded-md overflow-hidden bg-white"
+            >
               {site.img ? (
-                <img
-                  src={site.img}
-                  alt={site.title}
-                  title={site.title}
-                  onClick={
-                    site.inner ? () => setGoURL(site.link) : () => window.open(site.link)
-                  }
-                />
+                <img src={site.img} alt={site.title} title={site.title} />
               ) : (
-                <div
-                  className="size-full flex-center cursor-default text-black"
-                  onClick={
-                    site.inner ? () => setGoURL(site.link) : () => window.open(site.link)
-                  }
-                >
+                <div className="size-full flex-center text-black">
                   <span text-lg>{site.title}</span>
                 </div>
               )}
-            </div>
+            </a>
             <span m="t-2 x-auto" text-sm>
               {site.title}
             </span>
@@ -63,62 +55,24 @@ const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
   );
 };
 
-const numTracker = Math.floor(Math.random() * 99 + 1);
-
-const NavPage = ({ width, setGoURL }: NavProps) => {
-  const dark = useStore((state) => state.dark);
-
-  const grid = width < 640 ? "grid-cols-4" : "grid-cols-8";
-  const span = width < 640 ? "col-span-3" : "col-span-7";
-
+const NavPage = ({ width }: NavProps) => {
   return (
-    <div
-      className="w-full safari-content overflow-y-scroll bg-center bg-cover text-c-black"
-      style={{
-        backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`
-      }}
-    >
+    <div className="w-full safari-content overflow-y-scroll text-c-black">
       <div className="w-full min-h-full pt-8 bg-c-100/80 backdrop-blur-2xl">
         {/* Favorites */}
-        <NavSection section={websites.favorites} setGoURL={setGoURL} width={width} />
+        <NavSection section={websites.favorites} width={width} />
 
-        {/* Frequently Visited */}
-        <NavSection section={websites.freq} setGoURL={setGoURL} width={width} />
-
-        {/* Privacy Report */}
-        <div className="mx-auto w-full max-w-screen-md" p="t-8 x-4 b-16">
-          <div font="medium" text="xl sm:2xl">
-            Privacy Report
-          </div>
-          <div
-            className={`h-16 w-full mt-4 grid ${grid} shadow-md rounded-xl text-sm`}
-            bg="gray-50/70 dark:gray-600/50"
-          >
-            <div className="col-start-1 col-span-1 flex-center space-x-2">
-              <span className="i-fa-solid:shield-alt text-2xl" />
-              <span className="text-xl">{numTracker}</span>
-            </div>
-            <div className={`col-start-2 ${span} hstack px-2`}>
-              In the last seven days, Safari has prevent {numTracker} tracker from
-              profiling you.
-            </div>
-          </div>
-        </div>
+        <p className="mx-auto max-w-screen-md px-6 pt-4 text-sm text-c-500">
+          Explore my résumé and professional profiles.
+        </p>
       </div>
     </div>
   );
 };
 
 const NoInternetPage = () => {
-  const dark = useStore((state) => state.dark);
-
   return (
-    <div
-      className="w-full safari-content bg-blue-50 overflow-y-scroll bg-center bg-cover"
-      style={{
-        backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`
-      }}
-    >
+    <div className="w-full safari-content bg-blue-50 overflow-y-scroll">
       <div className="w-full h-full pb-10 backdrop-blur-2xl flex-center text-c-600 bg-c-100/80">
         <div className="text-center">
           <div className="text-2xl font-bold">You Are Not Connected to the Internet</div>
@@ -134,7 +88,7 @@ const NoInternetPage = () => {
 const Safari = ({ width }: SafariProps) => {
   const wifi = useStore((state) => state.wifi);
   const [state, setState] = useState<SafariState>({
-    goURL: "https://anas.dadispace.com",
+    goURL: "",
     currentURL: ""
   });
 
@@ -143,9 +97,9 @@ const Safari = ({ width }: SafariProps) => {
 
     if (isValid) {
       if (url.substring(0, 7) !== "http://" && url.substring(0, 8) !== "https://")
-        url = "https://anas.dadispace.com"; //`https://${url}`;
+        url = `https://${url}`;
     } else if (url !== "") {
-      url = "https://anas.dadispace.com"; //`https://www.bing.com/search?q=${url}`;
+      url = "";
     }
 
     setState({
@@ -208,7 +162,7 @@ const Safari = ({ width }: SafariProps) => {
       {/* browser content */}
       {wifi ? (
         state.goURL === "" ? (
-          <NavPage setGoURL={setGoURL} width={width as number} />
+          <NavPage width={width as number} />
         ) : (
           <iframe
             title={"Safari clone browser"}

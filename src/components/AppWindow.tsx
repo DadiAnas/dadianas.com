@@ -120,10 +120,16 @@ const Window = (props: WindowProps) => {
   });
 
   useEffect(() => {
-    setState({
-      ...state,
-      width: Math.min(winWidth, state.width),
-      height: Math.min(winHeight, state.height)
+    setState((current) => {
+      const width = Math.min(winWidth, current.width);
+      const height = Math.min(winHeight, current.height);
+      return {
+        ...current,
+        width,
+        height,
+        x: winWidth + Math.max(0, (winWidth - width) / 2),
+        y: Math.max(0, (winHeight - height - dockSize - minMarginY) / 2)
+      };
     });
   }, [winWidth, winHeight]);
 
@@ -187,11 +193,11 @@ const Window = (props: WindowProps) => {
       lockAspectRatioExtraHeight={props.aspectRatio ? appBarHeight : undefined}
       style={{ zIndex: props.z }}
       onMouseDown={() => props.focus(props.id)}
-      className={`overflow-hidden ${round} ${border} shadow-lg shadow-black/30 ${minimized}`}
+      className={`mac-window overflow-hidden ${round} ${border} ${minimized}`}
       id={`window-${props.id}`}
     >
       <div
-        className="window-bar relative h-6 text-center bg-c-200"
+        className="window-bar relative h-10 text-center bg-c-200"
         onDoubleClick={() => !disableMax && props.setMax(props.id)}
       >
         <TrafficLights
@@ -202,7 +208,7 @@ const Window = (props: WindowProps) => {
           setMin={props.setMin}
           close={props.close}
         />
-        <span className="font-semibold text-c-700">{props.title}</span>
+        <span className="window-title font-semibold text-c-700">{props.title}</span>
       </div>
       <div className="innner-window w-full overflow-y-hidden">{children}</div>
     </Rnd>

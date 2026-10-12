@@ -1,70 +1,47 @@
 import React from "react";
-import { wallpapers, user } from "~/configs";
+import { format } from "date-fns";
+import { user } from "~/configs";
 import type { MacActions } from "~/types";
 
 export default function Login(props: MacActions) {
-  const [password, setPassword] = useState("");
-  const [sign, setSign] = useState("Click to enter");
   const dark = useStore((state) => state.dark);
+  const { winWidth } = useWindowSize();
 
-  const keyPress = (e: React.KeyboardEvent) => {
-    const keyCode = e.key;
-    if (keyCode === "Enter") loginHandle();
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setPassword(e.target.value);
-  };
-
-  const loginHandle = () => {
-    if (user.password === "" || user.password === password) {
-      // not set password or password correct
-      props.setLogin(true);
-    } else if (password !== "") {
-      // password not null and incorrect
-      setSign("Incorrect password");
-    }
-  };
+  if (winWidth < 640) {
+    return (
+      <div className={`ios-lock mac-wallpaper ${dark ? "mac-wallpaper-dark" : ""}`}>
+        <div className="ios-lock-date">{format(new Date(), "EEEE, MMMM d")}</div>
+        <div className="ios-lock-time">{format(new Date(), "h:mm")}</div>
+        <div className="ios-lock-bottom">
+          <p>Anas Dadi</p>
+          <span>Cloud architect · DevSecOps · SRE</span>
+          <button type="button" onClick={() => props.setLogin(true)}>
+            Explore portfolio <span aria-hidden="true">↑</span>
+          </button>
+        </div>
+        <div className="ios-home-indicator" aria-hidden="true" />
+      </div>
+    );
+  }
 
   return (
     <div
-      className="size-full login text-center"
-      style={{
-        background: `url(${
-          dark ? wallpapers.night : wallpapers.day
-        }) center/cover no-repeat`
-      }}
-      onClick={() => loginHandle()}
+      className={`mac-wallpaper ${dark ? "mac-wallpaper-dark" : ""} size-full login text-center`}
     >
-      <div className="inline-block w-auto relative top-1/2 -mt-40">
+      <div className="inline-block w-auto relative top-1/2 -mt-36">
         {/* Avatar */}
-        <img className="rounded-full size-24 my-0 mx-auto" src={user.avatar} alt="img" />
-        <div className="font-semibold mt-2 text-xl text-white">{user.name}</div>
-
-        {/* Password Input */}
-        <div className="mx-auto grid grid-cols-5 w-44 h-8 mt-4 rounded-md backdrop-blur-2xl bg-gray-300/50">
-          <input
-            className="text-sm text-white col-start-1 col-span-4 no-outline bg-transparent px-2"
-            type="password"
-            placeholder="Enter Password"
-            onClick={(e) => e.stopPropagation()}
-            onKeyDown={keyPress}
-            value={password}
-            onChange={handleInputChange}
-          />
-          <div className="col-start-5 col-span-1 flex-center">
-            <span className="i-bi:question-square-fill text-white ml-1" />
-          </div>
-        </div>
-
-        <div mt-2 cursor-pointer text="sm gray-200">
-          {sign}
-        </div>
+        <img className="rounded-full size-24 my-0 mx-auto" src={user.avatar} alt="" />
+        <h1 className="font-semibold mt-4 text-2xl text-white">{user.name}</h1>
+        <p className="mt-1 text-sm text-white/80">Cloud architect · DevSecOps · SRE</p>
+        <button className="enter-desktop mt-7" onClick={() => props.setLogin(true)}>
+          Enter desktop <span aria-hidden="true">↗</span>
+        </button>
       </div>
 
       {/* buttons */}
       <div className="text-sm fixed bottom-16 inset-x-0 mx-auto flex flex-row space-x-4 w-max">
-        <div
+        <button
+          type="button"
           className="hstack flex-col text-white w-24 cursor-pointer"
           onClick={(e) => props.sleepMac(e)}
         >
@@ -72,8 +49,9 @@ export default function Login(props: MacActions) {
             <span className="i-gg:sleep text-[40px]" />
           </div>
           <span>Sleep</span>
-        </div>
-        <div
+        </button>
+        <button
+          type="button"
           className="hstack flex-col text-white w-24 cursor-pointer"
           onClick={(e) => props.restartMac(e)}
         >
@@ -81,8 +59,9 @@ export default function Login(props: MacActions) {
             <span className="i-ri:restart-line text-4xl" />
           </div>
           <span>Restart</span>
-        </div>
-        <div
+        </button>
+        <button
+          type="button"
           className="hstack flex-col text-white w-24 cursor-pointer"
           onClick={(e) => props.shutMac(e)}
         >
@@ -90,7 +69,7 @@ export default function Login(props: MacActions) {
             <span className="i-ri:shut-down-line text-4xl" />
           </div>
           <span>Shut Down</span>
-        </div>
+        </button>
       </div>
     </div>
   );

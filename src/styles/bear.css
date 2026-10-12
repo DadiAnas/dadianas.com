@@ -1,128 +1,30 @@
-.bear .markdown a {
-  @apply text-red-500 dark:text-red-400;
+.bear .bear-sidebar {
+  background: linear-gradient(160deg, rgba(54, 69, 116, .84), rgba(37, 51, 94, .94));
+  backdrop-filter: blur(28px);
 }
 
-.bear .markdown h1,
-.bear .markdown h2,
-.bear .markdown h3,
-.bear .markdown h4 {
-  @apply font-bold relative text-c-800;
-}
+.bear .bear-list { background: #f3f6fc; }
+.bear .bear-content { background: #fff; }
+.bear .markdown { line-height: 1.6; }
+.bear .markdown h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.08; letter-spacing: -.04em; color: #253354; margin: 5px 0 12px; }
+.bear .markdown h2 { font-size: 1.35rem; color: #27395f; border-top: 1px solid #dbe3f3; margin: 30px 0 12px; padding-top: 20px; }
+.bear .markdown h3 { font-size: 1rem; color: #27395f; margin: 18px 0 2px; }
+.bear .markdown p { margin: 10px 0; }
+.bear .markdown p:first-of-type { color: #5d6984; }
+.bear .markdown ul { list-style: disc; padding-left: 20px; margin: 8px 0; }
+.bear .markdown li { margin: 5px 0; }
+.bear .markdown li::marker { color: #5b7add; }
+.bear .markdown a { color: #315ec4; text-decoration: underline; text-underline-offset: 3px; }
+.bear .markdown a:hover { color: #1e459d; }
+.bear .markdown strong { color: #334365; }
 
-.bear .markdown h1,
-.bear .markdown h2,
-.bear .markdown h3,
-.bear .markdown h4 {
-  @apply mt-7;
-}
-
-.bear .markdown h1::before,
-.bear .markdown h2::before,
-.bear .markdown h3::before,
-.bear .markdown h4::before {
-  @apply absolute text-sm text-c-400 -left-7 bottom-1;
-}
-
-.bear .markdown h1 {
-  @apply text-3xl;
-}
-
-.bear .markdown h1::before {
-  content: "H1";
-}
-
-.bear .markdown h2 {
-  @apply text-2xl;
-}
-
-.bear .markdown h2::before {
-  content: "H2";
-}
-
-.bear .markdown h3 {
-  @apply text-xl;
-}
-
-.bear .markdown h3::before {
-  content: "H3";
-}
-
-.bear .markdown h3 {
-  @apply text-xl;
-}
-
-.bear .markdown h4 {
-  @apply text-lg;
-}
-
-.bear .markdown h4::before {
-  content: "H4";
-}
-
-.bear .markdown p {
-  @apply mt-6;
-}
-
-.bear .markdown h2 + p,
-.bear .markdown h3 + p,
-.bear .markdown h4 + p {
-  @apply mt-4;
-}
-
-.bear .markdown ul,
-.bear .markdown ol {
-  @apply mt-2 pl-5;
-}
-
-.bear .markdown ul {
-  @apply list-disc;
-}
-
-.bear .markdown ul > li::marker {
-  @apply text-red-500 dark:text-red-400;
-}
-
-.bear .markdown ol {
-  @apply list-decimal;
-}
-
-.bear .markdown li p {
-  @apply m-0 mb-2;
-}
-
-.bear .markdown code {
-  @apply text-sm border border-c-300 rounded py-0.5 px-1 bg-c-50;
-}
-
-.bear .markdown pre {
-  @apply mt-2 text-sm;
-}
-
-.bear .markdown pre code {
-  @apply text-sm bg-transparent border-none p-0;
-}
-
-.bear .markdown pre div {
-  @apply border border-c-300 rounded;
-}
-
-.bear .markdown .token {
-	background: transparent !important;
-}
-
-.bear .markdown img {
-  @apply inline-block;
-}
-
-.bear .markdown table {
-  @apply mt-4 block w-full overflow-auto;
-}
-
-.bear .markdown table td,
-.bear .markdown table th {
-  @apply px-3 py-2 border border-c-300;
-}
-
-.bear .markdown table tr {
-  @apply border-t border-gray-300 bg-transparent;
+@media (max-width: 639px) {
+  .bear { flex-direction: column; }
+  .bear .bear-sidebar { display: none; }
+  .bear .bear-list { width: 100%; height: 96px; flex: none; overflow-x: auto; border-bottom: 1px solid #dbe3f3; }
+  .bear .bear-list ul { display: flex; width: max-content; min-width: 100%; }
+  .bear .bear-list li { width: 130px; height: 96px; flex: none; }
+  .bear .bear-list li > div:last-child { font-size: 11px; }
+  .bear .bear-content { min-height: 0; }
+  .bear .markdown { padding: 20px; }
 }

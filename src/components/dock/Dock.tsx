@@ -40,7 +40,7 @@ export default function Dock({
       overflow="x-scroll sm:x-visible"
     >
       <ul
-        className="flex space-x-2 px-2 backdrop-blur-2xl bg-c-white/20"
+        className="flex space-x-2 px-2 backdrop-blur-2xl bg-c-white/20 mac-dock"
         border="~ c-400/40 rounded-none sm:rounded-xl"
         onMouseMove={(e) => mouseX.set(e.nativeEvent.x)}
         onMouseLeave={() => mouseX.set(null)}

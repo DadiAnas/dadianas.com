@@ -76,7 +76,6 @@ const TopBar = (props: TopBarProps) => {
     showAppleMenu: false
   });
 
-  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
   const [audio, audioState, controls, audioRef] = useAudio({
     src: music.audio,
     autoReplay: true
@@ -164,7 +163,7 @@ const TopBar = (props: TopBarProps) => {
     <div
       className={`w-full h-8 px-2 fixed top-0 hstack justify-between ${
         props.hide ? "z-0" : "z-20"
-      } text-sm text-white bg-gray-700/10 backdrop-blur-2xl shadow transition`}
+      } text-sm text-white bg-gray-700/10 backdrop-blur-2xl transition mac-menubar`}
     >
       <div className="hstack space-x-1">
         <TopBarItem
