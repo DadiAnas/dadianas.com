@@ -105,7 +105,7 @@ export default function MobileHome() {
           </a>
           <button type="button" onClick={() => openProfile("education")}>
             <span className="ios-app-icon">
-              <img src="img/icons/system/education.svg" alt="" />
+              <img src="img/icons/system/education.svg?v=2" alt="" />
             </span>
             <span>Education</span>
           </button>
