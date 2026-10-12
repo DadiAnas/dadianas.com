@@ -558,6 +558,10 @@ export default function Profile({
                             <small key={tag}>{french ? topicFr[tag] : tag}</small>
                           ))}
                         </span>
+                        <span className="profile-role-toggle-label">
+                          <span>{french ? "Voir les détails" : "Show details"}</span>
+                          <span>{french ? "Masquer les détails" : "Hide details"}</span>
+                        </span>
                       </span>
                       <span className="profile-role-expand" aria-hidden="true">
                         +

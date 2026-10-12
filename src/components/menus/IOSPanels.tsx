@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import { enUS, fr } from "date-fns/locale";
 import { motion, useReducedMotion } from "framer-motion";
 import { resumeUrl, type ProfileTab } from "~/configs/profile";
+import { music } from "~/configs";
 
 interface IOSPanelProps {
   french: boolean;
@@ -17,8 +18,16 @@ export function IOSControlCenter({
   close,
   openProfile,
   openSkills,
-  goHome
-}: IOSPanelProps & { goHome: () => void }) {
+  goHome,
+  playing,
+  toggleAudio,
+  setAudioVolume
+}: IOSPanelProps & {
+  goHome: () => void;
+  playing: boolean;
+  toggleAudio: () => void;
+  setAudioVolume: (value: number) => void;
+}) {
   const reducedMotion = useReducedMotion();
   const { wifi, bluetooth, airdrop, dark, brightness, volume } = useStore((state) => ({
     wifi: state.wifi,
@@ -34,16 +43,14 @@ export function IOSControlCenter({
     toggleAirdrop,
     toggleDark,
     toggleFrench,
-    setBrightness,
-    setVolume
+    setBrightness
   } = useStore((state) => ({
     toggleWIFI: state.toggleWIFI,
     toggleBluetooth: state.toggleBluetooth,
     toggleAirdrop: state.toggleAirdrop,
     toggleDark: state.toggleDark,
     toggleFrench: state.toggleFrench,
-    setBrightness: state.setBrightness,
-    setVolume: state.setVolume
+    setBrightness: state.setBrightness
   }));
 
   return (
@@ -99,9 +106,27 @@ export function IOSControlCenter({
             <span className="i-lucide:music-2" aria-hidden="true" />
           </span>
           <div>
-            <strong>{french ? "À l’arrêt" : "Not Playing"}</strong>
-            <small>Portfolio</small>
+            <strong>{music.title}</strong>
+            <small>{music.artist}</small>
           </div>
+          <button
+            type="button"
+            onClick={toggleAudio}
+            aria-label={
+              playing
+                ? french
+                  ? "Mettre la musique en pause"
+                  : "Pause music"
+                : french
+                  ? "Lancer la musique"
+                  : "Play music"
+            }
+          >
+            <span
+              className={playing ? "i-lucide:pause" : "i-lucide:play"}
+              aria-hidden="true"
+            />
+          </button>
         </div>
       </div>
       <div className="ios-cc-quick-row">
@@ -137,7 +162,7 @@ export function IOSControlCenter({
             min="0"
             max="100"
             value={volume}
-            onChange={(event) => setVolume(Number(event.target.value))}
+            onChange={(event) => setAudioVolume(Number(event.target.value))}
             aria-label={french ? "Volume du portfolio" : "Portfolio volume"}
             style={{
               background: `linear-gradient(to top, #fff ${volume}%, rgba(255,255,255,.22) ${volume}%)`

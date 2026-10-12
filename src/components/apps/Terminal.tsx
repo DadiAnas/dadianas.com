@@ -369,7 +369,7 @@ export default class Terminal extends React.Component<{}, TerminalState> {
   render() {
     return (
       <div
-        className="terminal font-terminal font-normal relative h-full bg-gray-800/90 overflow-y-scroll"
+        className="terminal font-terminal font-normal relative h-full bg-gray-900 overflow-y-scroll"
         text="white sm"
         onClick={() => this.focusOnInput(this.curInputTimes)}
       >

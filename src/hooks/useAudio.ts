@@ -9,8 +9,9 @@ export interface HTMLAudioProps {
 }
 
 export function useAudio(props: HTMLAudioProps) {
-  const element = new Audio(props.src);
-  const ref = useRef<HTMLAudioElement>(element);
+  const ref = useRef<HTMLAudioElement | null>(null);
+  if (!ref.current) ref.current = new Audio(props.src);
+  const element = ref.current;
 
   const [state, setState] = useState<HTMLAudioState>({
     volume: 1,
@@ -60,6 +61,7 @@ export function useAudio(props: HTMLAudioProps) {
 
     element.addEventListener("ended", handler);
     return () => {
+      element.pause();
       element.removeEventListener("ended", handler);
     };
   }, [props.autoReplay]);

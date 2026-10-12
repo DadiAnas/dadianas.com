@@ -102,6 +102,9 @@
 .profile-role-summary { margin-top: 7px; color: #5d6e88; font-size: 12px; line-height: 1.4; }
 .profile-role-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 9px; }
 .profile-role-tags small { padding: 3px 6px; border-radius: 5px; background: #eff4fa; color: #4f6484; font-size: 10px; }
+.profile-role-toggle-label { margin-top: 9px; color: #356bc9; font-size: 11px; font-weight: 700; }
+.profile-role-toggle-label > span:last-child, .profile-role[open] .profile-role-toggle-label > span:first-child { display: none; }
+.profile-role[open] .profile-role-toggle-label > span:last-child { display: inline; }
 .profile-role-expand { color: #7d96bd; font-size: 23px; line-height: 1; }
 .profile-role[open] .profile-role-expand { transform: rotate(45deg); }
 .profile-role ul { margin: 0 17px 17px 33px; padding-left: 16px; color: #556681; font-size: 12px; line-height: 1.55; list-style: disc; }

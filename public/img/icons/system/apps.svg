@@ -1,10 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Launchpad">
-  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7faff"/><stop offset="1" stop-color="#d4e1f7"/></linearGradient></defs>
-  <rect x="2" y="2" width="96" height="96" rx="23" fill="url(#bg)"/>
-  <g stroke="#fff" stroke-width="1">
-    <rect x="16" y="16" width="19" height="19" rx="5" fill="#55aafa"/><rect x="40.5" y="16" width="19" height="19" rx="5" fill="#ff716e"/><rect x="65" y="16" width="19" height="19" rx="5" fill="#f7bd49"/>
-    <rect x="16" y="40.5" width="19" height="19" rx="5" fill="#6ed8bb"/><rect x="40.5" y="40.5" width="19" height="19" rx="5" fill="#8e85ee"/><rect x="65" y="40.5" width="19" height="19" rx="5" fill="#69b1f2"/>
-    <rect x="16" y="65" width="19" height="19" rx="5" fill="#f395bd"/><rect x="40.5" y="65" width="19" height="19" rx="5" fill="#92ca66"/><rect x="65" y="65" width="19" height="19" rx="5" fill="#ff9f63"/>
-  </g>
-  <g fill="#fff" opacity=".94"><circle cx="25.5" cy="25.5" r="4"/><circle cx="50" cy="25.5" r="4"/><circle cx="74.5" cy="25.5" r="4"/><circle cx="25.5" cy="50" r="4"/><circle cx="50" cy="50" r="4"/><circle cx="74.5" cy="50" r="4"/><circle cx="25.5" cy="74.5" r="4"/><circle cx="50" cy="74.5" r="4"/><circle cx="74.5" cy="74.5" r="4"/></g>
+  <defs><linearGradient id="tile" x2="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#edf1f5"/></linearGradient></defs>
+  <rect x="3" y="3" width="94" height="94" rx="25" fill="url(#tile)"/>
+  <rect x="16" y="18" width="68" height="17" rx="8.5" fill="#d7dce1"/>
+  <circle cx="26" cy="26" r="3.2" fill="none" stroke="#f8fafc" stroke-width="1.7"/>
+  <path d="m28.5 28.5 3 3" stroke="#f8fafc" stroke-width="1.7" stroke-linecap="round"/>
+  <rect x="18" y="45" width="17" height="17" rx="4" fill="#10b8f0"/>
+  <rect x="41.5" y="45" width="17" height="17" rx="4" fill="#68cf4c"/>
+  <rect x="65" y="45" width="17" height="17" rx="4" fill="#f34c73"/>
+  <rect x="18" y="68" width="17" height="17" rx="4" fill="#fa9a20"/>
+  <rect x="41.5" y="68" width="17" height="17" rx="4" fill="#836ce2"/>
+  <rect x="65" y="68" width="17" height="17" rx="4" fill="#8c939d"/>
 </svg>

@@ -9,7 +9,6 @@
   background: linear-gradient(165deg, rgba(25, 43, 82, .62), rgba(48, 54, 99, .78)), url('/img/ui/aurora.svg') center / cover;
   backdrop-filter: blur(28px);
 }
-.ios-display-dim { position: fixed; z-index: 60; inset: 0; background: #030816; pointer-events: none; }
 .ios-system-topline { display: flex; align-items: center; justify-content: space-between; min-height: 29px; padding: 0 4px; font-size: 15px; font-weight: 700; }
 .ios-panel-top-actions { display: flex; align-items: center; gap: 5px; margin-left: auto; margin-right: 13px; font-size: 16px; }
 .ios-system-topline button { display: grid; place-items: center; width: 29px; height: 29px; border-radius: 50%; background: rgba(255,255,255,.2); font-size: 18px; }
@@ -35,6 +34,7 @@
 .ios-cc-media > div strong, .ios-cc-media > div small { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .ios-cc-media > div strong { font-size: 13px; }
 .ios-cc-media > div small { margin-top: 2px; color: rgba(255,255,255,.78); font-size: 11px; }
+.ios-cc-media > button { align-self: flex-end; display: grid; place-items: center; width: 30px; height: 30px; margin-top: -30px; border-radius: 50%; background: rgba(255,255,255,.2); font-size: 16px; }
 .ios-cc-quick-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
 .ios-cc-quick-row button { display: flex; align-items: center; gap: 10px; min-height: 57px; padding: 10px 13px; border-radius: 23px; text-align: left; font-size: 13px; font-weight: 700; transition: transform .2s; }
 .ios-cc-quick-row button span { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.25); font-size: 19px; }

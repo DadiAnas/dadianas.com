@@ -5,7 +5,7 @@ const apps: AppsData[] = [
     id: "launchpad",
     title: "Launchpad",
     desktop: false,
-    img: "img/icons/system/apps.svg?v=2"
+    img: "img/icons/system/apps.svg?v=3"
   },
   {
     id: "profile",
@@ -38,6 +38,15 @@ const apps: AppsData[] = [
     height: 640,
     img: "img/icons/system/skills.svg",
     content: <Profile initialTab="expertise" />
+  },
+  {
+    id: "terminal",
+    title: "Terminal",
+    desktop: true,
+    width: 760,
+    height: 480,
+    img: "img/icons/system/terminal.svg",
+    content: <Terminal />
   },
   {
     id: "resume",

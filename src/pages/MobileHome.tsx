@@ -2,6 +2,8 @@ import { format } from "date-fns";
 import { AnimatePresence } from "framer-motion";
 import Profile from "~/components/apps/Profile";
 import { IOSControlCenter, IOSNotifications } from "~/components/menus/IOSPanels";
+import { music } from "~/configs";
+import { useAudio } from "~/hooks/useAudio";
 import {
   experiences,
   expertise,
@@ -58,9 +60,13 @@ export default function MobileHome() {
   const [now, setNow] = useState(new Date());
   const dark = useStore((state) => state.dark);
   const brightness = useStore((state) => state.brightness);
+  const volume = useStore((state) => state.volume);
+  const setVolume = useStore((state) => state.setVolume);
+  const [, audioState, audioControls] = useAudio({ src: music.audio, autoReplay: true });
   const french = useStore((state) => state.french);
   const toggleFrench = useStore((state) => state.toggleFrench);
   const text = french ? homeCopy.fr : homeCopy.en;
+  useEffect(() => audioControls.volume(volume / 100), [volume]);
   const openProfile = (tab: ProfileTab, topic?: ExperienceTopic, skillQuery?: string) =>
     setProfileView({ tab, topic, skillQuery });
   const swipeHome = (event: React.TouchEvent) => {
@@ -167,6 +173,7 @@ export default function MobileHome() {
   return (
     <div
       className={`ios-home mac-wallpaper ${dark ? "mac-wallpaper-dark" : ""}`}
+      style={{ filter: `brightness(${brightness * 0.7 + 50}%)` }}
       onTouchStart={(event) => {
         const touch = event.touches[0];
         if (
@@ -604,17 +611,15 @@ export default function MobileHome() {
           />
         </section>
       )}
-      <div
-        className="ios-display-dim"
-        style={{ opacity: Math.max(0, (80 - brightness) / 120) }}
-        aria-hidden="true"
-      />
       <AnimatePresence mode="wait">
         {topPanel === "control" && (
           <IOSControlCenter
             key="control"
             french={french}
             now={now}
+            playing={audioState.playing}
+            toggleAudio={audioControls.toggle}
+            setAudioVolume={setVolume}
             close={() => setTopPanel(null)}
             openProfile={(tab) => {
               setTopPanel(null);
