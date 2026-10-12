@@ -64,7 +64,7 @@ export default function MobileHome() {
             </span>
             <span>Profile</span>
           </button>
-          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+          <a href="/resume.pdf?v=2026-10-12" target="_blank" rel="noopener noreferrer">
             <span className="ios-app-icon">
               <img src="img/icons/resume.svg" alt="" />
             </span>
@@ -97,7 +97,7 @@ export default function MobileHome() {
           <span aria-hidden="true">☎</span>
         </a>
         <a
-          href="/resume.pdf"
+          href="/resume.pdf?v=2026-10-12"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Open résumé"

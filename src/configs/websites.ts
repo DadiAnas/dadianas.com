@@ -8,7 +8,7 @@ const websites: WebsitesData = {
         id: "resume",
         title: "Résumé",
         img: "img/icons/resume.svg",
-        link: "/resume.pdf"
+        link: "/resume.pdf?v=2026-10-12"
       },
       {
         id: "github",

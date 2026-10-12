@@ -23,7 +23,7 @@ const apps: AppsData[] = [
     title: "Résumé",
     desktop: false,
     img: "img/icons/resume.svg",
-    link: "/resume.pdf"
+    link: "/resume.pdf?v=2026-10-12"
   },
   {
     id: "safari",

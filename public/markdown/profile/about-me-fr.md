@@ -4,7 +4,7 @@
 
 Paris, France
 
-[Consulter ou télécharger mon CV](/resume.pdf) · [LinkedIn](https://www.linkedin.com/in/dadianas/) · [Me contacter](mailto:dadi.anas@hotmail.fr)
+[Consulter ou télécharger mon CV](/resume.pdf?v=2026-10-12) · [LinkedIn](https://www.linkedin.com/in/dadianas/) · [Me contacter](mailto:dadi.anas@hotmail.fr)
 
 Je conçois et exploite des plateformes cloud fiables. Mes domaines d'expertise couvrent Kubernetes, l'infrastructure as code, la gestion des incidents de production, l'automatisation de la sécurité et l'observabilité sur AWS, Azure, IBM Cloud et GCP.
 
