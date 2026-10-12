@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import Profile from "~/components/apps/Profile";
 import {
   experiences,
+  expertise,
   resumeUrl,
   type ExperienceTopic,
   type ProfileTab
@@ -22,7 +23,6 @@ const homeCopy = {
     security: "Security",
     search: "Search experience",
     openProfile: "Open profile",
-    back: "Home",
     returnHome: "Return to home"
   },
   fr: {
@@ -38,7 +38,6 @@ const homeCopy = {
     security: "Sécurité",
     search: "Rechercher une expérience",
     openProfile: "Ouvrir le profil",
-    back: "Accueil",
     returnHome: "Retour à l’accueil"
   }
 };
@@ -46,39 +45,135 @@ const homeCopy = {
 export default function MobileHome() {
   const [homePage, setHomePage] = useState(0);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const edgeTouchStart = useRef<{ x: number; y: number } | null>(null);
+  const [topPanel, setTopPanel] = useState(false);
+  const [skillsSearch, setSkillsSearch] = useState("");
   const [profileView, setProfileView] = useState<{
     tab: ProfileTab;
     topic?: ExperienceTopic;
-    query?: string;
+    skillQuery?: string;
   } | null>(null);
   const [now, setNow] = useState(new Date());
   const dark = useStore((state) => state.dark);
   const french = useStore((state) => state.french);
   const toggleFrench = useStore((state) => state.toggleFrench);
   const text = french ? homeCopy.fr : homeCopy.en;
-  const openProfile = (tab: ProfileTab, topic?: ExperienceTopic, query?: string) =>
-    setProfileView({ tab, topic, query });
+  const openProfile = (tab: ProfileTab, topic?: ExperienceTopic, skillQuery?: string) =>
+    setProfileView({ tab, topic, skillQuery });
   const swipeHome = (event: React.TouchEvent) => {
     if (!touchStart.current) return;
     const dx = event.changedTouches[0].clientX - touchStart.current.x;
     const dy = event.changedTouches[0].clientY - touchStart.current.y;
     touchStart.current = null;
     if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.4)
-      setHomePage(dx < 0 ? 1 : 0);
+      setHomePage((current) => Math.max(-1, Math.min(1, current + (dx < 0 ? 1 : -1))));
   };
+  const swipeFromEdge = (event: React.TouchEvent) => {
+    if (!edgeTouchStart.current) return;
+    const { x, y } = edgeTouchStart.current;
+    const dx = event.changedTouches[0].clientX - x;
+    const dy = event.changedTouches[0].clientY - y;
+    edgeTouchStart.current = null;
+    if (Math.abs(dy) < 65 || Math.abs(dy) < Math.abs(dx) * 1.4) return;
+    if (topPanel && dy < 0) setTopPanel(false);
+    else if (y < 70 && dy > 0) setTopPanel(true);
+    else if (profileView && y > window.innerHeight - 48 && dy < 0) setProfileView(null);
+  };
+  const search = skillsSearch.trim().toLocaleLowerCase();
+  const matchingSkills = expertise
+    .map((group) => ({
+      ...group,
+      skills:
+        search &&
+        ![group.title, group.titleFr].some((title) =>
+          title.toLocaleLowerCase().includes(search)
+        )
+          ? group.skills.filter((skill) => skill.toLocaleLowerCase().includes(search))
+          : group.skills
+    }))
+    .filter((group) => group.skills.length > 0);
+  const secondaryApps = [
+    {
+      id: "cloud",
+      label: "Cloud",
+      img: "img/icons/system/cloud.svg",
+      open: () => openProfile("experience", "Cloud")
+    },
+    {
+      id: "sre",
+      label: "SRE",
+      img: "img/icons/system/reliability.svg",
+      open: () => openProfile("experience", "Reliability")
+    },
+    {
+      id: "security",
+      label: text.security,
+      img: "img/icons/system/security.svg",
+      open: () => openProfile("experience", "Security")
+    },
+    {
+      id: "data",
+      label: french ? "Données et IA" : "Data & AI",
+      img: "img/icons/system/data.svg",
+      open: () => openProfile("experience", "Data & AI")
+    },
+    {
+      id: "software",
+      label: french ? "Logiciel" : "Software",
+      icon: "i-lucide:code-2",
+      color: "#ec8b79",
+      open: () => openProfile("experience", "Software")
+    },
+    {
+      id: "kubernetes",
+      label: "Kubernetes",
+      icon: "i-lucide:boxes",
+      color: "#537be4",
+      open: () => openProfile("expertise", undefined, "Kubernetes")
+    },
+    {
+      id: "terraform",
+      label: "Terraform",
+      icon: "i-lucide:blocks",
+      color: "#886be4",
+      open: () => openProfile("expertise", undefined, "Terraform")
+    },
+    {
+      id: "skills",
+      label: french ? "Rechercher" : "Skill Search",
+      icon: "i-lucide:search",
+      color: "#3fa5ad",
+      open: () => setHomePage(-1)
+    }
+  ];
 
   useInterval(() => setNow(new Date()), 60_000);
   useEffect(() => {
-    if (!profileView) return;
+    if (!profileView && !topPanel) return;
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setProfileView(null);
+      if (event.key === "Escape") {
+        if (topPanel) setTopPanel(false);
+        else setProfileView(null);
+      }
     };
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [profileView]);
+  }, [profileView, topPanel]);
 
   return (
-    <div className={`ios-home mac-wallpaper ${dark ? "mac-wallpaper-dark" : ""}`}>
+    <div
+      className={`ios-home mac-wallpaper ${dark ? "mac-wallpaper-dark" : ""}`}
+      onTouchStart={(event) => {
+        const touch = event.touches[0];
+        if (
+          touch.clientY < 70 ||
+          topPanel ||
+          (profileView && touch.clientY > window.innerHeight - 48)
+        )
+          edgeTouchStart.current = { x: touch.clientX, y: touch.clientY };
+      }}
+      onTouchEnd={swipeFromEdge}
+    >
       <div className="ios-dynamic-island" aria-hidden="true" />
       <div className="ios-status">
         <strong>{format(now, "h:mm")}</strong>
@@ -87,6 +182,12 @@ export default function MobileHome() {
           <span className="i-material-symbols:wifi" />
           <span className="ios-battery" />
         </div>
+        <button
+          type="button"
+          className="ios-status-trigger"
+          aria-label={french ? "Ouvrir la navigation" : "Open navigation"}
+          onClick={() => setTopPanel(true)}
+        />
       </div>
 
       <main
@@ -99,7 +200,95 @@ export default function MobileHome() {
         }}
         onTouchEnd={swipeHome}
       >
-        {homePage === 0 ? (
+        {homePage === -1 ? (
+          <section className="ios-skills-page">
+            <div className="ios-home-heading">
+              <span>{french ? "RECHERCHE · COMPÉTENCES" : "SEARCH · SKILLS"}</span>
+              <strong>Anas Dadi</strong>
+            </div>
+            <div className="ios-skills-intro">
+              <span className="i-lucide:search" aria-hidden="true" />
+              <h1>{french ? "Technologies et outils" : "Technologies & tools"}</h1>
+              <p>
+                {french
+                  ? "Recherchez une technologie utilisée dans mon parcours."
+                  : "Find technologies and tools used across the roles in my résumé."}
+              </p>
+            </div>
+            <form
+              className="ios-skills-form"
+              onSubmit={(event) => {
+                event.preventDefault();
+                openProfile("expertise", undefined, skillsSearch);
+              }}
+            >
+              <span className="i-lucide:search" aria-hidden="true" />
+              <input
+                type="search"
+                value={skillsSearch}
+                onChange={(event) => setSkillsSearch(event.target.value)}
+                aria-label={french ? "Rechercher une technologie" : "Search technologies"}
+                placeholder={
+                  french
+                    ? "Kubernetes, Kafka, Terraform…"
+                    : "Kubernetes, Kafka, Terraform…"
+                }
+              />
+              <button
+                type="submit"
+                aria-label={french ? "Voir les résultats" : "See results"}
+              >
+                →
+              </button>
+            </form>
+            <p className="ios-skills-count" aria-live="polite">
+              {matchingSkills.length} {french ? "domaines" : "areas"} ·{" "}
+              {new Set(matchingSkills.flatMap((group) => group.skills)).size}{" "}
+              {french ? "technologies" : "technologies"}
+            </p>
+            <div className="ios-skills-groups">
+              {matchingSkills.map((group) => (
+                <section key={group.title}>
+                  <button
+                    type="button"
+                    className="ios-skills-group-title"
+                    onClick={() =>
+                      openProfile(
+                        "expertise",
+                        undefined,
+                        french ? group.titleFr : group.title
+                      )
+                    }
+                  >
+                    <strong>{french ? group.titleFr : group.title}</strong>
+                    <span aria-hidden="true">›</span>
+                  </button>
+                  <div>
+                    {group.skills.slice(0, search ? 16 : 6).map((skill) => (
+                      <button
+                        key={skill}
+                        type="button"
+                        onClick={() => openProfile("expertise", undefined, skill)}
+                      >
+                        {skill}
+                      </button>
+                    ))}
+                    {!search && group.skills.length > 6 && (
+                      <small>+{group.skills.length - 6}</small>
+                    )}
+                  </div>
+                </section>
+              ))}
+              {matchingSkills.length === 0 && (
+                <p>
+                  {french
+                    ? "Aucun outil trouvé. Essayez un autre mot-clé."
+                    : "No matching tools. Try another search."}
+                </p>
+              )}
+            </div>
+          </section>
+        ) : homePage === 0 ? (
           <>
             <div className="ios-home-heading">
               <span>PORTFOLIO · PARIS</span>
@@ -199,36 +388,6 @@ export default function MobileHome() {
                 </span>
                 <span>LinkedIn</span>
               </a>
-              <button type="button" onClick={() => openProfile("experience", "Cloud")}>
-                <span className="ios-app-icon">
-                  <img src="img/icons/system/cloud.svg" alt="" />
-                </span>
-                <span>Cloud</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => openProfile("experience", "Reliability")}
-              >
-                <span className="ios-app-icon">
-                  <img src="img/icons/system/reliability.svg" alt="" />
-                </span>
-                <span>SRE</span>
-              </button>
-              <button type="button" onClick={() => openProfile("experience", "Security")}>
-                <span className="ios-app-icon">
-                  <img src="img/icons/system/security.svg" alt="" />
-                </span>
-                <span>{text.security}</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => openProfile("experience", "Data & AI")}
-              >
-                <span className="ios-app-icon">
-                  <img src="img/icons/system/data.svg" alt="" />
-                </span>
-                <span>{french ? "Données et IA" : "Data & AI"}</span>
-              </button>
             </div>
             <button
               type="button"
@@ -239,50 +398,69 @@ export default function MobileHome() {
             </button>
           </>
         ) : (
-          <section className="ios-work-page">
+          <section className="ios-secondary-page">
             <div className="ios-home-heading">
-              <span>{french ? "PARCOURS · PARIS" : "EXPERIENCE · PARIS"}</span>
+              <span>{french ? "AUTRES APPS · PARIS" : "MORE APPS · PARIS"}</span>
               <strong>Anas Dadi</strong>
             </div>
-            <div className="ios-work-intro">
-              <span>{french ? "DEPUIS 2019" : "SINCE 2019"}</span>
-              <h1>
-                {french
-                  ? "Des systèmes à grande échelle, en production."
-                  : "Building and running systems at scale."}
-              </h1>
-              <p>
-                {french
-                  ? "Cloud, SRE, DevSecOps et ingénierie des données : découvrez les missions et technologies derrière mon parcours."
-                  : "Cloud, SRE, DevSecOps and data engineering: explore the work and technologies across these roles."}
-              </p>
-            </div>
-            <div className="ios-work-list">
-              {experiences
-                .filter((experience) => experience.kind === "Professional")
-                .map((experience) => (
-                  <button
-                    key={experience.id}
-                    type="button"
-                    onClick={() =>
-                      openProfile("experience", undefined, experience.company)
-                    }
-                  >
-                    <small>{french ? experience.fr.period : experience.period}</small>
-                    <strong>{experience.company}</strong>
-                    <span>{french ? experience.fr.role : experience.role}</span>
-                    <span className="i-lucide:chevron-right" aria-hidden="true" />
-                  </button>
-                ))}
-            </div>
-            <div className="ios-work-actions">
-              <button type="button" onClick={() => openProfile("experience")}>
-                {french ? "Explorer les 8 expériences" : "Explore all 8 roles"} →
+            <div className="ios-widget-grid">
+              <button
+                className="ios-career-widget"
+                type="button"
+                onClick={() => openProfile("experience")}
+              >
+                <span>{text.experience.toUpperCase()}</span>
+                <strong>
+                  {experiences.length} <small>{text.roles}</small>
+                </strong>
+                <p>{french ? "Cloud · SRE · Données" : "Cloud · SRE · Data"}</p>
+                <em>{text.timeline}</em>
               </button>
-              <button type="button" onClick={() => openProfile("expertise")}>
-                {french ? "Voir les compétences" : "Explore the toolkit"} →
+              <button
+                className="ios-profile-widget"
+                type="button"
+                onClick={() => setHomePage(-1)}
+              >
+                <img src="img/icons/system/skills.svg" alt="" />
+                <span>{french ? "RECHERCHE" : "SEARCH"}</span>
+                <strong>{french ? "Outils et compétences" : "Tools and skills"}</strong>
+                <small>
+                  {expertise.length} {french ? "domaines" : "areas"}
+                </small>
+                <em>{french ? "Rechercher un outil ↗" : "Find a tool ↗"}</em>
               </button>
             </div>
+            <div
+              className="ios-app-grid ios-secondary-grid"
+              role="group"
+              aria-label={french ? "Autres applications" : "More apps"}
+            >
+              {secondaryApps.map((app) => (
+                <button key={app.id} type="button" onClick={app.open}>
+                  <span className="ios-app-icon">
+                    {app.img ? (
+                      <img src={app.img} alt="" />
+                    ) : (
+                      <span
+                        className="ios-category-tile"
+                        style={{ background: app.color }}
+                      >
+                        <span className={app.icon} aria-hidden="true" />
+                      </span>
+                    )}
+                  </span>
+                  <span>{app.label}</span>
+                </button>
+              ))}
+            </div>
+            <button
+              type="button"
+              className="ios-search-pill"
+              onClick={() => setHomePage(-1)}
+            >
+              <span className="i-lucide:search" aria-hidden="true" />{" "}
+              {french ? "Rechercher mes technologies" : "Search technologies"}
+            </button>
           </section>
         )}
       </main>
@@ -292,11 +470,23 @@ export default function MobileHome() {
         role="group"
         aria-label={french ? "Pages d’accueil" : "Home pages"}
       >
-        {[0, 1].map((page) => (
+        {[-1, 0, 1].map((page) => (
           <button
             key={page}
             type="button"
-            aria-label={french ? `Page ${page + 1}` : `Page ${page + 1}`}
+            aria-label={
+              page === -1
+                ? french
+                  ? "Recherche de technologies"
+                  : "Technology search"
+                : page === 0
+                  ? french
+                    ? "Accueil"
+                    : "Home"
+                  : french
+                    ? "Autres applications"
+                    : "More apps"
+            }
             aria-current={homePage === page ? "page" : undefined}
             onClick={() => setHomePage(page)}
           />
@@ -346,51 +536,121 @@ export default function MobileHome() {
               <span className="i-material-symbols:wifi" />
               <span className="ios-battery" />
             </div>
-          </div>
-          <header>
             <button
               type="button"
-              onClick={() => setProfileView(null)}
-              aria-label={text.returnHome}
-            >
-              <span aria-hidden="true">‹</span> {text.back}
-            </button>
-            <strong>
-              {
-                (
-                  {
-                    overview: french ? "À propos" : "About",
-                    experience: french ? "Parcours" : "Experience",
-                    expertise: french ? "Compétences" : "Expertise",
-                    education: french ? "Formation" : "Education",
-                    contact: "Contact"
-                  } as Record<ProfileTab, string>
-                )[profileView.tab]
-              }
-            </strong>
-            <div className="ios-profile-header-actions">
-              <button
-                type="button"
-                onClick={toggleFrench}
-                aria-label={french ? "Switch to English" : "Passer en français"}
-              >
-                {french ? "EN" : "FR"}
-              </button>
-              <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
-                CV ↗
-              </a>
-            </div>
-          </header>
+              className="ios-status-trigger"
+              aria-label={french ? "Ouvrir la navigation" : "Open navigation"}
+              onClick={() => setTopPanel(true)}
+            />
+          </div>
           <Profile
             initialTab={profileView.tab}
             initialTopic={profileView.topic}
-            initialQuery={profileView.query}
+            initialSkillQuery={profileView.skillQuery}
             onTabChange={(tab) =>
               setProfileView((current) => (current ? { ...current, tab } : current))
             }
           />
-          <div className="ios-home-indicator" aria-hidden="true" />
+          <button
+            type="button"
+            className="ios-home-indicator"
+            aria-label={text.returnHome}
+            onClick={() => setProfileView(null)}
+          />
         </section>
+      )}
+      {topPanel && (
+        <div className="ios-nav-backdrop" onClick={() => setTopPanel(false)}>
+          <section
+            className="ios-nav-sheet"
+            role="dialog"
+            aria-modal="true"
+            aria-label={french ? "Navigation" : "Navigation"}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="ios-nav-handle" aria-hidden="true" />
+            <div className="ios-nav-title">
+              <div>
+                <small>{french ? "ANAS SPACE" : "ANAS SPACE"}</small>
+                <h2>{french ? "Navigation rapide" : "Quick navigation"}</h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => setTopPanel(false)}
+                aria-label={french ? "Fermer" : "Close"}
+              >
+                <span className="i-lucide:x" aria-hidden="true" />
+              </button>
+            </div>
+            <div className="ios-nav-grid">
+              {[
+                {
+                  tab: "overview" as ProfileTab,
+                  label: french ? "Profil" : "Profile",
+                  icon: "i-lucide:user-round",
+                  color: "#3987da"
+                },
+                {
+                  tab: "experience" as ProfileTab,
+                  label: text.experience,
+                  icon: "i-lucide:briefcase-business",
+                  color: "#765dd2"
+                },
+                {
+                  tab: "expertise" as ProfileTab,
+                  label: french ? "Compétences" : "Skills",
+                  icon: "i-lucide:layers-3",
+                  color: "#4aa4bc"
+                },
+                {
+                  tab: "contact" as ProfileTab,
+                  label: "Contact",
+                  icon: "i-lucide:mail",
+                  color: "#e28a72"
+                }
+              ].map((item) => (
+                <button
+                  key={item.tab}
+                  type="button"
+                  onClick={() => {
+                    setTopPanel(false);
+                    openProfile(item.tab);
+                  }}
+                >
+                  <span style={{ background: item.color }}>
+                    <span className={item.icon} aria-hidden="true" />
+                  </span>
+                  {item.label}
+                </button>
+              ))}
+            </div>
+            <div className="ios-nav-links">
+              <button
+                type="button"
+                onClick={() => {
+                  setTopPanel(false);
+                  setProfileView(null);
+                  setHomePage(0);
+                }}
+              >
+                <span className="i-lucide:home" aria-hidden="true" />{" "}
+                {french ? "Accueil" : "Home"}
+                <span aria-hidden="true">›</span>
+              </button>
+              <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
+                <span className="i-lucide:file-text" aria-hidden="true" />{" "}
+                {french ? "Ouvrir le CV" : "Open résumé"}
+                <span aria-hidden="true">↗</span>
+              </a>
+              <button type="button" onClick={toggleFrench}>
+                <span className="i-lucide:languages" aria-hidden="true" />{" "}
+                {french ? "Read in English" : "Lire en français"}
+                <span aria-hidden="true">›</span>
+              </button>
+            </div>
+            <p>{french ? "Balayez vers le haut pour fermer." : "Swipe up to close."}</p>
+          </section>
+        </div>
       )}
     </div>
   );

@@ -184,20 +184,20 @@ const topics: (ExperienceTopic | "All")[] = [
 interface ProfileProps {
   initialTab?: ProfileTab;
   initialTopic?: ExperienceTopic | "All";
-  initialQuery?: string;
+  initialSkillQuery?: string;
   onTabChange?: (tab: ProfileTab) => void;
 }
 
 export default function Profile({
   initialTab = "overview",
   initialTopic = "All",
-  initialQuery = "",
+  initialSkillQuery = "",
   onTabChange
 }: ProfileProps) {
   const [tab, setTab] = useState<ProfileTab>(initialTab);
   const [topic, setTopic] = useState<ExperienceTopic | "All">(initialTopic);
-  const [query, setQuery] = useState(initialQuery);
-  const [skillQuery, setSkillQuery] = useState("");
+  const [query, setQuery] = useState("");
+  const [skillQuery, setSkillQuery] = useState(initialSkillQuery);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
   const french = useStore((state) => state.french);
   const toggleFrench = useStore((state) => state.toggleFrench);
@@ -209,19 +209,43 @@ export default function Profile({
     return expertise
       .map((group) => ({
         ...group,
-        skills: group.skills.filter(
-          (skill) => !search || skill.toLocaleLowerCase().includes(search)
-        )
-      }))
-      .filter(
-        (group) =>
+        skills:
           !search ||
-          group.skills.length > 0 ||
           [group.title, group.titleFr, group.description, group.descriptionFr].some(
-            (text) => text.toLocaleLowerCase().includes(search)
+            (title) => title.toLocaleLowerCase().includes(search)
           )
-      );
+            ? group.skills
+            : group.skills.filter((skill) => skill.toLocaleLowerCase().includes(search))
+      }))
+      .filter((group) => group.skills.length > 0);
   }, [skillQuery]);
+
+  const featuredSkills = [
+    "Kubernetes",
+    "Terraform",
+    "Prometheus",
+    "Apache Airflow",
+    "Apache Kafka",
+    "HashiCorp Vault"
+  ];
+  const quickSkills = expertise
+    .flatMap((group) => {
+      const search = skillQuery.trim().toLocaleLowerCase();
+      const matchesGroup = [group.title, group.titleFr].some((title) =>
+        title.toLocaleLowerCase().includes(search)
+      );
+      return group.skills
+        .filter((skill) =>
+          search
+            ? matchesGroup || skill.toLocaleLowerCase().includes(search)
+            : featuredSkills.includes(skill)
+        )
+        .map((skill) => ({ skill, group: french ? group.titleFr : group.title }));
+    })
+    .filter(
+      (item, index, all) => all.findIndex((match) => match.skill === item.skill) === index
+    )
+    .slice(0, 8);
 
   const visibleExperiences = useMemo(() => {
     const search = query.trim().toLowerCase();
@@ -362,6 +386,62 @@ export default function Profile({
                     <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
                       {text.viewResume}
                     </a>
+                  </div>
+                  <div className="profile-quick-search">
+                    <span className="profile-quick-search-label">
+                      {french
+                        ? "RECHERCHER UNE COMPÉTENCE"
+                        : "FIND A TECHNOLOGY I’VE USED"}
+                    </span>
+                    <form
+                      onSubmit={(event) => {
+                        event.preventDefault();
+                        changeTab("expertise");
+                      }}
+                    >
+                      <span className="i-lucide:search" aria-hidden="true" />
+                      <input
+                        aria-label={
+                          french
+                            ? "Rechercher une compétence"
+                            : "Search technologies I have used"
+                        }
+                        type="search"
+                        value={skillQuery}
+                        onChange={(event) => setSkillQuery(event.target.value)}
+                        placeholder={
+                          french
+                            ? "Kubernetes, Kafka, Terraform…"
+                            : "Kubernetes, Kafka, Terraform…"
+                        }
+                      />
+                      <button type="submit">
+                        {french ? "Voir les résultats" : "See results"}
+                      </button>
+                    </form>
+                    <div className="profile-quick-results" aria-live="polite">
+                      {quickSkills.length ? (
+                        quickSkills.map(({ skill, group }) => (
+                          <button
+                            key={skill}
+                            type="button"
+                            onClick={() => {
+                              setSkillQuery(skill);
+                              changeTab("expertise");
+                            }}
+                            title={group}
+                          >
+                            {skill}
+                          </button>
+                        ))
+                      ) : (
+                        <span>
+                          {french
+                            ? "Aucun outil trouvé dans le CV."
+                            : "No matching tool in the résumé."}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
                 <div className="profile-portrait">
@@ -528,11 +608,7 @@ export default function Profile({
                     <h2>{french ? group.titleFr : group.title}</h2>
                     <p>{french ? group.descriptionFr : group.description}</p>
                     <div>
-                      {(group.skills.length
-                        ? group.skills
-                        : expertise.find((item) => item.title === group.title)?.skills ??
-                          []
-                      ).map((skill) => (
+                      {group.skills.map((skill) => (
                         <span key={skill}>{skill}</span>
                       ))}
                     </div>
