@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#dfe9fb" />
+    <title>Anas DADI · Résumé</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; padding: 42px 20px max(42px, env(safe-area-inset-bottom)); background: radial-gradient(circle at 78% 6%, #d9d0ff, transparent 34%), radial-gradient(circle at 14% 75%, #bad9ff, transparent 40%), #e8eef9; color: #213657; font: 15px/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif; }
+      a { color: inherit; text-decoration: none; }
+      .window { width: min(1060px, 100%); margin: auto; overflow: hidden; border: 1px solid rgba(255,255,255,.8); border-radius: 19px; background: rgba(255,255,255,.89); box-shadow: 0 28px 90px rgba(37,66,121,.25), inset 0 1px #fff; backdrop-filter: blur(25px); }
+      .toolbar { display: flex; align-items: center; justify-content: space-between; height: 48px; padding: 0 18px; border-bottom: 1px solid #d6e0ef; background: rgba(233,239,250,.75); }
+      .lights { display: flex; gap: 7px; }
+      .lights i { width: 12px; height: 12px; border-radius: 50%; background: #ff6059; }
+      .lights i:nth-child(2) { background: #ffbd2e; }
+      .lights i:nth-child(3) { background: #28c840; }
+      .toolbar strong { margin-left: -46px; font-size: 13px; }
+      .toolbar a { color: #315faf; font-size: 12px; font-weight: 650; }
+      .content { padding: 34px 37px 42px; }
+      .eyebrow { color: #4a77c9; font-size: 11px; font-weight: 750; letter-spacing: .12em; }
+      h1 { margin: 7px 0 0; font-size: clamp(29px, 4vw, 42px); letter-spacing: -.045em; line-height: 1.12; }
+      .intro { max-width: 700px; margin: 11px 0 27px; color: #62738d; }
+      .choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+      article { overflow: hidden; border: 1px solid #dce6f4; border-radius: 17px; background: white; box-shadow: 0 8px 24px rgba(58,88,132,.06); }
+      .preview { display: grid; place-items: center; height: 266px; overflow: hidden; background: #edf3fc; border-bottom: 1px solid #e3eaf5; }
+      .preview img { width: min(224px, 80%); height: auto; box-shadow: 0 10px 25px rgba(38,65,112,.18); transform: translateY(25px); }
+      .card-copy { padding: 18px 21px 21px; }
+      .card-copy small { color: #4d75b9; font: 700 10px Menlo, Monaco, monospace; letter-spacing: .08em; }
+      h2 { margin: 5px 0 0; font-size: 22px; letter-spacing: -.025em; }
+      .card-copy p { min-height: 48px; margin: 7px 0 15px; color: #65758d; font-size: 13px; }
+      .actions { display: flex; gap: 9px; flex-wrap: wrap; }
+      .actions a { display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 8px 13px; border: 1px solid #d7e2f2; border-radius: 9px; color: #315faf; font-size: 12px; font-weight: 700; }
+      .actions a.primary { border-color: #3473d6; background: #3473d6; color: white; }
+      .actions a:hover { filter: brightness(.96); transform: translateY(-1px); }
+      .note { margin: 23px 0 0; color: #73839b; font-size: 11px; }
+      a:focus-visible { outline: 3px solid #297dff; outline-offset: 3px; }
+      @media (max-width: 700px) { body { padding: 0; background: white; } .window { min-height: 100vh; border: 0; border-radius: 0; box-shadow: none; } .toolbar { height: 56px; padding-top: env(safe-area-inset-top); } .lights { display: none; } .toolbar strong { margin-left: 0; } .content { padding: 29px 20px 45px; } .choices { grid-template-columns: 1fr; gap: 14px; } .preview { height: 190px; } .preview img { width: 170px; transform: translateY(25px); } .card-copy p { min-height: 0; } }
+      @media (prefers-reduced-motion: reduce) { .actions a:hover { transform: none; } }
+    </style>
+  </head>
+  <body>
+    <div class="window">
+      <div class="toolbar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><strong data-en="Résumé" data-fr="CV">Résumé</strong><a href="/" data-en="Back to portfolio ↗" data-fr="Retour au portfolio ↗">Back to portfolio ↗</a></div>
+      <main class="content">
+        <span class="eyebrow" data-en="ANAS DADI · 2026" data-fr="ANAS DADI · 2026">ANAS DADI · 2026</span>
+        <h1 data-en="Choose a résumé." data-fr="Choisissez un CV.">Choose a résumé.</h1>
+        <p class="intro" data-en="The same current experience in two formats. Both include all eight roles and the complete responsibilities from my latest résumé." data-fr="Le même parcours à jour, en deux formats. Les deux couvrent mes huit expériences et l’ensemble des missions de mon dernier CV.">The same current experience in two formats. Both include all eight roles and the complete responsibilities from my latest résumé.</p>
+        <div class="choices">
+          <article>
+            <div class="preview"><img src="/img/resume-modern-preview.jpg" width="520" height="740" alt="Cover of the Figma inspired visual résumé" data-en-alt="Cover of the Figma inspired visual résumé" data-fr-alt="Couverture du CV visuel inspiré du Figma" /></div>
+            <div class="card-copy">
+              <small data-en="VISUAL · 6 PAGES" data-fr="VISUEL · 6 PAGES">VISUAL · 6 PAGES</small>
+              <h2 data-en="Modern" data-fr="Moderne">Modern</h2>
+              <p data-en="Based on my Figma stable design, with its DevSecOps skills cover and updated, structured experience pages." data-fr="Basé sur mon design Figma « stable », avec la carte DevSecOps et des pages d’expérience restructurées et actualisées.">Based on my Figma stable design, with its DevSecOps skills cover and updated, structured experience pages.</p>
+              <div class="actions"><a class="primary" href="/resume-modern.pdf" target="_blank" rel="noopener noreferrer" data-en="Open PDF ↗" data-fr="Ouvrir le PDF ↗">Open PDF ↗</a><a href="/resume-modern.pdf" download="Anas-DADI-Modern-CV.pdf" data-en="Download" data-fr="Télécharger">Download</a></div>
+            </div>
+          </article>
+          <article>
+            <div class="preview"><img src="/img/resume-simple-preview.jpg" width="520" height="740" alt="Cover of the simple text résumé" data-en-alt="Cover of the simple text résumé" data-fr-alt="Couverture du CV sobre en texte" /></div>
+            <div class="card-copy">
+              <small data-en="CLEAN · 3 PAGES" data-fr="SOBRE · 3 PAGES">CLEAN · 3 PAGES</small>
+              <h2 data-en="Simple" data-fr="Sobre">Simple</h2>
+              <p data-en="A straightforward, selectable-text version for quick reading, printing, and application systems." data-fr="Une version avec texte sélectionnable, facile à lire, à imprimer et à déposer dans les outils de candidature.">A straightforward, selectable-text version for quick reading, printing, and application systems.</p>
+              <div class="actions"><a class="primary" href="/resume-simple.pdf" target="_blank" rel="noopener noreferrer" data-en="Open PDF ↗" data-fr="Ouvrir le PDF ↗">Open PDF ↗</a><a href="/resume-simple.pdf" download="Anas-DADI-Simple-CV.pdf" data-en="Download" data-fr="Télécharger">Download</a></div>
+            </div>
+          </article>
+        </div>
+        <p class="note" data-en="The visual résumé preserves the original Figma artwork. The simple version is optimized for selectable text." data-fr="Le CV visuel conserve les éléments graphiques du Figma d’origine. La version sobre privilégie un texte sélectionnable.">The visual résumé preserves the original Figma artwork. The simple version is optimized for selectable text.</p>
+      </main>
+    </div>
+    <script>
+      const language = localStorage.getItem('portfolio-language') || (navigator.language.startsWith('fr') ? 'fr' : 'en');
+      document.documentElement.lang = language;
+      document.title = language === 'fr' ? 'Anas DADI · CV' : 'Anas DADI · Résumé';
+      document.querySelectorAll('[data-en]').forEach((element) => { element.textContent = element.dataset[language] || element.dataset.en; });
+      document.querySelectorAll('[data-en-alt]').forEach((element) => { element.alt = element.dataset[`${language}Alt`] || element.dataset.enAlt; });
+    </script>
+  </body>
+</html>
