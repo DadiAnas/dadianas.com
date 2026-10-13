@@ -503,7 +503,7 @@ export default function Profile({
                     ? "Balayez pour parcourir l’image."
                     : "Swipe sideways to explore the diagram."}{" "}
                   <a
-                    href="/img/technical-skills-overview.svg?v=2026-icons-1"
+                    href="/img/technical-skills-overview.svg?v=7ecb112"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -512,7 +512,7 @@ export default function Profile({
                 </p>
                 <div className="profile-visual-skills-art">
                   <img
-                    src="/img/technical-skills-overview.svg?v=2026-icons-1"
+                    src="/img/technical-skills-overview.svg?v=7ecb112"
                     width="1796"
                     height="2790"
                     loading="lazy"
@@ -530,7 +530,7 @@ export default function Profile({
                       : "Explore current skills →"}
                   </button>
                   <a
-                    href="/img/technical-skills-overview.svg?v=2026-icons-1"
+                    href="/img/technical-skills-overview.svg?v=7ecb112"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
