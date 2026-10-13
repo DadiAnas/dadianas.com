@@ -116,6 +116,21 @@
 
 .profile-expertise-grid, .profile-credential-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; margin-top: 22px; }
 .profile-skill-search { margin-top: 20px; }
+.profile-devops-diagram { margin-top: 20px; overflow: hidden; border: 1px solid #dce6f3; border-radius: 15px; background: white; box-shadow: 0 8px 28px rgba(45, 79, 128, .08); }
+.profile-devops-diagram-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 17px 19px; }
+.profile-devops-diagram-heading span { color: #4876c7; font: 700 10px Menlo, Monaco, monospace; letter-spacing: .09em; }
+.profile-devops-diagram-heading h2 { margin-top: 4px; color: #23395d; font-size: 18px; }
+.profile-devops-diagram-heading p { margin-top: 4px; color: #687993; font-size: 12px; line-height: 1.5; }
+.profile-devops-diagram-heading a { flex: none; color: #356bc9; font-size: 11px; font-weight: 700; }
+.profile-devops-cycle { display: grid; place-items: center; padding: 10px 18px 0; border-top: 1px solid #e4ecf6; background: radial-gradient(circle at 50% 70%, #dcecff, #f8fbff 55%); }
+.profile-devops-cycle svg { display: block; width: min(510px, 100%); height: auto; }
+.profile-devops-cycle text { fill: white; font: 800 30px Avenir, Arial, sans-serif; text-anchor: middle; }
+.profile-devops-cycle text:first-of-type, .profile-devops-cycle text:last-of-type { fill: #1b52a4; }
+.profile-devops-stages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: #dce7f5; border-top: 1px solid #dce7f5; }
+.profile-devops-stages > div { min-width: 0; padding: 15px 17px; background: white; }
+.profile-devops-stages small { color: #4979c9; font: 700 10px Menlo, Monaco, monospace; }
+.profile-devops-stages h3 { margin-top: 5px; color: #253959; font-size: 13px; }
+.profile-devops-stages p { margin-top: 5px; color: #64768f; font-size: 11px; line-height: 1.55; }
 .profile-expertise-grid article, .profile-credential-grid > div { padding: 20px; border: 1px solid #e2e9f3; border-radius: 14px; background: white; }
 .profile-expertise-grid h2, .profile-credential-grid h2 { color: #253959; font-size: 17px; }
 .profile-expertise-grid p, .profile-credential-grid p { margin-top: 5px; color: #667994; font-size: 12px; line-height: 1.5; }
@@ -158,6 +173,10 @@
   .profile-expertise-grid, .profile-credential-grid { grid-template-columns: 1fr; }
   .profile-search-row { align-items: flex-start; flex-direction: column; }
   .profile-search { width: 100%; }
+  .profile-devops-diagram-heading { align-items: flex-start; flex-direction: column; }
+  .profile-devops-stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .profile-devops-stages > div { padding: 13px; }
+  .profile-devops-cycle text { font-size: 27px; }
   .profile-contact-list a { grid-template-columns: 68px 1fr 14px; }
 }
 
