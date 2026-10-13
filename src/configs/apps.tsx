@@ -1,5 +1,4 @@
 import type { AppsData } from "~/types";
-import { resumeUrl } from "~/configs/profile";
 
 const apps: AppsData[] = [
   {
@@ -55,7 +54,7 @@ const apps: AppsData[] = [
     titleFr: "CV",
     desktop: false,
     img: "img/icons/resume.svg",
-    link: resumeUrl
+    link: "/resume.pdf?v=restored-2026-10-13"
   },
   {
     id: "linkedin",

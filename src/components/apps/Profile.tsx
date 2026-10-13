@@ -43,7 +43,7 @@ const copy = {
     noMatchingRolesTryAnother: "No matching roles. Try another topic or search term.",
     forTheCompleteResponsibilitiesAnd:
       "For the complete responsibilities and technology list,",
-    viewThePdfResume: "choose a résumé format ↗",
+    viewThePdfResume: "view the PDF résumé ↗",
     toolkit: "TOOLKIT",
     expertise: "Expertise",
     technologiesAndPracticesAcrossMy:
@@ -108,7 +108,7 @@ const copy = {
     noMatchingRolesTryAnother:
       "Aucune expérience trouvée. Essayez un autre domaine ou mot-clé.",
     forTheCompleteResponsibilitiesAnd: "Pour le détail des missions et des technologies,",
-    viewThePdfResume: "choisissez un format de CV ↗",
+    viewThePdfResume: "consultez le CV en PDF ↗",
     toolkit: "SAVOIR-FAIRE",
     expertise: "Compétences techniques",
     technologiesAndPracticesAcrossMy:
@@ -179,39 +179,6 @@ const topics: (ExperienceTopic | "All")[] = [
   "Security",
   "Data & AI",
   "Software"
-];
-
-const devopsStages = [
-  {
-    en: "Plan",
-    fr: "Planifier",
-    skills: ["AWS", "Azure", "GCP", "Terraform", "Ansible"]
-  },
-  {
-    en: "Code & build",
-    fr: "Développer et construire",
-    skills: ["Go", "Python", "Java", "GitLab CI/CD", "Jenkins"]
-  },
-  {
-    en: "Secure & test",
-    fr: "Sécuriser et tester",
-    skills: ["HashiCorp Vault", "Trivy", "OWASP ZAP", "SAST", "DAST"]
-  },
-  {
-    en: "Release & deploy",
-    fr: "Livrer et déployer",
-    skills: ["Kubernetes", "Helm", "FluxCD", "GitHub Actions", "CodeDeploy"]
-  },
-  {
-    en: "Operate & observe",
-    fr: "Exploiter et superviser",
-    skills: ["Prometheus", "Grafana", "VictoriaMetrics", "Dynatrace", "ServiceNow"]
-  },
-  {
-    en: "Data & learn",
-    fr: "Données et apprentissage",
-    skills: ["Apache Airflow", "Apache Kafka", "MLflow", "Kubeflow", "TensorFlow"]
-  }
 ];
 
 interface ProfileProps {
@@ -515,6 +482,63 @@ export default function Profile({
                 </div>
               </section>
 
+              <section className="profile-section profile-visual-skills">
+                <div className="profile-section-heading">
+                  <span>
+                    {french ? "ISSU DE MON CV VISUEL" : "FROM MY VISUAL RÉSUMÉ"}
+                  </span>
+                  <h2>
+                    {french
+                      ? "Ma carte des compétences DevSecOps"
+                      : "My DevSecOps skills map"}
+                  </h2>
+                  <p>
+                    {french
+                      ? "Une illustration de l’ancien CV. Les outils et domaines actuels se trouvent dans Compétences."
+                      : "An illustration from the earlier résumé. Explore current tools and domains in Expertise."}
+                  </p>
+                </div>
+                <p className="profile-visual-skills-hint">
+                  {french
+                    ? "Balayez pour parcourir l’image."
+                    : "Swipe sideways to explore the diagram."}{" "}
+                  <a
+                    href="/img/technical-skills-overview.svg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {french ? "Ouvrir en grand ↗" : "Open full size ↗"}
+                  </a>
+                </p>
+                <div className="profile-visual-skills-art">
+                  <img
+                    src="/img/technical-skills-overview.svg"
+                    width="1796"
+                    height="1627"
+                    loading="lazy"
+                    alt={
+                      french
+                        ? "Carte illustrée des étapes Dev, Sec et Ops, avec des outils de développement, de sécurité, de déploiement et de supervision."
+                        : "Illustrated Dev, Sec and Ops loop with development, security, deployment and monitoring tools."
+                    }
+                  />
+                </div>
+                <div className="profile-visual-skills-actions">
+                  <button type="button" onClick={() => changeTab("expertise")}>
+                    {french
+                      ? "Explorer les compétences actuelles →"
+                      : "Explore current skills →"}
+                  </button>
+                  <a
+                    href="/img/technical-skills-overview.svg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {french ? "Ouvrir en grand ↗" : "Open full size ↗"}
+                  </a>
+                </div>
+              </section>
+
               <section className="profile-current">
                 <div>
                   <span>{text.now}</span>
@@ -641,77 +665,6 @@ export default function Profile({
                   placeholder={text.findATechnologyOrDomain}
                 />
               </label>
-              {!skillQuery.trim() && (
-                <figure className="profile-devops-diagram">
-                  <div className="profile-devops-diagram-heading">
-                    <div>
-                      <span>{french ? "CYCLE DEVSECOPS" : "DEVSECOPS CYCLE"}</span>
-                      <h2>
-                        {french ? "De l’idée à la production" : "From idea to production"}
-                      </h2>
-                      <p>
-                        {french
-                          ? "Une version actualisée du cycle DevSecOps de mon ancien CV, avec les outils de mon parcours actuel."
-                          : "An updated DevSecOps loop based on the earlier résumé, featuring tools used today."}
-                      </p>
-                    </div>
-                    <a
-                      href="/img/devops-skills-diagram.svg"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {french ? "Voir l’original ↗" : "View original ↗"}
-                    </a>
-                  </div>
-                  <div className="profile-devops-cycle">
-                    <svg
-                      viewBox="0 0 640 228"
-                      role="img"
-                      aria-label={french ? "Boucle DevSecOps" : "DevSecOps loop"}
-                    >
-                      <defs>
-                        <linearGradient id="devops-flow" x1="0" y1="0" x2="1" y2="1">
-                          <stop offset="0" stopColor="#6da4ff" />
-                          <stop offset=".52" stopColor="#2769d7" />
-                          <stop offset="1" stopColor="#173b80" />
-                        </linearGradient>
-                      </defs>
-                      <path
-                        d="M320 114 C235 12 106 27 106 114 C106 201 235 216 320 114 C405 12 534 27 534 114 C534 201 405 216 320 114"
-                        fill="none"
-                        stroke="#b4ccf7"
-                        strokeWidth="56"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M320 114 C235 12 106 27 106 114 C106 201 235 216 320 114 C405 12 534 27 534 114 C534 201 405 216 320 114"
-                        fill="none"
-                        stroke="url(#devops-flow)"
-                        strokeWidth="47"
-                        strokeLinecap="round"
-                      />
-                      <text x="176" y="125">
-                        Dev
-                      </text>
-                      <text x="320" y="125">
-                        Sec
-                      </text>
-                      <text x="463" y="125">
-                        Ops
-                      </text>
-                    </svg>
-                  </div>
-                  <div className="profile-devops-stages">
-                    {devopsStages.map((stage, index) => (
-                      <div key={stage.en}>
-                        <small>{String(index + 1).padStart(2, "0")}</small>
-                        <h3>{french ? stage.fr : stage.en}</h3>
-                        <p>{stage.skills.join(" · ")}</p>
-                      </div>
-                    ))}
-                  </div>
-                </figure>
-              )}
               <div className="profile-expertise-grid">
                 {visibleExpertise.map((group) => (
                   <article key={group.title}>

@@ -1,5 +1,4 @@
 import type { WebsitesData } from "~/types";
-import { resumeUrl } from "~/configs/profile";
 
 const websites: WebsitesData = {
   favorites: {
@@ -9,7 +8,7 @@ const websites: WebsitesData = {
         id: "resume",
         title: "Résumé",
         img: "img/icons/resume.svg",
-        link: resumeUrl
+        link: "/resume.pdf?v=restored-2026-10-13"
       },
       {
         id: "github",

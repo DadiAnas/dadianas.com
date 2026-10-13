@@ -1,12 +1,11 @@
 import type { LaunchpadData } from "~/types";
-import { resumeUrl } from "~/configs/profile";
 
 const launchpadApps: LaunchpadData[] = [
   {
     id: "resume",
     title: "Résumé",
     img: "img/icons/resume.svg",
-    link: resumeUrl
+    link: "/resume.pdf?v=restored-2026-10-13"
   },
   {
     id: "linkedin",

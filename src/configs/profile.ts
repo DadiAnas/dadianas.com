@@ -616,4 +616,4 @@ export const expertise = [
   }
 ];
 
-export const resumeUrl = "/resume.html";
+export const resumeUrl = "/resume.pdf?v=restored-2026-10-13";
