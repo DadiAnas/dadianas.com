@@ -54,7 +54,7 @@ const apps: AppsData[] = [
     titleFr: "CV",
     desktop: false,
     img: "img/icons/resume.svg",
-    link: "/resume.pdf?v=restored-2026-10-13"
+    link: "/resume.pdf?v=original-c939c98-1"
   },
   {
     id: "linkedin",
