@@ -583,11 +583,12 @@ export const expertise = [
     ]
   },
   {
-    title: "Networks & collaboration",
-    titleFr: "Réseaux et collaboration",
-    description: "The wider tools used to ship and support systems.",
-    descriptionFr: "Les outils complémentaires de livraison et d’exploitation.",
+    title: "Systems, networks & collaboration",
+    titleFr: "Systèmes, réseaux et collaboration",
+    description: "Operating systems, networks and tools used to support production.",
+    descriptionFr: "Systèmes d’exploitation, réseaux et outils pour la production.",
     skills: [
+      "Linux",
       "AWS VPC",
       "Azure VNet",
       "VPN",
@@ -626,7 +627,7 @@ export const groupIcons: Record<string, string> = {
   "Data engineering & AI": "i-lucide:brain-circuit",
   "Databases & storage": "i-lucide:database",
   "Languages & development": "i-lucide:code",
-  "Networks & collaboration": "i-lucide:network"
+  "Systems, networks & collaboration": "i-lucide:network"
 };
 
 export const skillIcons: Record<string, string> = {
@@ -815,7 +816,8 @@ export const skillIcons: Record<string, string> = {
   Laravel: "i-logos:laravel",
   Symfony: "i-logos:symfony",
 
-  // Networks & collaboration
+  // Systems, networks & collaboration
+  Linux: "i-logos:linux-tux",
   "AWS VPC": "i-logos:aws-vpc",
   "Azure VNet": "i-lucide:network",
   VPN: "i-lucide:shield-check",
