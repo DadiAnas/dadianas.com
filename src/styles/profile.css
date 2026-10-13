@@ -163,7 +163,7 @@
   .profile-route-grid small { font-size: 12px; }
   .profile-visual-skills-hint { display: block; margin-top: 12px; color: #687993; font-size: 11px; }
   .profile-visual-skills-hint a { color: #356bc9; font-weight: 700; }
-  .profile-visual-skills-art img { width: 660px; max-width: none; }
+  .profile-visual-skills-art img { width: 1100px; max-width: none; }
   .profile-current { margin: 0 20px 25px; }
   .profile-expertise-grid, .profile-credential-grid { grid-template-columns: 1fr; }
   .profile-search-row { align-items: flex-start; flex-direction: column; }

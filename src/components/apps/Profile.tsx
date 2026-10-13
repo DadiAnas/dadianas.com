@@ -494,8 +494,8 @@ export default function Profile({
                   </h2>
                   <p>
                     {french
-                      ? "Une illustration de l’ancien CV. Les outils et domaines actuels se trouvent dans Compétences."
-                      : "An illustration from the earlier résumé. Explore current tools and domains in Expertise."}
+                      ? "Le visuel DevSecOps de l'ancien CV, enrichi avec des outils actuels. La liste complète est dans Compétences."
+                      : "The original DevSecOps illustration, expanded with current tools. Find the full list in Expertise."}
                   </p>
                 </div>
                 <p className="profile-visual-skills-hint">
@@ -503,7 +503,7 @@ export default function Profile({
                     ? "Balayez pour parcourir l’image."
                     : "Swipe sideways to explore the diagram."}{" "}
                   <a
-                    href="/img/technical-skills-overview.svg"
+                    href="/img/technical-skills-overview.svg?v=2026-icons-1"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -512,14 +512,14 @@ export default function Profile({
                 </p>
                 <div className="profile-visual-skills-art">
                   <img
-                    src="/img/technical-skills-overview.svg"
+                    src="/img/technical-skills-overview.svg?v=2026-icons-1"
                     width="1796"
-                    height="1627"
+                    height="2790"
                     loading="lazy"
                     alt={
                       french
-                        ? "Carte illustrée des étapes Dev, Sec et Ops, avec des outils de développement, de sécurité, de déploiement et de supervision."
-                        : "Illustrated Dev, Sec and Ops loop with development, security, deployment and monitoring tools."
+                        ? "Carte DevSecOps enrichie de 36 compétences : cloud, automatisation, sécurité, observabilité, données et stockage."
+                        : "DevSecOps map expanded with 36 skills across cloud, automation, security, observability, data and storage."
                     }
                   />
                 </div>
@@ -530,7 +530,7 @@ export default function Profile({
                       : "Explore current skills →"}
                   </button>
                   <a
-                    href="/img/technical-skills-overview.svg"
+                    href="/img/technical-skills-overview.svg?v=2026-icons-1"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
