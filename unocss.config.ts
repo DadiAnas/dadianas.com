@@ -7,6 +7,7 @@ import {
   transformerVariantGroup,
   transformerAttributifyJsx
 } from "unocss";
+import { groupIcons, skillIcons } from "./src/configs/profile";
 
 const colorReg = (prefix: string) => new RegExp("^" + prefix + "-([0-9a-z]+)(/(\\d+))?$");
 
@@ -31,6 +32,7 @@ const colorAttr = (prefix: string, [, color, , opacity]: RegExpMatchArray) => {
 };
 
 export default defineConfig({
+  safelist: [...new Set([...Object.values(groupIcons), ...Object.values(skillIcons)])],
   shortcuts: [
     ["flex-center", "flex items-center justify-center"],
     ["hstack", "flex items-center"],

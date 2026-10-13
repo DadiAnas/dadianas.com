@@ -7,7 +7,9 @@ import { useAudio } from "~/hooks/useAudio";
 import {
   experiences,
   expertise,
+  groupIcons,
   resumeUrl,
+  skillIcons,
   type ExperienceTopic,
   type ProfileTab
 } from "~/configs/profile";
@@ -275,6 +277,7 @@ export default function MobileHome() {
                       )
                     }
                   >
+                    <span className={groupIcons[group.title]} aria-hidden="true" />
                     <strong>{french ? group.titleFr : group.title}</strong>
                     <span aria-hidden="true">›</span>
                   </button>
@@ -285,6 +288,10 @@ export default function MobileHome() {
                         type="button"
                         onClick={() => openProfile("expertise", undefined, skill)}
                       >
+                        <span
+                          className={skillIcons[skill] ?? groupIcons[group.title]}
+                          aria-hidden="true"
+                        />
                         {skill}
                       </button>
                     ))}

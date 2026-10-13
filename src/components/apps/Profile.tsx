@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
   experiences,
   expertise,
+  groupIcons,
+  skillIcons,
   resumeUrl,
   type ExperienceTopic,
   type ProfileTab
@@ -180,6 +182,15 @@ const topics: (ExperienceTopic | "All")[] = [
   "Data & AI",
   "Software"
 ];
+
+const topicIcons: Record<ExperienceTopic | "All", string> = {
+  All: "i-lucide:layout-grid",
+  Cloud: "i-lucide:cloud",
+  Reliability: "i-lucide:activity",
+  Security: "i-lucide:shield-check",
+  "Data & AI": "i-lucide:brain-circuit",
+  Software: "i-lucide:code"
+};
 
 interface ProfileProps {
   initialTab?: ProfileTab;
@@ -433,6 +444,10 @@ export default function Profile({
                             }}
                             title={group}
                           >
+                            <span
+                              className={skillIcons[skill] ?? "i-lucide:layers-3"}
+                              aria-hidden="true"
+                            />
                             {skill}
                           </button>
                         ))
@@ -556,7 +571,10 @@ export default function Profile({
             <section className="profile-section profile-experience">
               <div className="profile-section-heading">
                 <span>{text.career}</span>
-                <h1>{text.experience}</h1>
+                <h1>
+                  <span className="i-lucide:briefcase-business" aria-hidden="true" />
+                  {text.experience}
+                </h1>
                 <p>{text.eightRolesSpanningSoftwareData}</p>
               </div>
               <div className="profile-search-row">
@@ -587,6 +605,7 @@ export default function Profile({
                     aria-pressed={topic === item}
                     onClick={() => setTopic(item)}
                   >
+                    <span className={topicIcons[item]} aria-hidden="true" />
                     {french ? topicFr[item] : item}
                   </button>
                 ))}
@@ -612,7 +631,10 @@ export default function Profile({
                         </span>
                         <span className="profile-role-tags">
                           {experience.topics.map((tag) => (
-                            <small key={tag}>{french ? topicFr[tag] : tag}</small>
+                            <small key={tag}>
+                              <span className={topicIcons[tag]} aria-hidden="true" />
+                              {french ? topicFr[tag] : tag}
+                            </small>
                           ))}
                         </span>
                         <span className="profile-role-toggle-label">
@@ -653,7 +675,10 @@ export default function Profile({
             <section className="profile-section">
               <div className="profile-section-heading">
                 <span>{text.toolkit}</span>
-                <h1>{text.expertise}</h1>
+                <h1>
+                  <span className="i-lucide:layers-3" aria-hidden="true" />
+                  {text.expertise}
+                </h1>
                 <p>{text.technologiesAndPracticesAcrossMy}</p>
               </div>
               <label className="profile-search profile-skill-search">
@@ -668,11 +693,20 @@ export default function Profile({
               <div className="profile-expertise-grid">
                 {visibleExpertise.map((group) => (
                   <article key={group.title}>
-                    <h2>{french ? group.titleFr : group.title}</h2>
+                    <h2>
+                      <span className={groupIcons[group.title]} aria-hidden="true" />
+                      {french ? group.titleFr : group.title}
+                    </h2>
                     <p>{french ? group.descriptionFr : group.description}</p>
                     <div>
                       {group.skills.map((skill) => (
-                        <span key={skill}>{skill}</span>
+                        <span key={skill}>
+                          <span
+                            className={skillIcons[skill] ?? groupIcons[group.title]}
+                            aria-hidden="true"
+                          />
+                          {skill}
+                        </span>
                       ))}
                     </div>
                   </article>
@@ -688,32 +722,50 @@ export default function Profile({
             <section className="profile-section">
               <div className="profile-section-heading">
                 <span>{text.foundations}</span>
-                <h1>{text.educationCredentials}</h1>
+                <h1>
+                  <span className="i-lucide:graduation-cap" aria-hidden="true" />
+                  {text.educationCredentials}
+                </h1>
               </div>
               <div className="profile-education-list">
                 <article>
-                  <span>2018 – 2021</span>
+                  <span>
+                    <span className="i-lucide:graduation-cap" aria-hidden="true" />
+                    2018 – 2021
+                  </span>
                   <h2>ENSET Mohammedia</h2>
                   <p>{text.engineeringDegreeInComputerScience}</p>
                 </article>
                 <article>
-                  <span>2016 – 2018</span>
+                  <span>
+                    <span className="i-lucide:book-open" aria-hidden="true" />
+                    2016 – 2018
+                  </span>
                   <h2>CPGE</h2>
                   <p>{text.preparatoryClassesInPhysicsAnd}</p>
                 </article>
                 <article>
-                  <span>2013 – 2016</span>
+                  <span>
+                    <span className="i-lucide:school" aria-hidden="true" />
+                    2013 – 2016
+                  </span>
                   <h2>Tarik Ibnou Ziad High School</h2>
                   <p>{text.mathematicsScienceA}</p>
                 </article>
               </div>
               <div className="profile-credential-grid">
                 <div>
-                  <h2>{text.certifications}</h2>
+                  <h2>
+                    <span className="i-lucide:award" aria-hidden="true" />
+                    {text.certifications}
+                  </h2>
                   <p>{text.hadoopFoundationsAdvancedPythonGcp}</p>
                 </div>
                 <div>
-                  <h2>{text.languages}</h2>
+                  <h2>
+                    <span className="i-lucide:languages" aria-hidden="true" />
+                    {text.languages}
+                  </h2>
                   <p>
                     {text.arabicNative}
                     <br />
@@ -730,12 +782,18 @@ export default function Profile({
             <section className="profile-section profile-contact">
               <div className="profile-section-heading">
                 <span>{text.getInTouch}</span>
-                <h1>{text.letSBuildSomethingReliable}</h1>
+                <h1>
+                  <span className="i-lucide:send" aria-hidden="true" />
+                  {text.letSBuildSomethingReliable}
+                </h1>
                 <p>{text.basedInParisOpenTo}</p>
               </div>
               <div className="profile-contact-list">
                 <a href="mailto:dadi.anas@hotmail.fr">
-                  <span>{text.email}</span>
+                  <span>
+                    <span className="i-lucide:mail" aria-hidden="true" />
+                    {text.email}
+                  </span>
                   <strong>dadi.anas@hotmail.fr</strong>
                   <em>↗</em>
                 </a>
@@ -744,7 +802,10 @@ export default function Profile({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span>LinkedIn</span>
+                  <span>
+                    <span className="i-simple-icons:linkedin" aria-hidden="true" />
+                    LinkedIn
+                  </span>
                   <strong>linkedin.com/in/dadianas</strong>
                   <em>↗</em>
                 </a>
@@ -753,12 +814,18 @@ export default function Profile({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span>GitHub</span>
+                  <span>
+                    <span className="i-simple-icons:github" aria-hidden="true" />
+                    GitHub
+                  </span>
                   <strong>github.com/DadiAnas</strong>
                   <em>↗</em>
                 </a>
                 <a href="tel:+33681421585">
-                  <span>{text.phone}</span>
+                  <span>
+                    <span className="i-lucide:phone" aria-hidden="true" />
+                    {text.phone}
+                  </span>
                   <strong>+33 6 81 42 15 85</strong>
                   <em>↗</em>
                 </a>

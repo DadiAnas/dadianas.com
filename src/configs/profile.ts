@@ -616,4 +616,68 @@ export const expertise = [
   }
 ];
 
+export const groupIcons: Record<string, string> = {
+  "Cloud platforms": "i-lucide:cloud",
+  "Containers & orchestration": "i-lucide:container",
+  "Infrastructure as code": "i-lucide:braces",
+  "CI/CD & GitOps": "i-lucide:git-branch",
+  "Security & compliance": "i-lucide:shield-check",
+  "SRE & observability": "i-lucide:activity",
+  "Data engineering & AI": "i-lucide:brain-circuit",
+  "Databases & storage": "i-lucide:database",
+  "Languages & development": "i-lucide:code",
+  "Networks & collaboration": "i-lucide:network"
+};
+
+export const skillIcons: Record<string, string> = {
+  AWS: "i-logos:aws",
+  Azure: "i-logos:microsoft-azure",
+  "IBM Cloud": "i-simple-icons:ibmcloud",
+  GCP: "i-logos:google-cloud",
+  DigitalOcean: "i-logos:digital-ocean-icon",
+  Kubernetes: "i-logos:kubernetes",
+  Docker: "i-logos:docker-icon",
+  Helm: "i-logos:helm",
+  Terraform: "i-logos:terraform-icon",
+  Ansible: "i-logos:ansible",
+  "GitLab CI/CD": "i-logos:gitlab",
+  Jenkins: "i-logos:jenkins",
+  "GitHub Actions": "i-logos:github-actions",
+  "HashiCorp Vault": "i-logos:vault-icon",
+  Trivy: "i-simple-icons:trivy",
+  Keycloak: "i-simple-icons:keycloak",
+  SonarQube: "i-logos:sonarqube",
+  Prometheus: "i-logos:prometheus",
+  Grafana: "i-logos:grafana",
+  VictoriaMetrics: "i-simple-icons:victoriametrics",
+  Dynatrace: "i-logos:dynatrace-icon",
+  Zabbix: "i-logos:zabbix",
+  "Apache Airflow": "i-logos:airflow-icon",
+  "Apache Kafka": "i-logos:kafka-icon",
+  Spark: "i-logos:apache-spark",
+  TensorFlow: "i-logos:tensorflow",
+  PyTorch: "i-logos:pytorch-icon",
+  MLflow: "i-simple-icons:mlflow",
+  "Power BI": "i-simple-icons:powerbi",
+  PostgreSQL: "i-logos:postgresql",
+  MySQL: "i-logos:mysql",
+  MariaDB: "i-logos:mariadb-icon",
+  MongoDB: "i-logos:mongodb-icon",
+  Redis: "i-logos:redis",
+  Elasticsearch: "i-logos:elasticsearch",
+  Ceph: "i-simple-icons:ceph",
+  MinIO: "i-simple-icons:minio",
+  Python: "i-logos:python",
+  Go: "i-logos:go",
+  Java: "i-logos:java",
+  JavaScript: "i-logos:javascript",
+  React: "i-logos:react",
+  "Node.js": "i-logos:nodejs-icon",
+  GitHub: "i-logos:github-icon",
+  GitLab: "i-logos:gitlab",
+  Jira: "i-logos:jira",
+  Slack: "i-logos:slack-icon",
+  Figma: "i-logos:figma"
+};
+
 export const resumeUrl = "/resume.pdf?v=original-c939c98-1";
