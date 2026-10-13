@@ -445,7 +445,7 @@ export default function Profile({
                             title={group}
                           >
                             <span
-                              className={skillIcons[skill] ?? "i-lucide:layers-3"}
+                              className={skillIcons[skill] ?? "i-lucide:circle-help"}
                               aria-hidden="true"
                             />
                             {skill}
@@ -702,7 +702,7 @@ export default function Profile({
                       {group.skills.map((skill) => (
                         <span key={skill}>
                           <span
-                            className={skillIcons[skill] ?? groupIcons[group.title]}
+                            className={skillIcons[skill] ?? "i-lucide:circle-help"}
                             aria-hidden="true"
                           />
                           {skill}

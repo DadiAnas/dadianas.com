@@ -289,7 +289,7 @@ export default function MobileHome() {
                         onClick={() => openProfile("expertise", undefined, skill)}
                       >
                         <span
-                          className={skillIcons[skill] ?? groupIcons[group.title]}
+                          className={skillIcons[skill] ?? "i-lucide:circle-help"}
                           aria-hidden="true"
                         />
                         {skill}
