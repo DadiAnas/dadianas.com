@@ -203,18 +203,19 @@
 .mac-wifi-settings { display: block; width: 100%; min-height: 39px; padding: 4px 2px; border-radius: 7px; color: #f6f6fa; text-align: left; font-size: 13px; }
 .mac-wifi-settings:hover, .mac-wifi-settings:focus-visible { background: #5076ca; outline: 0; }
 
-.mac-control-center { right: 8px; width: min(620px, calc(100vw - 16px)); padding: 12px; border-radius: 23px; }
-.mac-control-top { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-.mac-control-connectivity, .mac-control-media, .mac-control-actions button, .mac-control-slider { background: rgba(88, 95, 112, .55); border: 1px solid rgba(255, 255, 255, .16); box-shadow: inset 0 1px rgba(255, 255, 255, .11); }
-.mac-control-connectivity { display: grid; gap: 2px; padding: 7px; border-radius: 29px; }
-.mac-control-connectivity button { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 4px 6px; border-radius: 23px; text-align: left; }
+.mac-control-center { right: 8px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; width: min(620px, calc(100vw - 16px)); max-height: calc(100vh - 45px); padding: 0; overflow-y: auto; border: 0; background: transparent; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; scrollbar-width: none; }
+.mac-control-center::-webkit-scrollbar { display: none; }
+.mac-control-top { display: contents; }
+.mac-control-connectivity { grid-column: 1; grid-row: 1 / span 2; display: grid; gap: 13px; min-width: 0; }
+.mac-control-connectivity button, .mac-control-actions button, .mac-control-slider { border: 1px solid rgba(255, 255, 255, .28); background: rgba(49, 52, 63, .97); box-shadow: inset 0 1px 3px rgba(255, 255, 255, .2), 0 9px 25px rgba(7, 12, 26, .22); backdrop-filter: blur(26px) saturate(1.25); }
+.mac-control-connectivity button { display: flex; align-items: center; gap: 16px; min-height: 124px; padding: 12px 23px; border-radius: 999px; text-align: left; }
 .mac-control-connectivity button:hover, .mac-control-actions button:hover, .mac-control-media button:hover { background: rgba(255,255,255,.13); }
-.mac-control-icon { display: grid; place-items: center; flex: none; width: 37px; height: 37px; border-radius: 50%; background: #f7f8fa; color: #1475e9; font-size: 21px; }
+.mac-control-icon { display: grid; place-items: center; flex: none; width: 68px; height: 68px; border-radius: 50%; background: #f7f8fa; color: #1475e9; font-size: 34px; }
 .mac-control-connectivity button[aria-pressed="false"] .mac-control-icon { color: #a9afbb; background: #575b69; }
 .mac-control-connectivity strong, .mac-control-connectivity small { display: block; }
-.mac-control-connectivity strong { font-size: 13px; line-height: 1.15; }
-.mac-control-connectivity small { margin-top: 3px; color: #b1b6c4; font-size: 11px; line-height: 1.15; }
-.mac-control-media { display: flex; flex-direction: column; min-width: 0; min-height: 274px; padding: 24px 25px 27px; border-radius: 55px; background: rgba(68, 68, 85, .78); border-color: rgba(220, 220, 238, .32); box-shadow: inset 0 2px 4px rgba(255,255,255,.24), 0 8px 23px rgba(9,13,30,.22); backdrop-filter: blur(28px) saturate(1.25); }
+.mac-control-connectivity strong { font-size: 19px; line-height: 1.15; }
+.mac-control-connectivity small { margin-top: 4px; color: #b1b6c4; font-size: 14px; line-height: 1.15; }
+.mac-control-media { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; min-width: 0; min-height: 274px; padding: 24px 25px 27px; border: 1px solid rgba(220, 220, 238, .32); border-radius: 55px; background: rgba(56, 59, 76, .98); box-shadow: inset 0 2px 4px rgba(255,255,255,.24), 0 8px 23px rgba(9,13,30,.22); backdrop-filter: blur(28px) saturate(1.25); }
 .mac-control-cover { display: block; flex: none; width: 80px; height: 80px; border-radius: 16px; object-fit: cover; box-shadow: 0 4px 14px rgba(0,0,0,.22); }
 .mac-control-track { min-width: 0; margin-top: 17px; }
 .mac-control-track strong, .mac-control-track small { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
@@ -224,17 +225,31 @@
 .mac-control-transport button { display: grid; place-items: center; width: 48px; height: 42px; border-radius: 12px; color: #a7a9b9; font-size: 36px; }
 .mac-control-transport button:nth-child(2) { font-size: 42px; }
 .mac-control-transport button:active { transform: scale(.9); }
-.mac-control-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-.mac-control-actions button { display: flex; align-items: center; gap: 9px; min-height: 57px; padding: 10px 13px; border-radius: 22px; text-align: left; font-size: 12px; font-weight: 700; }
-.mac-control-actions button > span { display: grid; place-items: center; flex: none; width: 31px; height: 31px; border-radius: 50%; background: rgba(255,255,255,.19); font-size: 17px; }
-.mac-control-slider { display: block; margin-top: 10px; padding: 12px 14px 13px; border-radius: 22px; }
-.mac-control-slider > strong { display: block; margin-bottom: 11px; font-size: 13px; }
+.mac-control-actions { grid-column: 2; grid-row: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.mac-control-actions button { display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 4px; min-height: 124px; padding: 10px; border-radius: 999px; text-align: center; font-size: 11px; font-weight: 700; }
+.mac-control-actions button > span { display: grid; place-items: center; flex: none; width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,.15); font-size: 29px; }
+.mac-control-slider { grid-column: 1 / -1; display: block; min-height: 103px; padding: 17px 25px; border-radius: 36px; }
+.mac-control-slider > strong { display: block; margin-bottom: 13px; font-size: 17px; }
 .mac-control-slider > span { display: flex; align-items: center; gap: 9px; }
 .mac-control-slider > span > span { flex: none; font-size: 16px; }
 .mac-control-slider input { flex: 1; width: 100%; height: 7px; border-radius: 20px; appearance: none; cursor: pointer; }
 .mac-control-slider input::-webkit-slider-thumb { width: 22px; height: 22px; border: 0; border-radius: 50%; appearance: none; background: #fff; box-shadow: 0 2px 7px rgba(0,0,0,.35); }
 .mac-control-slider input::-moz-range-thumb { width: 22px; height: 22px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 2px 7px rgba(0,0,0,.35); }
 .mac-control-center button:focus-visible, .mac-control-center input:focus-visible { outline: 2px solid #a8c7ff; outline-offset: 2px; }
+@media (max-height: 760px) {
+  .mac-control-connectivity button { min-height: 104px; padding: 9px 18px; }
+  .mac-control-icon { width: 58px; height: 58px; font-size: 30px; }
+  .mac-control-connectivity strong { font-size: 16px; }
+  .mac-control-connectivity small { font-size: 12px; }
+  .mac-control-media { min-height: 235px; padding: 18px 20px; }
+  .mac-control-cover { width: 64px; height: 64px; }
+  .mac-control-track { margin-top: 12px; }
+  .mac-control-track strong { font-size: 18px; }
+  .mac-control-track small { font-size: 14px; }
+  .mac-control-actions button { min-height: 95px; }
+  .mac-control-slider { min-height: 86px; padding: 12px 20px; }
+  .mac-control-slider > strong { margin-bottom: 9px; font-size: 14px; }
+}
 
 .mac-window {
   border-radius: 18px !important;
