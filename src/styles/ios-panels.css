@@ -29,12 +29,16 @@
 .ios-cc-connectivity small { color: #1f355b; font-size: 9px; font-weight: 700; }
 .ios-cc-connectivity button:hover, .ios-cc-quick-row button:hover, .ios-cc-shortcuts button:hover, .ios-cc-shortcuts a:hover { transform: scale(1.03); }
 .ios-cc-connectivity button:active, .ios-cc-quick-row button:active, .ios-cc-shortcuts button:active, .ios-cc-shortcuts a:active { transform: scale(.96); }
-.ios-cc-media { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; min-height: 172px; padding: 15px; border-radius: 29px; }
-.ios-cc-album { display: grid; place-items: center; width: 51px; height: 51px; border-radius: 12px; background: linear-gradient(135deg, #974fae, #f4838e); font-size: 26px; }
-.ios-cc-media > div strong, .ios-cc-media > div small { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.ios-cc-media > div strong { font-size: 13px; }
-.ios-cc-media > div small { margin-top: 2px; color: rgba(255,255,255,.78); font-size: 11px; }
-.ios-cc-media > button { align-self: flex-end; display: grid; place-items: center; width: 30px; height: 30px; margin-top: -30px; border-radius: 50%; background: rgba(255,255,255,.2); font-size: 16px; }
+.ios-cc-media { display: flex; flex-direction: column; min-width: 0; min-height: 172px; padding: 13px; border-radius: 29px; background: rgba(68, 68, 85, .7); }
+.ios-cc-album { display: block; flex: none; width: 53px; height: 53px; border-radius: 12px; object-fit: cover; box-shadow: 0 3px 10px rgba(0,0,0,.2); }
+.ios-cc-track { min-width: 0; margin-top: 8px; }
+.ios-cc-track strong, .ios-cc-track small { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.ios-cc-track strong { font-size: 14px; }
+.ios-cc-track small { margin-top: 2px; color: rgba(255,255,255,.58); font-size: 11px; }
+.ios-cc-transport { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 5px; }
+.ios-cc-transport button { display: grid; place-items: center; width: 30px; height: 26px; border-radius: 8px; color: rgba(214,216,226,.65); font-size: 22px; }
+.ios-cc-transport button:nth-child(2) { font-size: 27px; }
+.ios-cc-transport button:active { transform: scale(.9); }
 .ios-cc-quick-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
 .ios-cc-quick-row button { display: flex; align-items: center; gap: 10px; min-height: 57px; padding: 10px 13px; border-radius: 23px; text-align: left; font-size: 13px; font-weight: 700; transition: transform .2s; }
 .ios-cc-quick-row button span { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.25); font-size: 19px; }

@@ -293,6 +293,7 @@ const TopBar = (props: TopBarProps) => {
             playing={audioState.playing}
             french={french}
             toggleAudio={controls.toggle}
+            seekAudio={controls.seek}
             setVolume={setAudioVolume}
             setBrightness={setSiteBrightness}
             toggleControlCenter={toggleControlCenter}

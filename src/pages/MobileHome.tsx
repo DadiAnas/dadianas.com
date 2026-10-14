@@ -624,6 +624,7 @@ export default function MobileHome() {
             now={now}
             playing={audioState.playing}
             toggleAudio={audioControls.toggle}
+            seekAudio={audioControls.seek}
             setAudioVolume={setVolume}
             close={() => setTopPanel(null)}
             openProfile={(tab) => {

@@ -44,6 +44,12 @@ export function useAudio(props: HTMLAudioProps) {
       }
     },
 
+    seek: (seconds: number): void => {
+      const el = ref.current;
+      if (el && Number.isFinite(el.duration))
+        el.currentTime = Math.min(el.duration, Math.max(0, el.currentTime + seconds));
+    },
+
     volume: (value: number): void => {
       const el = ref.current;
       if (el) {

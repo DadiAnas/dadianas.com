@@ -21,11 +21,13 @@ export function IOSControlCenter({
   goHome,
   playing,
   toggleAudio,
+  seekAudio,
   setAudioVolume
 }: IOSPanelProps & {
   goHome: () => void;
   playing: boolean;
   toggleAudio: () => void;
+  seekAudio: (seconds: number) => void;
   setAudioVolume: (value: number) => void;
 }) {
   const reducedMotion = useReducedMotion();
@@ -102,31 +104,45 @@ export function IOSControlCenter({
           </button>
         </div>
         <div className="ios-cc-media">
-          <span className="ios-cc-album">
-            <span className="i-lucide:music-2" aria-hidden="true" />
-          </span>
-          <div>
+          <img className="ios-cc-album" src={music.cover} alt="" />
+          <div className="ios-cc-track">
             <strong>{music.title}</strong>
             <small>{music.artist}</small>
           </div>
-          <button
-            type="button"
-            onClick={toggleAudio}
-            aria-label={
-              playing
-                ? french
-                  ? "Mettre la musique en pause"
-                  : "Pause music"
-                : french
-                  ? "Lancer la musique"
-                  : "Play music"
-            }
-          >
-            <span
-              className={playing ? "i-lucide:pause" : "i-lucide:play"}
-              aria-hidden="true"
-            />
-          </button>
+          <div className="ios-cc-transport">
+            <button
+              type="button"
+              onClick={() => seekAudio(-15)}
+              aria-label={french ? "Reculer de 15 secondes" : "Back 15 seconds"}
+            >
+              <span className="i-ion:play-skip-back" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              onClick={toggleAudio}
+              aria-label={
+                playing
+                  ? french
+                    ? "Mettre la musique en pause"
+                    : "Pause music"
+                  : french
+                    ? "Lancer la musique"
+                    : "Play music"
+              }
+            >
+              <span
+                className={playing ? "i-ion:pause" : "i-ion:play"}
+                aria-hidden="true"
+              />
+            </button>
+            <button
+              type="button"
+              onClick={() => seekAudio(15)}
+              aria-label={french ? "Avancer de 15 secondes" : "Forward 15 seconds"}
+            >
+              <span className="i-ion:play-skip-forward" aria-hidden="true" />
+            </button>
+          </div>
         </div>
       </div>
       <div className="ios-cc-quick-row">

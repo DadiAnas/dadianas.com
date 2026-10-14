@@ -4,6 +4,7 @@ interface CCMProps {
   french: boolean;
   toggleControlCenter: () => void;
   toggleAudio: (target: boolean) => void;
+  seekAudio: (seconds: number) => void;
   setBrightness: (value: number) => void;
   setVolume: (value: number) => void;
   playing: boolean;
@@ -14,6 +15,7 @@ export default function ControlCenterMenu({
   french,
   toggleControlCenter,
   toggleAudio,
+  seekAudio,
   setBrightness,
   setVolume,
   playing,
@@ -96,29 +98,45 @@ export default function ControlCenterMenu({
           </button>
         </div>
         <div className="mac-control-media">
-          <div className="mac-control-cover">
-            <span className="i-lucide:music-2" aria-hidden="true" />
+          <img className="mac-control-cover" src={music.cover} alt="" />
+          <div className="mac-control-track">
+            <strong>{music.title}</strong>
+            <small>{music.artist}</small>
           </div>
-          <strong>{music.title}</strong>
-          <small>{music.artist}</small>
-          <button
-            type="button"
-            aria-label={
-              playing
-                ? french
-                  ? "Mettre la musique en pause"
-                  : "Pause music"
-                : french
-                  ? "Lancer la musique"
-                  : "Play music"
-            }
-            onClick={() => toggleAudio(!playing)}
-          >
-            <span
-              className={playing ? "i-lucide:pause" : "i-lucide:play"}
-              aria-hidden="true"
-            />
-          </button>
+          <div className="mac-control-transport">
+            <button
+              type="button"
+              aria-label={french ? "Reculer de 15 secondes" : "Back 15 seconds"}
+              onClick={() => seekAudio(-15)}
+            >
+              <span className="i-ion:play-skip-back" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              aria-label={
+                playing
+                  ? french
+                    ? "Mettre la musique en pause"
+                    : "Pause music"
+                  : french
+                    ? "Lancer la musique"
+                    : "Play music"
+              }
+              onClick={() => toggleAudio(!playing)}
+            >
+              <span
+                className={playing ? "i-ion:pause" : "i-ion:play"}
+                aria-hidden="true"
+              />
+            </button>
+            <button
+              type="button"
+              aria-label={french ? "Avancer de 15 secondes" : "Forward 15 seconds"}
+              onClick={() => seekAudio(15)}
+            >
+              <span className="i-ion:play-skip-forward" aria-hidden="true" />
+            </button>
+          </div>
         </div>
       </div>
       <div className="mac-control-actions">
