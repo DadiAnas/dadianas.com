@@ -17,9 +17,10 @@
   transform: translateX(-50%);
   border: 1px solid rgba(255, 255, 255, .24);
   border-radius: 27px;
-  background: linear-gradient(180deg, rgba(23, 25, 27, .82), rgba(6, 12, 20, .82) 75px);
+  background: rgba(39, 62, 107, .14);
   box-shadow: 0 22px 55px rgba(0, 0, 0, .35), inset 0 1px rgba(255, 255, 255, .12);
-  backdrop-filter: blur(30px) brightness(.75) saturate(1.2);
+  backdrop-filter: blur(20px) brightness(.48) saturate(1.35);
+  -webkit-backdrop-filter: blur(20px) brightness(.48) saturate(1.35);
   color: #f5f6fa;
 }
 
@@ -58,8 +59,8 @@
   .spotlight-search-row input { font-size: 20px; }
 }
 
-.mac-launchpad-backdrop { position: fixed; inset: 0; z-index: 55; display: grid; place-items: center; padding: 30px 24px; background: rgba(5, 10, 22, .18); backdrop-filter: blur(2px); }
-.mac-launchpad-panel { display: flex; flex-direction: column; width: min(1040px, 100%); height: min(560px, calc(100vh - 60px)); overflow: hidden; border: 1px solid rgba(255,255,255,.27); border-radius: 28px; background: linear-gradient(180deg, rgba(23,25,27,.82), rgba(6,12,20,.82) 90px); box-shadow: 0 25px 70px rgba(0,0,0,.38), inset 0 1px rgba(255,255,255,.14); backdrop-filter: blur(30px) brightness(.75) saturate(1.2); color: #f4f6fb; animation: mac-launchpad-in .2s ease-out both; }
+.mac-launchpad-backdrop { position: fixed; inset: 0; z-index: 55; display: grid; place-items: center; padding: 30px 24px; background: rgba(5, 10, 22, .08); }
+.mac-launchpad-panel { display: flex; flex-direction: column; width: min(1040px, 100%); height: min(560px, calc(100vh - 60px)); overflow: hidden; border: 1px solid rgba(255,255,255,.27); border-radius: 28px; background: rgba(39, 62, 107, .14); box-shadow: 0 25px 70px rgba(0,0,0,.38), inset 0 1px rgba(255,255,255,.14); backdrop-filter: blur(20px) brightness(.48) saturate(1.35); -webkit-backdrop-filter: blur(20px) brightness(.48) saturate(1.35); color: #f4f6fb; animation: mac-launchpad-in .2s ease-out both; }
 .mac-launchpad-search { display: flex; align-items: center; gap: 15px; flex: none; height: 74px; padding: 0 28px; border-bottom: 1px solid rgba(255,255,255,.17); }
 .mac-launchpad-search > span { flex: none; color: #c3c9d3; font-size: 30px; }
 .mac-launchpad-search input { flex: 1; min-width: 0; color: #f4f6fb; background: transparent; font-size: 28px; outline: none; }
