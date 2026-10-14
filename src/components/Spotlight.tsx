@@ -1,24 +1,10 @@
 import React from "react";
-import { format } from "date-fns";
 import { apps, launchpadApps } from "~/configs";
 import type { LaunchpadData, AppsData } from "~/types";
 
 const APPS: { [key: string]: (LaunchpadData | AppsData)[] } = {
   app: apps,
-  portfolio: launchpadApps
-};
-
-const getRandom = (min: number, max: number) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
-const getRandomDate = () => {
-  const timeStamp = new Date().getTime();
-  const randomStamp = getRandom(0, timeStamp);
-  const date = format(randomStamp, "MM/dd/yyyy");
-  return date;
+  portfolio: launchpadApps.filter((item) => !apps.some((app) => app.id === item.id))
 };
 
 interface SpotlightProps {
@@ -46,9 +32,10 @@ export default function Spotlight({
 
   const [appIdList, setAppIdList] = useState<string[]>([]);
   const [appList, setAppList] = useState<JSX.Element | null>(null);
+  const french = useStore((state) => state.french);
 
   const textWhite = "text-white";
-  const textBlack = "text-c-black";
+  const textUnselected = "text-gray-200";
   const textSelected = "bg-blue-500";
 
   useClickOutside(spotlightRef, toggleSpotlight, [btnRef]);
@@ -118,7 +105,7 @@ export default function Spotlight({
     for (const app of result) {
       const curIndex = startIndex + typeAppList.length;
       const bg = curIndex === 0 ? textSelected : "bg-transparent";
-      const text = curIndex === 0 ? textWhite : textBlack;
+      const text = curIndex === 0 ? textWhite : textUnselected;
 
       if (curIndex === 0) setCurrentDetailsWithType(app, type);
 
@@ -206,14 +193,14 @@ export default function Spotlight({
     const prevAppId = appIdList[prevIndex];
     const prev = document.querySelector(`#spotlight-${prevAppId}`) as HTMLElement;
     prev.className = prev.className
-      .replace(textWhite, textBlack)
+      .replace(textWhite, textUnselected)
       .replace(textSelected, "bg-transparent");
 
     // add highlight
     const curAppId = appIdList[curIndex];
     const cur = document.querySelector(`#spotlight-${curAppId}`) as HTMLElement;
     cur.className = cur.className
-      .replace(textBlack, textWhite)
+      .replace(textUnselected, textWhite)
       .replace("bg-transparent", textSelected);
   };
 
@@ -247,6 +234,18 @@ export default function Spotlight({
     setSearchText(e.target.value);
   };
 
+  const suggestionDescriptions: Record<string, string> = french
+    ? {
+        profile: "Présentation et parcours",
+        experience: "Mes missions et réalisations",
+        expertise: "Outils et technologies utilisés"
+      }
+    : {
+        profile: "Overview and background",
+        experience: "Roles and work",
+        expertise: "Tools and technologies"
+      };
+
   return (
     <div
       className="spotlight"
@@ -255,19 +254,20 @@ export default function Spotlight({
       ref={spotlightRef}
     >
       <div
-        className="w-full h-12 sm:h-14 rounded-lg bg-transparent"
+        className="spotlight-search-row w-full h-12 sm:h-14 bg-transparent"
         grid="~ cols-8 sm:cols-11"
       >
         <div className="col-start-1 col-span-1 flex-center">
-          <span className="i-bx:search ml-1 text-c-600 text-[28px]" />
+          <span className="spotlight-search-icon i-bx:search ml-1 text-[28px]" />
         </div>
         <input
           ref={inputRef}
           className={`col-start-2 col-span-7 ${
             curDetails ? "sm:col-span-9" : "sm:col-span-10"
           } bg-transparent no-outline px-1`}
-          text="c-black xl sm:2xl"
-          placeholder="Spotlight Search"
+          text="xl sm:2xl"
+          placeholder={french ? "Recherche Spotlight" : "Spotlight Search"}
+          aria-label={french ? "Recherche Spotlight" : "Spotlight Search"}
           value={searchText}
           onChange={handleInputChange}
           autoFocus={true}
@@ -283,43 +283,60 @@ export default function Spotlight({
           </div>
         )}
       </div>
+      {searchText === "" && (
+        <div className="spotlight-suggestions">
+          <div className="spotlight-suggestions-label">
+            {french ? "Accès rapide" : "Quick access"}
+          </div>
+          {apps
+            .filter((app) => ["profile", "experience", "expertise"].includes(app.id))
+            .map((app) => (
+              <button
+                className="spotlight-suggestion"
+                key={app.id}
+                type="button"
+                onClick={() => {
+                  openApp(app.id);
+                  toggleSpotlight();
+                }}
+              >
+                <img src={app.img} alt="" />
+                <span>
+                  <strong>{french ? app.titleFr ?? app.title : app.title}</strong>
+                  <small>{suggestionDescriptions[app.id]}</small>
+                </span>
+              </button>
+            ))}
+          <p className="spotlight-hint">
+            {french
+              ? "Recherchez une application ou un lien, puis appuyez sur Entrée."
+              : "Search an app or link, then press Return to open it."}
+          </p>
+        </div>
+      )}
       {searchText !== "" && (
-        <div flex h-85 bg-transparent border="t menu">
-          <div w="32 sm:72" border="r menu" p="x-2.5" overflow-y-scroll>
+        <div className="spotlight-results">
+          <div className="spotlight-results-list">
             {appList}
+            {appIdList.length === 0 && (
+              <p className="spotlight-no-results">
+                {french ? "Aucun résultat" : "No matches"}
+              </p>
+            )}
           </div>
           {curDetails && (
-            <div className="flex-1 vstack">
-              <div className="w-4/5 h-56" flex="center col" border="b menu">
-                <img
-                  w-32
-                  src={curDetails.img}
-                  alt={curDetails.title}
-                  title={curDetails.title}
-                />
-                <div m="t-4" text="xl c-black">
-                  {curDetails.title}
-                </div>
-                <div text="xs c-500">
-                  {`Version: ${getRandom(0, 99)}.${getRandom(0, 999)}`}
-                </div>
-              </div>
-              <div className="flex-1 hstack text-xs">
-                <div w="1/2" text="right c-500">
-                  <div>Kind</div>
-                  <div>Size</div>
-                  <div>Created</div>
-                  <div>Modified</div>
-                  <div>Last opened</div>
-                </div>
-                <div className="flex-1 pl-2 text-c-black">
-                  <div>{curDetails.type === "app" ? "Application" : "Portfolio"}</div>
-                  <div>{`${getRandom(0, 999)} G`}</div>
-                  <div>{getRandomDate()}</div>
-                  <div>{getRandomDate()}</div>
-                  <div>{getRandomDate()}</div>
-                </div>
-              </div>
+            <div className="spotlight-result-detail">
+              <img src={curDetails.img} alt="" />
+              <strong>{curDetails.title}</strong>
+              <small>
+                {curDetails.link
+                  ? french
+                    ? "Ouvrir le lien"
+                    : "Open link"
+                  : french
+                    ? "Ouvrir l’application"
+                    : "Open app"}
+              </small>
             </div>
           )}
         </div>

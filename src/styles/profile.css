@@ -7,6 +7,8 @@
   background: #f9fbff;
   font-family: "Avenir Next LT Pro", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
 }
+.dark .profile-app { filter: invert(1) hue-rotate(180deg); }
+.dark .profile-app img { filter: invert(1) hue-rotate(180deg); }
 
 .profile-sidebar {
   width: 213px;

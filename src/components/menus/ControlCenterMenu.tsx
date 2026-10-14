@@ -152,15 +152,22 @@ export default function ControlCenterMenu({
         </div>
       </div>
       <div className="mac-control-actions">
-        <button type="button" aria-pressed={dark} onClick={toggleDark}>
-          <span className={dark ? "i-lucide:moon" : "i-lucide:sun"} aria-hidden="true" />
-          {dark
-            ? french
-              ? "Mode sombre"
-              : "Dark Mode"
-            : french
-              ? "Mode clair"
-              : "Light Mode"}
+        <button
+          className="mac-control-appearance"
+          type="button"
+          aria-pressed={dark}
+          aria-label={
+            dark
+              ? french
+                ? "Activer le mode clair"
+                : "Turn on Light Mode"
+              : french
+                ? "Activer le mode sombre"
+                : "Turn on Dark Mode"
+          }
+          onClick={toggleDark}
+        >
+          <span className="mac-control-contrast-icon" aria-hidden="true" />
         </button>
         <button
           type="button"

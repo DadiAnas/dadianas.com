@@ -7,21 +7,55 @@
 /* --------- spotlight --------- */
 
 .spotlight {
-  @apply fixed z-20 h-max top-1/4 -mt-16 w-165 -ml-82.5 left-1/2 rounded-lg backdrop-blur-2xl shadow-2xl shadow-black/40 bg-c-100/80 border border-menu;
+  position: fixed;
+  z-index: 30;
+  top: 11vh;
+  left: 50%;
+  width: min(640px, calc(100vw - 24px));
+  max-height: calc(100vh - 80px);
+  overflow: auto;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 255, 255, .24);
+  border-radius: 27px;
+  background: linear-gradient(180deg, rgba(40, 42, 46, .94), rgba(25, 29, 36, .94) 75px);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, .35), inset 0 1px rgba(255, 255, 255, .12);
+  backdrop-filter: blur(30px) saturate(1.2);
+  color: #f5f6fa;
 }
 
 .spotlight input::placeholder {
-  @apply text-c-black/40;
+  color: #aeb2bc;
 }
 
 .spotlight .spotlight-type {
-  @apply relative hstack pl-2.5 py-2 text-xs leading-none text-c-500 font-medium;
+  @apply relative hstack pl-2.5 py-2 text-xs leading-none font-medium;
+  color: #b3b9c5;
 }
 
+.spotlight-search-row { border-bottom: 1px solid rgba(255, 255, 255, .17); }
+.spotlight-search-row input { color: #f5f6fa; font-size: 25px; }
+.spotlight-search-row .spotlight-search-icon { color: #aeb2bc; }
+.spotlight-suggestions { padding: 22px 42px 28px; }
+.spotlight-suggestions-label { margin-bottom: 12px; color: #aeb2bc; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.spotlight-suggestion { display: flex; align-items: center; gap: 14px; width: 100%; min-height: 68px; padding: 8px; border-radius: 12px; color: #f5f6fa; text-align: left; }
+.spotlight-suggestion:hover, .spotlight-suggestion:focus-visible { background: rgba(255,255,255,.1); outline: 0; }
+.spotlight-suggestion img { flex: none; width: 32px; height: 32px; object-fit: contain; }
+.spotlight-suggestion strong, .spotlight-suggestion small { display: block; }
+.spotlight-suggestion strong { font-size: 13px; }
+.spotlight-suggestion small { margin-top: 4px; color: #b3b9c5; font-size: 12px; }
+.spotlight-hint { margin: 20px 8px 0; color: #aeb2bc; font-size: 12px; text-align: center; }
+.spotlight-results { display: flex; height: 300px; border-top: 1px solid rgba(255,255,255,.17); }
+.spotlight-results-list { width: 45%; padding: 7px 10px; overflow-y: auto; border-right: 1px solid rgba(255,255,255,.17); }
+.spotlight-result-detail { display: flex; flex: 1; align-items: center; justify-content: center; flex-direction: column; gap: 10px; min-width: 0; padding: 20px; text-align: center; }
+.spotlight-result-detail img { width: 88px; height: 88px; object-fit: contain; }
+.spotlight-result-detail strong { font-size: 20px; }
+.spotlight-result-detail small, .spotlight-no-results { color: #b3b9c5; font-size: 12px; }
+.spotlight-no-results { padding: 18px 5px; }
+
 @media (max-width: 639px) {
-  .spotlight {
-    @apply w-full ml-0 left-0;
-  }
+  .spotlight { top: 48px; max-height: calc(100vh - 64px); }
+  .spotlight-suggestions { padding: 16px; }
+  .spotlight-search-row input { font-size: 20px; }
 }
 
 /* --------- app window --------- */
@@ -127,6 +161,7 @@
 
 /* Tahoe-inspired desktop surfaces */
 .mac-wallpaper {
+  position: relative;
   background-color: #46538b;
   background-image:
     radial-gradient(ellipse 75% 80% at 82% 16%, #ffd1bd 0%, transparent 65%),
@@ -144,15 +179,18 @@
     linear-gradient(135deg, #11162e, #384267);
 }
 
+.mac-brightness-overlay { position: absolute; inset: 0; z-index: 60; pointer-events: none; }
+
 .mac-menubar {
-  background: rgba(18, 24, 45, .4);
+  background: transparent;
   border-bottom: 0;
-  backdrop-filter: blur(20px) saturate(1.4);
+  backdrop-filter: none;
   text-shadow: 0 1px 4px rgba(12, 28, 62, .35);
 }
 
 .mac-menu-link { padding: 3px 9px; border-radius: 5px; font-size: 12px; color: white; }
 .mac-menu-link:hover, .mac-menu-link:focus-visible { background: rgba(255,255,255,.24); }
+.mac-menubar .mac-system-menu-trigger:hover, .mac-menubar .mac-system-menu-trigger:focus-visible, .mac-menubar .mac-system-menu-trigger.is-open { background: rgba(77, 102, 177, .8); }
 
 .mac-apple-menu, .mac-control-center, .mac-wifi-menu {
   position: fixed;
@@ -160,7 +198,7 @@
   z-index: 30;
   color: #f6f6fa;
   text-shadow: none;
-  background: rgba(39, 43, 57, .94);
+  background: rgba(77, 102, 177, .8);
   border: 1px solid rgba(230, 233, 245, .3);
   box-shadow: 0 15px 40px rgba(6, 10, 23, .35), inset 0 1px rgba(255, 255, 255, .15);
   backdrop-filter: blur(32px) saturate(1.35);
@@ -186,9 +224,9 @@
 .mac-wifi-switch input:focus-visible + span { outline: 2px solid #dce9ff; outline-offset: 2px; }
 .mac-wifi-current { padding: 2px 2px 13px; border-bottom: 1px solid rgba(255,255,255,.17); font-size: 13px; }
 .mac-wifi-group { padding: 13px 0 11px; border-bottom: 1px solid rgba(255,255,255,.17); }
-.mac-wifi-group h3 { margin: 0 0 7px 2px; color: #aeb4c4; font-size: 12px; font-weight: 700; }
+.mac-wifi-group h3 { margin: 0 0 7px 2px; color: #e4eafb; font-size: 12px; font-weight: 700; }
 .mac-wifi-row { display: flex; align-items: center; gap: 10px; min-height: 36px; padding: 2px; font-size: 14px; }
-.mac-wifi-muted { color: #b4bac8; }
+.mac-wifi-muted { color: #e4eafb; }
 .mac-wifi-icon { display: grid; place-items: center; flex: none; width: 29px; height: 29px; border-radius: 50%; background: rgba(255,255,255,.17); font-size: 17px; }
 .mac-wifi-icon > span { font-size: 17px; }
 .mac-wifi-icon-active { background: #168cfa; color: #fff; }
@@ -198,8 +236,8 @@
 .mac-wifi-other summary::-webkit-details-marker { display: none; }
 .mac-wifi-other summary span { font-size: 17px; transition: transform .2s; }
 .mac-wifi-other[open] summary span { transform: rotate(90deg); }
-.mac-wifi-other p { margin: -2px 3px 12px; color: #b5bbca; font-size: 11px; line-height: 1.4; }
-.mac-wifi-off { padding: 13px 2px 20px; border-top: 1px solid rgba(255,255,255,.17); color: #b5bbca; font-size: 13px; }
+.mac-wifi-other p { margin: -2px 3px 12px; color: #e4eafb; font-size: 11px; line-height: 1.4; }
+.mac-wifi-off { padding: 13px 2px 20px; border-top: 1px solid rgba(255,255,255,.17); color: #e4eafb; font-size: 13px; }
 .mac-wifi-settings { display: block; width: 100%; min-height: 39px; padding: 4px 2px; border-radius: 7px; color: #f6f6fa; text-align: left; font-size: 13px; }
 .mac-wifi-settings:hover, .mac-wifi-settings:focus-visible { background: #5076ca; outline: 0; }
 
@@ -230,6 +268,10 @@
 .mac-control-actions { grid-column: 2; grid-row: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
 .mac-control-actions button { display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 2px; min-height: 62px; padding: 5px; border-radius: 999px; background: rgba(78, 106, 184, .8); text-align: center; font-size: 8px; font-weight: 700; }
 .mac-control-actions button > span { display: grid; place-items: center; flex: none; width: 25px; height: 25px; border-radius: 50%; background: rgba(255,255,255,.15); font-size: 17px; }
+.mac-control-actions .mac-control-appearance { border-radius: 50%; background: #fff; color: #161a24; }
+.mac-control-actions .mac-control-appearance > span { width: 24px; height: 24px; border: 2px solid currentColor; background: linear-gradient(90deg, currentColor 50%, transparent 50%); }
+.dark .mac-control-actions .mac-control-appearance { background: rgba(72, 134, 197, .8); color: #fff; }
+.dark .mac-control-connectivity button, .dark .mac-control-actions button:not(.mac-control-appearance), .dark .mac-control-slider, .dark .mac-control-media, .dark .mac-apple-menu, .dark .mac-wifi-menu { background: rgba(70, 117, 154, .68); border-color: rgba(218, 237, 255, .46); }
 .mac-control-slider { grid-column: 1 / -1; display: block; min-height: 64px; padding: 10px 13px; border-radius: 22px; }
 .mac-control-slider > strong { display: block; margin-bottom: 6px; font-size: 11px; }
 .mac-control-slider > span { display: flex; align-items: center; gap: 5px; }
@@ -254,6 +296,8 @@
   line-height: 40px;
   color: #3a4664;
 }
+.dark .mac-window .window-bar { background: rgba(29, 39, 56, .88); border-color: rgba(255,255,255,.12); }
+.dark .mac-window .window-title { color: #edf3ff; }
 
 .mac-window .traffic-lights {
   top: 9px;

@@ -184,11 +184,11 @@ const TopBar = (props: TopBarProps) => {
     <div
       className={`w-full h-8 px-2 fixed top-0 hstack justify-between ${
         props.hide ? "z-0" : "z-20"
-      } text-sm text-white bg-gray-700/10 backdrop-blur-2xl transition mac-menubar`}
+      } text-sm text-white transition mac-menubar`}
     >
       <div className="hstack space-x-1">
         <TopBarItem
-          className="px-2"
+          className={`px-2 mac-system-menu-trigger${state.showAppleMenu ? " is-open" : ""}`}
           label={french ? "Menu Pomme" : "Apple menu"}
           forceHover={state.showAppleMenu}
           onClick={toggleAppleMenu}
@@ -247,6 +247,7 @@ const TopBar = (props: TopBarProps) => {
         </TopBarItem>
         <TopBarItem
           hideOnMobile={true}
+          className={`mac-system-menu-trigger${state.showWifiMenu ? " is-open" : ""}`}
           label="Wi-Fi"
           forceHover={state.showWifiMenu}
           onClick={toggleWifiMenu}

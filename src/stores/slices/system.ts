@@ -24,11 +24,13 @@ const savedLanguage = localStorage.getItem("portfolio-language");
 const initialFrench = savedLanguage
   ? savedLanguage === "fr"
   : navigator.language.startsWith("fr");
+const initialDark = localStorage.getItem("portfolio-theme") === "dark";
 document.documentElement.lang = initialFrench ? "fr" : "en";
+document.documentElement.classList.toggle("dark", initialDark);
 
 export const createSystemSlice: StateCreator<SystemSlice> = (set) => ({
   french: initialFrench,
-  dark: false,
+  dark: initialDark,
   volume: 100,
   brightness: 80,
   wifi: true,
@@ -37,9 +39,10 @@ export const createSystemSlice: StateCreator<SystemSlice> = (set) => ({
   fullscreen: false,
   toggleDark: () =>
     set((state) => {
-      if (!state.dark) document.documentElement.classList.add("dark");
-      else document.documentElement.classList.remove("dark");
-      return { dark: !state.dark };
+      const dark = !state.dark;
+      localStorage.setItem("portfolio-theme", dark ? "dark" : "light");
+      document.documentElement.classList.toggle("dark", dark);
+      return { dark };
     }),
   toggleFrench: () =>
     set((state) => {

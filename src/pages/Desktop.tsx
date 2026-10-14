@@ -243,9 +243,6 @@ export default function Desktop(props: MacActions) {
   return (
     <div
       className={`mac-wallpaper ${dark ? "mac-wallpaper-dark" : ""} size-full overflow-hidden`}
-      style={{
-        filter: `brightness( ${(brightness as number) * 0.7 + 50}% )`
-      }}
     >
       {/* Top Menu Bar */}
       <TopBar
@@ -285,6 +282,11 @@ export default function Desktop(props: MacActions) {
         showLaunchpad={state.showLaunchpad}
         toggleLaunchpad={toggleLaunchpad}
         hide={state.hideDockAndTopbar}
+      />
+      <div
+        className="mac-brightness-overlay"
+        style={{ backdropFilter: `brightness(${(brightness as number) * 0.7 + 50}%)` }}
+        aria-hidden="true"
       />
     </div>
   );
