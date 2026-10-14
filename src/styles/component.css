@@ -299,7 +299,7 @@
 .mac-control-actions button { display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 2px; min-height: 62px; padding: 5px; border-radius: 999px; background: rgba(78, 106, 184, .8); text-align: center; font-size: 8px; font-weight: 700; }
 .mac-control-actions button > span { display: grid; place-items: center; flex: none; width: 25px; height: 25px; border-radius: 50%; background: rgba(255,255,255,.15); font-size: 17px; }
 .mac-control-actions .mac-control-appearance { border-radius: 50%; background: #fff; color: #161a24; }
-.mac-control-actions .mac-control-appearance > span { width: 24px; height: 24px; border: 2px solid currentColor; background: linear-gradient(90deg, currentColor 50%, transparent 50%); }
+.mac-control-actions .mac-control-appearance > span { background: currentColor; font-size: 24px; }
 .dark .mac-control-actions .mac-control-appearance { background: rgba(72, 134, 197, .8); color: #fff; }
 .dark .mac-control-connectivity button, .dark .mac-control-actions button:not(.mac-control-appearance), .dark .mac-control-slider, .dark .mac-control-media, .dark .mac-apple-menu, .dark .mac-wifi-menu { background: rgba(70, 117, 154, .68); border-color: rgba(218, 237, 255, .46); }
 .mac-control-slider { grid-column: 1 / -1; display: block; min-height: 64px; padding: 10px 13px; border-radius: 22px; }
@@ -471,6 +471,12 @@
 .ios-profile-app .profile-app { height: calc(100dvh - 96px); }
 .ios-profile-app .profile-toolbar { display: none; }
 .ios-profile-app .ios-home-indicator { z-index: 2; height: 8px; background: #243858; cursor: pointer; }
+.dark .ios-profile-app { color: #edf3ff; background: #151d2b; }
+.dark .ios-profile-status, .dark .ios-profile-nav { background: #1d293b; }
+.dark .ios-profile-nav { border-color: #35445d; }
+.dark .ios-profile-nav button, .dark .ios-profile-nav a { color: #a4c6ff; }
+.dark .ios-profile-app .ios-battery { border-color: #edf3ff; }
+.dark .ios-profile-app .ios-battery::before, .dark .ios-profile-app .ios-battery::after, .dark .ios-profile-app .ios-home-indicator { background: #edf3ff; }
 
 @media (max-height: 720px) {
  .ios-home-content { padding-top: 20px; }

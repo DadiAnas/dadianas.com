@@ -167,7 +167,7 @@ export default function ControlCenterMenu({
           }
           onClick={toggleDark}
         >
-          <span className="mac-control-contrast-icon" aria-hidden="true" />
+          <span className={dark ? "i-lucide:sun" : "i-lucide:moon"} aria-hidden="true" />
         </button>
         <button
           type="button"
