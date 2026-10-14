@@ -67,6 +67,10 @@ export default function ControlCenterMenu({
                     : "Off"}
               </small>
             </span>
+            <span
+              className="mac-control-chevron i-lucide:chevron-right"
+              aria-hidden="true"
+            />
           </button>
           <button type="button" aria-pressed={bluetooth} onClick={toggleBluetooth}>
             <span className="mac-control-icon" aria-hidden="true">
@@ -78,6 +82,10 @@ export default function ControlCenterMenu({
                 {bluetooth ? (french ? "Activé" : "On") : french ? "Désactivé" : "Off"}
               </small>
             </span>
+            <span
+              className="mac-control-chevron i-lucide:chevron-right"
+              aria-hidden="true"
+            />
           </button>
           <button type="button" aria-pressed={airdrop} onClick={toggleAirdrop}>
             <span className="mac-control-icon" aria-hidden="true">
@@ -95,6 +103,10 @@ export default function ControlCenterMenu({
                     : "Off"}
               </small>
             </span>
+            <span
+              className="mac-control-chevron i-lucide:chevron-right"
+              aria-hidden="true"
+            />
           </button>
         </div>
         <div className="mac-control-media">
