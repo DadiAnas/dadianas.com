@@ -17,9 +17,9 @@
   transform: translateX(-50%);
   border: 1px solid rgba(255, 255, 255, .24);
   border-radius: 27px;
-  background: linear-gradient(180deg, rgba(40, 42, 46, .94), rgba(25, 29, 36, .94) 75px);
+  background: linear-gradient(180deg, rgba(23, 25, 27, .82), rgba(6, 12, 20, .82) 75px);
   box-shadow: 0 22px 55px rgba(0, 0, 0, .35), inset 0 1px rgba(255, 255, 255, .12);
-  backdrop-filter: blur(30px) saturate(1.2);
+  backdrop-filter: blur(30px) brightness(.75) saturate(1.2);
   color: #f5f6fa;
 }
 
@@ -57,6 +57,35 @@
   .spotlight-suggestions { padding: 16px; }
   .spotlight-search-row input { font-size: 20px; }
 }
+
+.mac-launchpad-backdrop { position: fixed; inset: 0; z-index: 55; display: grid; place-items: center; padding: 30px 24px; background: rgba(5, 10, 22, .18); backdrop-filter: blur(2px); }
+.mac-launchpad-panel { display: flex; flex-direction: column; width: min(1040px, 100%); height: min(560px, calc(100vh - 60px)); overflow: hidden; border: 1px solid rgba(255,255,255,.27); border-radius: 28px; background: linear-gradient(180deg, rgba(23,25,27,.82), rgba(6,12,20,.82) 90px); box-shadow: 0 25px 70px rgba(0,0,0,.38), inset 0 1px rgba(255,255,255,.14); backdrop-filter: blur(30px) brightness(.75) saturate(1.2); color: #f4f6fb; animation: mac-launchpad-in .2s ease-out both; }
+.mac-launchpad-search { display: flex; align-items: center; gap: 15px; flex: none; height: 74px; padding: 0 28px; border-bottom: 1px solid rgba(255,255,255,.17); }
+.mac-launchpad-search > span { flex: none; color: #c3c9d3; font-size: 30px; }
+.mac-launchpad-search input { flex: 1; min-width: 0; color: #f4f6fb; background: transparent; font-size: 28px; outline: none; }
+.mac-launchpad-search input::placeholder { color: #b9bec8; }
+.mac-launchpad-search button { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 50%; color: #c3c9d3; font-size: 20px; }
+.mac-launchpad-search button:hover, .mac-launchpad-search button:focus-visible { background: rgba(255,255,255,.12); }
+.mac-launchpad-categories { display: flex; align-items: center; gap: 9px; flex: none; min-height: 62px; padding: 0 28px; border-bottom: 1px solid rgba(255,255,255,.17); }
+.mac-launchpad-categories button { padding: 7px 12px; border-radius: 12px; background: rgba(255,255,255,.09); color: #c8ced9; font-size: 13px; }
+.mac-launchpad-categories button[aria-pressed="true"], .mac-launchpad-categories button:hover { background: rgba(255,255,255,.2); color: #fff; }
+.mac-launchpad-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-content: start; gap: 26px 12px; flex: 1; min-height: 0; overflow-y: auto; padding: 30px 28px 38px; }
+.mac-launchpad-grid > a, .mac-launchpad-grid > button { display: flex; align-items: center; flex-direction: column; gap: 12px; min-width: 0; padding: 8px; border-radius: 14px; color: #f4f6fb; text-align: center; font-size: 14px; }
+.mac-launchpad-grid > a:hover, .mac-launchpad-grid > button:hover, .mac-launchpad-grid > a:focus-visible, .mac-launchpad-grid > button:focus-visible { background: rgba(255,255,255,.1); outline: 0; }
+.mac-launchpad-grid img { display: block; width: 84px; height: 84px; border-radius: 19px; object-fit: contain; }
+.mac-launchpad-grid span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mac-launchpad-empty { grid-column: 1 / -1; padding: 45px 0; color: #c8ced9; text-align: center; font-size: 14px; }
+@keyframes mac-launchpad-in { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@media (max-width: 720px) {
+  .mac-launchpad-backdrop { padding: 24px 12px; }
+  .mac-launchpad-panel { height: min(520px, calc(100vh - 48px)); }
+  .mac-launchpad-search { height: 60px; padding: 0 16px; }
+  .mac-launchpad-search input { font-size: 22px; }
+  .mac-launchpad-categories { padding: 0 16px; }
+  .mac-launchpad-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 20px 12px; }
+  .mac-launchpad-grid img { width: 62px; height: 62px; }
+}
+@media (prefers-reduced-motion: reduce) { .mac-launchpad-panel { animation: none; } }
 
 /* --------- app window --------- */
 

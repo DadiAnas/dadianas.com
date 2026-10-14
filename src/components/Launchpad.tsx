@@ -1,82 +1,121 @@
-import { launchpadApps } from "~/configs";
+import { apps } from "~/configs";
 
 interface LaunchpadProps {
   show: boolean;
   toggleLaunchpad: (target: boolean) => void;
+  openApp: (id: string) => void;
 }
 
-const placeholderText = "Search";
-
-export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
-  const dark = useStore((state) => state.dark);
-
+export default function Launchpad({ show, toggleLaunchpad, openApp }: LaunchpadProps) {
+  const french = useStore((state) => state.french);
   const [searchText, setSearchText] = useState("");
-  const [focus, setFocus] = useState(false);
+  const [category, setCategory] = useState<"all" | "portfolio" | "links">("all");
 
-  const search = () => {
-    if (searchText === "") return launchpadApps;
-    const text = searchText.toLowerCase();
-    const list = launchpadApps.filter((item) => {
-      return (
-        item.title.toLowerCase().includes(text) || item.id.toLowerCase().includes(text)
-      );
-    });
-    return list;
-  };
+  if (!show) return null;
 
-  const close = show ? "" : "opacity-0 invisible transition-opacity duration-200";
+  const results = apps.filter((app) => {
+    if (app.id === "launchpad") return false;
+    if (category === "portfolio" && !app.desktop) return false;
+    if (category === "links" && !app.link) return false;
+    const query = searchText.trim().toLowerCase();
+    return (
+      !query ||
+      [app.title, app.titleFr, app.id].some((value) =>
+        value?.toLowerCase().includes(query)
+      )
+    );
+  });
 
   return (
-    <div
-      className={`${close} mac-wallpaper ${dark ? "mac-wallpaper-dark" : ""} z-30 transform scale-110 size-full fixed overflow-hidden`}
-      id="launchpad"
-      onClick={() => toggleLaunchpad(false)}
-    >
-      <div className="size-full absolute bg-gray-900/20 backdrop-blur-2xl">
-        <div
-          className="mx-auto flex h-7 w-64 mt-5 bg-gray-200/10"
-          border="1 rounded-md gray-200/30"
-          onClick={(e) => e.stopPropagation()}
-          onFocus={() => setFocus(true)}
-          onBlur={() => setFocus(false)}
-        >
-          <div
-            className={`${
-              focus ? "w-6 duration-200" : "w-26 delay-250"
-            } hstack justify-end`}
-          >
-            <span className="i-bx:search ml-1 text-white" />
-          </div>
+    <div className="mac-launchpad-backdrop" onClick={() => toggleLaunchpad(false)}>
+      <section
+        id="launchpad"
+        className="mac-launchpad-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Applications"
+        onClick={(event) => event.stopPropagation()}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") toggleLaunchpad(false);
+        }}
+      >
+        <header className="mac-launchpad-search">
+          <span className="i-lucide:app-window" aria-hidden="true" />
           <input
-            className="flex-1 min-w-0 no-outline bg-transparent px-1 text-sm text-white"
-            placeholder={placeholderText}
+            autoFocus
+            type="search"
+            aria-label={french ? "Rechercher une application" : "Search applications"}
+            placeholder="Applications"
             value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
+            onChange={(event) => setSearchText(event.target.value)}
           />
-        </div>
-
-        <div
-          className="max-w-[1100px] mx-auto mt-8 w-full px-4 sm:px-10"
-          grid="~ flow-row cols-4 sm:cols-7"
+          <button
+            type="button"
+            aria-label={french ? "Fermer les applications" : "Close applications"}
+            onClick={() => toggleLaunchpad(false)}
+          >
+            <span className="i-lucide:x" aria-hidden="true" />
+          </button>
+        </header>
+        <nav
+          className="mac-launchpad-categories"
+          aria-label={french ? "Filtres" : "Filters"}
         >
-          {search().map((app) => (
-            <div key={`launchpad-${app.id}`} h="32 sm:36" flex="~ col">
-              <a
-                className="w-14 sm:w-20 mx-auto"
-                href={app.link}
-                target="_blank"
-                rel="noreferrer"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <img src={app.img} alt={app.title} title={app.title} />
-              </a>
-              <span m="t-2 x-auto" text="white xs sm:sm">
-                {app.title}
-              </span>
-            </div>
+          {(
+            [
+              ["all", french ? "Toutes" : "All"],
+              ["portfolio", "Portfolio"],
+              ["links", french ? "Liens" : "Links"]
+            ] as const
+          ).map(([id, label]) => (
+            <button
+              key={id}
+              type="button"
+              aria-pressed={category === id}
+              onClick={() => setCategory(id)}
+            >
+              {label}
+            </button>
           ))}
+        </nav>
+        <div className="mac-launchpad-grid">
+          {results.map((app) => {
+            const tile = (
+              <>
+                <img src={app.img} alt="" />
+                <span>{french ? app.titleFr ?? app.title : app.title}</span>
+              </>
+            );
+            return app.link ? (
+              <a
+                key={app.id}
+                href={app.link}
+                target={app.link.startsWith("mailto:") ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                onClick={() => toggleLaunchpad(false)}
+              >
+                {tile}
+              </a>
+            ) : (
+              <button
+                key={app.id}
+                type="button"
+                onClick={() => {
+                  openApp(app.id);
+                  toggleLaunchpad(false);
+                }}
+              >
+                {tile}
+              </button>
+            );
+          })}
+          {results.length === 0 && (
+            <p className="mac-launchpad-empty">
+              {french ? "Aucune application trouvée" : "No applications found"}
+            </p>
+          )}
         </div>
-      </div>
+      </section>
     </div>
   );
 }

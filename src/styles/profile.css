@@ -7,8 +7,6 @@
   background: #f9fbff;
   font-family: "Avenir Next LT Pro", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
 }
-.dark .profile-app { filter: invert(1) hue-rotate(180deg); }
-.dark .profile-app img { filter: invert(1) hue-rotate(180deg); }
 
 .profile-sidebar {
   width: 213px;
@@ -185,3 +183,36 @@
 }
 
 @media (prefers-reduced-motion: reduce) { .profile-route-grid button { transform: none !important; } }
+
+.dark .profile-app {
+  --profile-surface: #151d2b;
+  --profile-card: #202b3e;
+  --profile-line: #35445d;
+  --profile-text: #edf3ff;
+  --profile-muted: #aabbd2;
+  --profile-accent: #a4c6ff;
+  color: var(--profile-text);
+  background: var(--profile-surface);
+  color-scheme: dark;
+}
+.dark .profile-sidebar { background: linear-gradient(150deg, #202d42, #192438); border-color: var(--profile-line); }
+.dark .profile-toolbar { background: #1d293b; border-color: var(--profile-line); color: var(--profile-muted); }
+.dark .profile-hero { background: linear-gradient(125deg, #182338, #233450); border-color: var(--profile-line); }
+.dark .profile-brand span, .dark .profile-sidebar-label, .dark .profile-sidebar-bottom, .dark .profile-sidebar nav button, .dark .profile-current p { color: var(--profile-muted); }
+.dark .profile-sidebar nav button:hover { background: rgba(255,255,255,.09); }
+.dark .profile-sidebar nav button.active { color: #fff; background: #376ac4; }
+.dark .profile-toolbar-actions button { border-color: var(--profile-line); color: var(--profile-accent); }
+.dark .profile-eyebrow, .dark .profile-section-heading > span, .dark .profile-current > div > span, .dark .profile-quick-search-label { color: var(--profile-accent); }
+.dark .profile-hero h1, .dark .profile-section-heading h1, .dark .profile-section-heading h2, .dark .profile-route-grid strong, .dark .profile-role-main > strong, .dark .profile-expertise-grid h2, .dark .profile-credential-grid h2, .dark .profile-education-list h2, .dark .profile-contact-list a strong { color: var(--profile-text); }
+.dark .profile-hero-copy > p, .dark .profile-section-heading p, .dark .profile-route-grid small, .dark .profile-role-meta, .dark .profile-role-summary, .dark .profile-role ul, .dark .profile-expertise-grid p, .dark .profile-credential-grid p, .dark .profile-education-list p, .dark .profile-footnote, .dark .profile-search-row > span { color: var(--profile-muted); }
+.dark .profile-scroll a, .dark .profile-sidebar-bottom a, .dark .profile-toolbar a, .dark .profile-role-company, .dark .profile-role-toggle-label, .dark .profile-visual-skills-actions a, .dark .profile-current button { color: var(--profile-accent); }
+.dark .profile-route-grid button, .dark .profile-role, .dark .profile-expertise-grid article, .dark .profile-credential-grid > div, .dark .profile-current { background: var(--profile-card); border-color: var(--profile-line); }
+.dark .profile-quick-search form, .dark .profile-search, .dark .profile-quick-results button, .dark .profile-filters button, .dark .profile-expertise-grid article > div > span, .dark .profile-role-tags small { background: #172235; border-color: var(--profile-line); color: var(--profile-text); }
+.dark .profile-filters button[aria-pressed="true"] { background: #376ac4; border-color: #376ac4; color: #fff; }
+.dark .profile-quick-search input, .dark .profile-search input { color: var(--profile-text); }
+.dark .profile-quick-search form button, .dark .profile-hero-actions button, .dark .profile-visual-skills-actions button { color: #fff; }
+.dark .profile-portrait { background: var(--profile-card); border-color: var(--profile-line); }
+.dark .profile-portrait > div { background: rgba(23, 32, 47, .86); border-color: var(--profile-line); color: var(--profile-text); }
+.dark .profile-visual-skills-art { background: #fff; border-color: var(--profile-line); }
+.dark .profile-role-marker { background: var(--profile-card); }
+.dark .profile-education-list article, .dark .profile-contact-list, .dark .profile-contact-list a { border-color: var(--profile-line); }

@@ -80,16 +80,7 @@ export default function Desktop(props: MacActions) {
   }, []);
 
   const toggleLaunchpad = (target: boolean): void => {
-    const r = document.querySelector(`#launchpad`) as HTMLElement;
-    if (target) {
-      r.style.transform = "scale(1)";
-      r.style.transition = "ease-in 0.2s";
-    } else {
-      r.style.transform = "scale(1.1)";
-      r.style.transition = "ease-out 0.2s";
-    }
-
-    setState({ ...state, showLaunchpad: target });
+    setState((current) => ({ ...current, showLaunchpad: target }));
   };
 
   const toggleSpotlight = (): void => {
@@ -273,7 +264,11 @@ export default function Desktop(props: MacActions) {
       )}
 
       {/* Launchpad */}
-      <Launchpad show={state.showLaunchpad} toggleLaunchpad={toggleLaunchpad} />
+      <Launchpad
+        show={state.showLaunchpad}
+        toggleLaunchpad={toggleLaunchpad}
+        openApp={openApp}
+      />
 
       {/* Dock */}
       <Dock
